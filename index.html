@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fábula Última — Criador de Personagem</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#1a6b4a;--green-light:#2a8c62;--green-pale:#e8f4ee;--green-mid:#c2e0d0;
+  --bg:#f8f9fa;--white:#ffffff;--panel:#f0f7f3;
+  --text:#1a1a1a;--muted:#5a6b62;--dim:#9aafa5;
+  --border:#c8ddd4;--border-dark:#1a6b4a;
+  --red:#c0392b;--red-pale:#fdecea;
+  --gold:#b8860b;--gold-pale:#fdf6e3;
+  --blue:#1a4a7a;--blue-pale:#e8f0fa;
+  --shadow:0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:0 2px 8px rgba(0,0,0,.1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;}
+/* HEADER */
+.hdr{background:var(--green);color:#fff;padding:.7rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.hdr-logo{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:.08em;display:flex;align-items:center;gap:.5rem;}
+.hdr-sub{font-size:.75rem;opacity:.75;letter-spacing:.05em;}
+/* TABS */
+.tabs{background:var(--white);border-bottom:2px solid var(--green);display:flex;overflow-x:auto;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:none;border:none;padding:.7rem 1.2rem;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;}
+.tab:hover{color:var(--green);}
+.tab.on{color:var(--green);border-bottom-color:var(--green);background:var(--green-pale);}
+/* PANELS */
+.pane{display:none;}.pane.on{display:block;}
+.pg{padding:1.2rem;max-width:1300px;margin:0 auto;}
+/* SECTION HEADERS */
+.sh{background:var(--green);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .7rem;margin-bottom:.7rem;display:flex;align-items:center;gap:.4rem;}
+/* CARDS */
+.card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:.9rem;margin-bottom:.8rem;box-shadow:var(--shadow);}
+/* FORM */
+.frow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem;margin-bottom:.9rem;}
+.fg{display:flex;flex-direction:column;gap:.25rem;}
+.flabel{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green);}
+.finput,.fsel{background:var(--white);border:1px solid var(--border);border-bottom:2px solid var(--green);color:var(--text);font-family:'Barlow',sans-serif;font-size:.9rem;padding:.35rem .5rem;border-radius:2px;outline:none;width:100%;transition:border-color .15s;}
+.finput:focus,.fsel:focus{border-color:var(--green-light);}
+.fsel option{background:var(--white);}
+/* TOOLTIP */
+.tip{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--green-pale);border:1px solid var(--green);color:var(--green);font-size:.6rem;font-weight:700;cursor:pointer;flex-shrink:0;position:relative;vertical-align:middle;margin-left:3px;}
+.tip:hover .tp,.tip:focus .tp{display:block;}
+.tp{display:none;position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-size:.78rem;line-height:1.5;padding:.5rem .7rem;border-radius:4px;width:240px;z-index:300;pointer-events:none;text-transform:none;letter-spacing:0;font-weight:400;}
+.tp::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--green);}
+/* STEP LABELS */
+.step-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:var(--green);color:#fff;border-radius:50%;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;flex-shrink:0;}
+.step-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:var(--green);text-transform:uppercase;letter-spacing:.05em;}
+/* ATTR SECTION */
+.attr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;}
+.attr-box{border:1px solid var(--border);border-left:3px solid var(--green);border-radius:3px;padding:.7rem;background:var(--white);}
+.attr-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;color:var(--green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
+.attr-desc{font-size:.75rem;color:var(--muted);margin-bottom:.5rem;}
+.dsel{background:var(--green-pale);border:1px solid var(--green);color:var(--green);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;padding:.35rem .5rem;border-radius:3px;cursor:pointer;width:100%;}
+/* STATS BAR */
+.sbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(85px,1fr));gap:.5rem;margin:1rem 0;}
+.sbox{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--green);border-radius:3px;padding:.5rem;text-align:center;}
+.sbox.crise{border-top-color:var(--red);}
+.sbox-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.sbox-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.5rem;color:var(--green);}
+.sbox.crise .sbox-val{color:var(--red);}
+/* PROFILE */
+.prf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:.9rem;}
+.prf-btn{background:var(--white);border:1px solid var(--border);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.05em;padding:.55rem .4rem;border-radius:3px;cursor:pointer;text-align:center;transition:all .15s;}
+.prf-btn:hover,.prf-btn.on{border-color:var(--green);color:var(--green);background:var(--green-pale);}
+.prf-vals{font-size:.7rem;color:var(--dim);margin-top:.2rem;font-weight:400;}
+/* LEVEL */
+.lvl-row{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;padding:.7rem 0;}
+.lvl-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:2.5rem;color:var(--green);min-width:3rem;text-align:center;}
+.lvl-btn{background:var(--green-pale);border:1px solid var(--green);color:var(--green);width:28px;height:28px;border-radius:50%;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.lvl-btn:hover{background:var(--green);color:#fff;}
+.lvl-info{font-size:.8rem;color:var(--muted);}
+/* INFO BOX */
+.ibox{background:var(--green-pale);border-left:3px solid var(--green);padding:.6rem .8rem;font-size:.82rem;color:var(--green);line-height:1.5;margin:.6rem 0;border-radius:0 3px 3px 0;}
+.wbox{background:var(--red-pale);border-left:3px solid var(--red);padding:.6rem .8rem;font-size:.82rem;color:var(--red);line-height:1.5;margin:.6rem 0;border-radius:0 3px 3px 0;}
+/* CLASS GRID */
+.src-tabs{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.7rem;}
+.src-tab{background:var(--white);border:1px solid var(--border);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;padding:.28rem .65rem;border-radius:20px;cursor:pointer;transition:all .15s;}
+.src-tab:hover,.src-tab.on{background:var(--green);color:#fff;border-color:var(--green);}
+.cls-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem;}
+.cls-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:.8rem;cursor:pointer;transition:all .15s;}
+.cls-card:hover{border-color:var(--green-light);box-shadow:var(--shadow-md);}
+.cls-card.on{border-color:var(--green);border-left:3px solid var(--green);background:var(--green-pale);}
+.cls-head{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:var(--text);margin-bottom:.2rem;display:flex;align-items:center;justify-content:space-between;gap:.3rem;}
+.cls-src{font-size:.6rem;background:var(--green-pale);color:var(--green);border:1px solid var(--green-mid);padding:.1rem .4rem;border-radius:2px;white-space:nowrap;flex-shrink:0;font-family:'Barlow Condensed',sans-serif;font-weight:600;}
+.cls-desc{font-size:.77rem;color:var(--muted);line-height:1.35;margin-bottom:.35rem;}
+.cls-ben{font-size:.72rem;color:var(--green);font-weight:500;margin-bottom:.4rem;}
+.cls-pips{display:flex;align-items:center;gap:.25rem;flex-wrap:wrap;}
+.pip{width:20px;height:20px;border-radius:50%;border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:all .12s;display:flex;align-items:center;justify-content:center;font-size:.5rem;color:transparent;flex-shrink:0;}
+.pip.on{background:var(--green);border-color:var(--green-light);color:#fff;}
+.pip-lbl{font-size:.7rem;color:var(--muted);margin-left:.2rem;}
+/* POWERS PANEL */
+.pw-panel{background:var(--white);border:1px solid var(--border);border-radius:4px;margin-top:.8rem;overflow:hidden;}
+.pw-hdr{background:var(--green);color:#fff;padding:.45rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;}
+.pw-item{padding:.6rem .9rem;border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s;display:flex;align-items:flex-start;gap:.6rem;}
+.pw-item:last-child{border-bottom:none;}
+.pw-item:hover{background:var(--green-pale);}
+.pw-item.on{background:var(--green-pale);}
+.pw-item.disabled{opacity:.4;cursor:not-allowed;}
+.pw-chk{width:15px;height:15px;border:2px solid var(--green);border-radius:2px;flex-shrink:0;margin-top:2px;background:var(--white);display:flex;align-items:center;justify-content:center;}
+.pw-chk.on{background:var(--green);}
+.pw-chk.on::after{content:'✓';color:#fff;font-size:.58rem;font-weight:bold;}
+.pw-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;color:var(--text);}
+.pw-note{font-size:.7rem;color:var(--red);font-weight:600;}
+.pw-desc{font-size:.77rem;color:var(--muted);line-height:1.4;margin-top:.15rem;}
+/* SEL SUMMARY */
+.sel-sum{background:var(--panel);border:1px solid var(--green-mid);border-radius:4px;padding:.7rem .9rem;margin:.7rem 0;}
+.ss-row{display:flex;justify-content:space-between;align-items:center;padding:.22rem 0;border-bottom:1px solid var(--border);}
+.ss-row:last-child{border-bottom:none;}
+.ss-name{font-size:.87rem;color:var(--text);}
+.ss-lv{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;color:var(--green);}
+/* GOLD */
+.gold-row{display:flex;align-items:center;gap:.8rem;background:var(--gold-pale);border:1px solid var(--gold);border-radius:4px;padding:.65rem 1rem;margin:.7rem 0;flex-wrap:wrap;}
+.gold-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.6rem;color:var(--gold);}
+.gold-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.undo-btn{margin-left:auto;background:var(--white);border:1px solid var(--border);color:var(--muted);font-size:.75rem;padding:.3rem .7rem;border-radius:3px;cursor:pointer;font-family:'Barlow',sans-serif;transition:all .15s;}
+.undo-btn:hover{border-color:var(--red);color:var(--red);}
+/* SHOP */
+.shop-layout{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:700px){.shop-layout{grid-template-columns:1fr;}}
+.shop-box,.inv-box{background:var(--white);border:1px solid var(--border);border-radius:4px;}
+.item-list{max-height:420px;overflow-y:auto;}
+.filter-row{display:flex;flex-wrap:wrap;gap:.3rem;padding:.6rem;}
+.filt{background:var(--white);border:1px solid var(--border);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.07em;text-transform:uppercase;padding:.25rem .6rem;border-radius:20px;cursor:pointer;transition:all .15s;}
+.filt:hover,.filt.on{background:var(--green);color:#fff;border-color:var(--green);}
+.sitem{display:flex;align-items:flex-start;gap:.5rem;padding:.55rem .7rem;border-bottom:1px solid var(--border);transition:background .12s;}
+.sitem:hover{background:var(--green-pale);}
+.iname{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:var(--text);}
+.idesc{font-size:.74rem;color:var(--muted);line-height:1.3;margin-top:.15rem;}
+.mbadge{background:var(--red-pale);color:var(--red);font-size:.6rem;font-weight:700;padding:1px 4px;border-radius:2px;margin-left:3px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em;}
+.iprice{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:var(--gold);white-space:nowrap;}
+.buy-btn{background:var(--green-pale);border:1px solid var(--green);color:var(--green);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .55rem;border-radius:3px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.buy-btn:hover{background:var(--green);color:#fff;}
+.buy-btn:disabled{opacity:.35;cursor:not-allowed;}
+.info-btn{background:none;border:none;cursor:pointer;font-size:.9rem;padding:2px 4px;color:var(--muted);transition:color .12s;flex-shrink:0;}
+.info-btn:hover{color:var(--green);}
+/* INVENTORY */
+.inv-slot{display:flex;align-items:center;padding:.45rem .7rem;border-bottom:1px solid var(--border);}
+.inv-slot:hover{background:var(--green-pale);}
+.inv-name{flex:1;font-size:.85rem;}
+.inv-qty{background:var(--green);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-left:.4rem;flex-shrink:0;}
+.inv-empty{color:var(--dim);font-style:italic;font-size:.85rem;padding:.9rem;text-align:center;}
+/* BONDS */
+.bond-item{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:.7rem;margin-bottom:.6rem;display:grid;grid-template-columns:1fr auto;gap:.8rem;align-items:start;}
+@media(max-width:560px){.bond-item{grid-template-columns:1fr;}}
+.feelings{display:flex;flex-direction:column;gap:.35rem;}
+.fpair{display:flex;align-items:center;gap:.4rem;}
+.flbl{font-size:.68rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;width:82px;text-align:right;flex-shrink:0;text-transform:uppercase;letter-spacing:.04em;}
+.fchk{width:16px;height:16px;border:2px solid var(--border);background:var(--white);border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s;flex-shrink:0;}
+.fchk:hover{border-color:var(--green);}
+.fchk.on{background:var(--green);border-color:var(--green);}
+.fchk.on::after{content:'✓';color:#fff;font-size:.57rem;font-weight:bold;}
+.fdiv{width:1px;height:16px;background:var(--border);margin:0 1px;flex-shrink:0;}
+/* SPELLS TAB */
+.spell-filter-bar{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.8rem;}
+.cls-spell-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:.7rem;}
+.spell-cls-card{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.spell-cls-hdr{background:var(--green);color:#fff;padding:.4rem .8rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;}
+.spell-item{padding:.5rem .8rem;border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s;display:flex;align-items:flex-start;gap:.5rem;}
+.spell-item:last-child{border-bottom:none;}
+.spell-item:hover{background:var(--green-pale);}
+.spell-item.on{background:var(--green-pale);}
+.spell-item.disabled{opacity:.38;cursor:not-allowed;}
+.spell-chk{width:14px;height:14px;border:2px solid var(--green);border-radius:2px;flex-shrink:0;margin-top:2px;background:var(--white);display:flex;align-items:center;justify-content:center;}
+.spell-chk.on{background:var(--green);}
+.spell-chk.on::after{content:'✓';color:#fff;font-size:.55rem;font-weight:bold;}
+.spell-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;color:var(--text);}
+.spell-off{color:var(--red);font-size:.7rem;font-weight:700;}
+.spell-meta{font-size:.72rem;color:var(--green);font-weight:600;margin-top:.1rem;}
+.spell-desc{font-size:.75rem;color:var(--muted);line-height:1.35;margin-top:.15rem;}
+/* RULES */
+.rules-sec{margin-bottom:1.8rem;}
+.rules-sec h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:.6rem;padding-bottom:.3rem;border-bottom:1px solid var(--green-mid);}
+.rules-sec p{font-size:.88rem;color:var(--muted);line-height:1.65;margin-bottom:.5rem;}
+.rules-sec ul{padding-left:1rem;}
+.rules-sec li{font-size:.85rem;color:var(--muted);line-height:1.65;margin-bottom:.2rem;}
+.rules-sec strong{color:var(--text);font-weight:600;}
+.rtable{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.82rem;}
+.rtable th{background:var(--green);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;padding:.42rem .65rem;text-align:left;}
+.rtable td{padding:.4rem .65rem;border-bottom:1px solid var(--border);color:var(--muted);}
+.rtable tr:hover td{background:var(--green-pale);}
+/* ===================== FICHA / SHEET ===================== */
+.sheet-wrap{max-width:900px;margin:0 auto;background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1rem;font-size:.78rem;}
+/* SHEET HEADER */
+.sh-top{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.7rem;}
+.sh-field{border-bottom:1.5px solid var(--text);padding:.15rem 0;margin-bottom:.5rem;}
+.sh-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);display:block;margin-bottom:.1rem;}
+.sh-val{font-size:.87rem;min-height:1.2rem;color:var(--text);}
+.tracos-row{border:1px solid var(--border);border-radius:3px;padding:.5rem .7rem;margin-bottom:.5rem;}
+.tracos-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:.25rem;}
+/* LAÇOS DA FICHA */
+.lacos-block{border:1px solid var(--border);border-radius:3px;padding:.5rem;}
+.laco-row{display:flex;align-items:center;gap:.4rem;padding:.25rem 0;border-bottom:1px solid var(--border);}
+.laco-row:last-child{border-bottom:none;}
+.laco-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;color:var(--muted);width:14px;}
+.laco-name{flex:1;font-size:.8rem;border-bottom:1px solid var(--border);min-height:1.2rem;}
+.laco-checks{display:flex;gap:.25rem;margin-left:.5rem;}
+.laco-chk-group{display:flex;flex-direction:column;gap:.2rem;align-items:center;}
+.laco-chk-lbl{font-size:.55rem;color:var(--muted);text-align:center;line-height:1.1;}
+.laco-box{width:12px;height:12px;border:1px solid var(--border-dark);border-radius:1px;background:var(--white);}
+.laco-box.filled{background:var(--green);}
+.laco-sep{width:1px;height:20px;background:var(--border);margin:0 1px;}
+/* ATRIBUTOS FICHA */
+.sh-attrs{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin-bottom:.6rem;}
+.sh-attr{border:1px solid var(--border);border-radius:3px;text-align:center;padding:.5rem;}
+.sh-attr-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--green);}
+.sh-attr-die{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;color:var(--text);}
+.sh-attr-state{font-size:.6rem;color:var(--red);margin-top:.1rem;display:flex;align-items:center;gap:.2rem;}
+.sh-attr-chk{width:10px;height:10px;border:1px solid var(--red);border-radius:1px;}
+/* PONTOS FICHA */
+.sh-pts{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;margin-bottom:.6rem;}
+.sh-pt-box{border:1px solid var(--border);border-radius:3px;padding:.5rem;}
+.sh-pt-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text);margin-bottom:.25rem;}
+.sh-pt-row{display:flex;align-items:center;gap:.3rem;}
+.sh-pt-formula{font-size:.65rem;color:var(--muted);}
+.sh-pt-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:var(--text);}
+.sh-pt-crise{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;color:var(--red);margin-left:auto;}
+.sh-defrow{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;margin-bottom:.6rem;}
+.sh-defbox{border:1px solid var(--border);border-radius:3px;padding:.4rem .5rem;}
+.sh-deflbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);}
+.sh-defval{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--text);}
+/* CLASSES FICHA */
+.sh-cls{border:1px solid var(--border);border-radius:3px;margin-bottom:.5rem;}
+.sh-cls-hdr{display:grid;grid-template-columns:1fr 1fr;gap:.3rem;background:var(--panel);padding:.35rem .6rem;border-bottom:1px solid var(--border);}
+.sh-cls-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.sh-cls-val{font-size:.82rem;color:var(--text);}
+.sh-cls-ben-lbl{font-size:.6rem;color:var(--green);font-weight:600;}
+.sh-cls-body{padding:.4rem .6rem;font-size:.78rem;color:var(--muted);min-height:60px;line-height:1.5;}
+/* EQUIPAMENTO FICHA */
+.sh-equip-table{width:100%;border-collapse:collapse;}
+.sh-equip-table th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:.3rem .5rem;border-bottom:1px solid var(--border);text-align:left;}
+.sh-equip-table td{padding:.3rem .5rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--text);}
+.sh-equip-row-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;color:var(--green);}
+/* EQUIPAVEL BOXES */
+.equipavel-row{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0;}
+.eq-box{display:flex;align-items:center;gap:.3rem;font-size:.72rem;color:var(--muted);}
+.eq-chk{width:12px;height:12px;border:1.5px solid var(--text);border-radius:1px;flex-shrink:0;}
+.eq-chk.on{background:var(--green);border-color:var(--green);}
+/* PONTOS FABULA FICHA */
+.sh-pfabula{background:var(--panel);border:1px solid var(--green-mid);border-radius:3px;padding:.6rem .7rem;font-size:.75rem;color:var(--muted);line-height:1.6;}
+.sh-pfabula strong{color:var(--text);}
+/* EXP FICHA */
+.sh-exp{background:var(--panel);border:1px solid var(--border);border-radius:3px;padding:.5rem .7rem;}
+.sh-exp-num{border:1px solid var(--border);display:inline-block;padding:.15rem .5rem;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--text);min-width:2.5rem;text-align:center;}
+/* ZÊNITES FICHA */
+.sh-zenites{display:flex;align-items:center;gap:.5rem;background:var(--gold-pale);border:1px solid var(--gold);border-radius:3px;padding:.4rem .7rem;}
+.sh-zen-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:var(--gold);}
+/* NIVEL FICHA */
+.sh-nivel-circle{width:50px;height:50px;border-radius:50%;border:2px solid var(--text);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;}
+/* CONDITIONS */
+.sh-conds{display:flex;flex-direction:column;gap:.2rem;}
+.cond-row{display:flex;align-items:center;gap:.3rem;font-size:.72rem;color:var(--muted);}
+.cond-chk{width:11px;height:11px;border:1.5px solid var(--text);border-radius:1px;flex-shrink:0;}
+/* EXPORT BTN */
+.exp-btn{display:block;width:100%;background:var(--green);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;padding:.85rem;border:none;border-radius:4px;cursor:pointer;transition:all .2s;text-align:center;margin-top:1rem;}
+.exp-btn:hover{background:var(--green-light);}
+/* DIV */
+hr.div{border:none;border-top:1px solid var(--border);margin:.9rem 0;}
+/* TOOLTIP HOVER for items */
+.item-tooltip{position:relative;}
+.item-tooltip .itt{display:none;position:absolute;right:0;top:100%;background:var(--green);color:#fff;font-size:.75rem;line-height:1.45;padding:.5rem .7rem;border-radius:4px;width:240px;z-index:300;pointer-events:none;}
+.item-tooltip:hover .itt{display:block;}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="hdr-logo">⚔ FÁBULA ÚLTIMA <span style="font-size:.75rem;font-weight:300;opacity:.8">TTJRPG</span></div>
+  <div class="hdr-sub">CRIADOR DE PERSONAGEM</div>
+</header>
+<nav class="tabs">
+  <button class="tab on" onclick="switchTab('iden',this)">① Identidade</button>
+  <button class="tab" onclick="switchTab('equip',this)">② Equipamentos</button>
+  <button class="tab" onclick="switchTab('magias',this)">③ Magias</button>
+  <button class="tab" onclick="switchTab('bonds',this)">④ Laços</button>
+  <button class="tab" onclick="switchTab('rules',this)">⑤ Como Jogar</button>
+  <button class="tab" onclick="switchTab('sheet',this)">⑥ Ficha</button>
+</nav>
+
+<!-- ======================== ABA 1 ======================== -->
+<div id="pane-iden" class="pane on"><div class="pg">
+
+<div style="display:grid;grid-template-columns:1fr 340px;gap:1rem;">
+<div><!-- LEFT COL -->
+
+<!-- PASSO 1 -->
+<div class="card">
+  <div class="sh" style="margin:-0.9rem -0.9rem .7rem;">
+    <span class="step-badge">1</span> Nome & Descrição
+    <span class="tip">?<span class="tp">Primeiro passo: defina quem é seu personagem. Nome, gênero e raça são livres — em Fábula Última, raça não dá bônus mecânicos automáticos.</span></span>
+  </div>
+  <div class="frow">
+    <div class="fg"><span class="flabel">Nome</span><input class="finput" id="c-name" placeholder="Camila de Platea" oninput="sync()"></div>
+    <div class="fg"><span class="flabel">Gênero / Pronomes</span><input class="finput" id="c-gender" placeholder="ela/dela" oninput="sync()"></div>
+    <div class="fg"><span class="flabel">Raça / Espécie <span class="tip">?<span class="tp">Raça não concede bônus mecânicos automáticos. Você pode criar qualquer espécie e adaptar poderes narrativamente.</span></span></span><input class="finput" id="c-race" placeholder="Humano, Elfo, Sáurico..." oninput="sync()"></div>
+  </div>
+</div>
+
+<!-- PASSO 2 -->
+<div class="card">
+  <div class="sh" style="margin:-0.9rem -0.9rem .7rem;">
+    <span class="step-badge">2</span> Traços
+    <span class="tip">?<span class="tp">Traços (Identidade, Tema, Origem) podem ser evocados gastando 1 Ponto de Fábula para rolar novamente 1 ou ambos os dados de um teste.</span></span>
+  </div>
+  <div class="frow">
+    <div class="fg">
+      <span class="flabel">Identidade <span class="tip">?<span class="tp">Frase curta que resume como seu personagem se vê agora. Ex: "Última princesa de Platea". Evoque para rolar novamente 1 dado.</span></span></span>
+      <input class="finput" id="c-ident" placeholder="Ex: Cavaleiro renegado de Arcantis" oninput="sync()">
+    </div>
+    <div class="fg">
+      <span class="flabel">Tema <span class="tip">?<span class="tp">Ideal ou emoção central. Sugestões: Ambição, Raiva, Pertencimento, Dúvida, Dever, Culpa, Esperança, Justiça, Piedade, Vingança.</span></span></span>
+      <input class="finput" id="c-theme" placeholder="Ex: Esperança, Vingança..." oninput="sync()">
+    </div>
+    <div class="fg">
+      <span class="flabel">Origem <span class="tip">?<span class="tp">O local de onde veio. Raramente muda em jogo. Evoque para rolar novamente 1 dado.</span></span></span>
+      <input class="finput" id="c-origin" placeholder="Ex: Cidadela de Platea" oninput="sync()">
+    </div>
+  </div>
+</div>
+
+<!-- PASSO 3: NÍVEL -->
+<div class="card">
+  <div class="sh" style="margin:-0.9rem -0.9rem .7rem;">
+    <span class="step-badge">3</span> Nível do Personagem
+    <span class="tip">?<span class="tp">Personagens começam no nível 5. Cada nível = 1 ponto de classe + +1 PV e +1 PM máximos. Máximo: nível 50.</span></span>
+  </div>
+  <div class="lvl-row">
+    <button class="lvl-btn" onclick="adjLvl(-5)" title="−5">«</button>
+    <button class="lvl-btn" onclick="adjLvl(-1)">−</button>
+    <div class="lvl-num" id="lvl-disp">5</div>
+    <button class="lvl-btn" onclick="adjLvl(1)">+</button>
+    <button class="lvl-btn" onclick="adjLvl(5)" title="+5">»</button>
+    <div class="lvl-info" id="lvl-info">Nível inicial padrão — 5 pontos de classe.</div>
+  </div>
+  <div class="ibox">Pontos de classe: <strong id="lvl-budget">5</strong> | Ouro de equipamento: <strong id="gold-ini">500</strong>z | Máx. por classe: 10</div>
+</div>
+
+<!-- PASSO 4: ATRIBUTOS -->
+<div class="card">
+  <div class="sh" style="margin:-0.9rem -0.9rem .7rem;">
+    <span class="step-badge">4</span> Atributos
+    <span class="tip">?<span class="tp">Escolha um perfil e distribua os dados (d6 a d12) entre os 4 atributos. Dados maiores = mais poder. Atributos só aumentam nos níveis 20 e 40.</span></span>
+  </div>
+  <div class="prf-grid">
+    <button class="prf-btn" id="prf-spec" onclick="setProfile('spec')">Especializado<div class="prf-vals">d10, d10, d6, d6</div></button>
+    <button class="prf-btn" id="prf-mid" onclick="setProfile('mid')">Mediano<div class="prf-vals">d10, d8, d8, d6</div></button>
+    <button class="prf-btn on" id="prf-all" onclick="setProfile('all')">Pau pra toda obra<div class="prf-vals">d8, d8, d8, d8</div></button>
+  </div>
+  <div class="attr-grid">
+    <div class="attr-box">
+      <div class="attr-name">DES — Destreza <span class="tip">?<span class="tp">Precisão, agilidade, reflexos. Base da Defesa. Usado em armas leves, arcos e armas de fogo.</span></span></div>
+      <div class="attr-desc">Precisão · Agilidade · Reflexos</div>
+      <select class="dsel" id="a-des" onchange="calcStats()"><option value="6">d6</option><option value="8" selected>d8</option><option value="10">d10</option><option value="12">d12</option></select>
+    </div>
+    <div class="attr-box">
+      <div class="attr-name">VIG — Vigor <span class="tip">?<span class="tp">Força física e resistência. PV máx = Nível + (5 × Vigor). Armas pesadas usam Vigor.</span></span></div>
+      <div class="attr-desc">Força · Resistência · Robustez</div>
+      <select class="dsel" id="a-vig" onchange="calcStats()"><option value="6">d6</option><option value="8" selected>d8</option><option value="10">d10</option><option value="12">d12</option></select>
+    </div>
+    <div class="attr-box">
+      <div class="attr-name">AST — Astúcia <span class="tip">?<span class="tp">Raciocínio e magia. Base da Defesa Mágica. Usado em feitiços e investigação.</span></span></div>
+      <div class="attr-desc">Inteligência · Percepção · Magia</div>
+      <select class="dsel" id="a-ast" onchange="calcStats()"><option value="6">d6</option><option value="8" selected>d8</option><option value="10">d10</option><option value="12">d12</option></select>
+    </div>
+    <div class="attr-box">
+      <div class="attr-name">VON — Vontade <span class="tip">?<span class="tp">Carisma e determinação. PM máx = Nível + (5 × Vontade). Essencial para magos e oradores.</span></span></div>
+      <div class="attr-desc">Carisma · Determinação · Foco</div>
+      <select class="dsel" id="a-von" onchange="calcStats()"><option value="6">d6</option><option value="8" selected>d8</option><option value="10">d10</option><option value="12">d12</option></select>
+    </div>
+  </div>
+</div>
+
+<!-- PASSO 5: CLASSES -->
+<div class="card">
+  <div class="sh" style="margin:-0.9rem -0.9rem .7rem;">
+    <span class="step-badge">5</span> Classes & Poderes
+    <span class="tip">?<span class="tp">Distribua seus pontos de nível entre 2–3 classes. Cada ponto = 1 nível na classe = 1 poder. Máx. 10 por classe. Ao dominar (10 níveis), ganha um Poder Heroico! Nunca mais de 3 classes não dominadas.</span></span>
+  </div>
+  <div class="src-tabs" id="srcTabs"></div>
+  <div class="cls-grid" id="clsGrid"></div>
+  <div id="clsSummaryWrap" style="display:none;">
+    <div style="margin-top:.7rem;" class="sh">Resumo das Classes</div>
+    <div class="sel-sum" id="clsSumContent"></div>
+  </div>
+  <div id="pwPanel" class="pw-panel" style="display:none;">
+    <div class="pw-hdr" id="pwTitle">PODERES</div>
+    <div id="pwList"></div>
+  </div>
+</div>
+
+</div><!-- end left col -->
+
+<!-- RIGHT COL: LIVE STATS -->
+<div>
+  <div style="position:sticky;top:.5rem;">
+    <div class="card">
+      <div class="sh" style="margin:-.9rem -.9rem .7rem;"><span class="step-badge">6</span> Recursos Calculados</div>
+      <div class="sbar">
+        <div class="sbox"><div class="sbox-lbl">PV Máx</div><div class="sbox-val" id="st-pv">45</div><div style="font-size:.62rem;color:var(--muted);">(VIG×5)+Nível</div></div>
+        <div class="sbox"><div class="sbox-lbl">PM Máx</div><div class="sbox-val" id="st-pm">45</div><div style="font-size:.62rem;color:var(--muted);">(VON×5)+Nível</div></div>
+      </div>
+      <div class="sbar">
+        <div class="sbox crise"><div class="sbox-lbl">Crise ≤</div><div class="sbox-val" id="st-crise">22</div><div style="font-size:.62rem;color:var(--muted);">PV máx ÷ 2</div></div>
+        <div class="sbox"><div class="sbox-lbl">PI Máx</div><div class="sbox-val" id="st-pi">6</div><div style="font-size:.62rem;color:var(--muted);">6 + bônus</div></div>
+      </div>
+      <div class="sbar">
+        <div class="sbox"><div class="sbox-lbl">Defesa</div><div class="sbox-val" id="st-def">8</div><div style="font-size:.62rem;color:var(--muted);">dado DES</div></div>
+        <div class="sbox"><div class="sbox-lbl">Def.Mág</div><div class="sbox-val" id="st-defm">8</div><div style="font-size:.62rem;color:var(--muted);">dado AST</div></div>
+      </div>
+      <div class="ibox" style="margin-top:.5rem;">
+        Pontos de Fábula iniciais: <strong>3</strong><br>
+        Iniciativa: <strong id="st-ini">+0</strong>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sh" style="margin:-.9rem -.9rem .7rem;">Condições</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem;font-size:.78rem;">
+        <div style="display:flex;align-items:center;gap:.4rem;"><div class="cond-chk"></div><span>Lento</span></div>
+        <div style="display:flex;align-items:center;gap:.4rem;"><div class="cond-chk"></div><span>Enfurecido</span></div>
+        <div style="display:flex;align-items:center;gap:.4rem;"><div class="cond-chk"></div><span>Atordoado</span></div>
+        <div style="display:flex;align-items:center;gap:.4rem;"><div class="cond-chk"></div><span>Fraco</span></div>
+        <div style="display:flex;align-items:center;gap:.4rem;"><div class="cond-chk"></div><span>Abalado</span></div>
+        <div style="display:flex;align-items:center;gap:.4rem;"><div class="cond-chk"></div><span>Envenenado</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sh" style="margin:-.9rem -.9rem .7rem;">Zênites</div>
+      <div class="sh-zenites" style="margin:.3rem 0;"><span>💰</span><div><div class="gold-lbl">Disponível</div><div class="sh-zen-val" id="st-gold">500</div></div></div>
+      <div style="font-size:.72rem;color:var(--muted);">Ouro inicial: <strong id="gold-ini-disp">500</strong>z + 2d6×10z extras</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end 2-col grid -->
+</div></div>
+
+<!-- ======================== ABA 2: EQUIPAMENTOS ======================== -->
+<div id="pane-equip" class="pane"><div class="pg">
+  <div class="sh">⚔ Loja & Inventário</div>
+  <div class="gold-row">
+    <span style="font-size:1.4rem;">💰</span>
+    <div><div class="gold-lbl">Zênites</div><div class="gold-val" id="gold-disp">500</div></div>
+    <div style="flex:1;"><div class="gold-lbl">Base disponível</div><div style="font-size:.82rem;color:var(--muted);" id="gold-base">500z</div></div>
+    <button class="undo-btn" onclick="undoBuy()">↩ Desfazer última compra</button>
+  </div>
+  <div id="gold-hist" style="font-size:.78rem;color:var(--muted);margin-bottom:.8rem;font-style:italic;">Sem compras ainda.</div>
+  <div class="shop-layout">
+    <div class="shop-box">
+      <div class="sh" style="margin:0 0 .3rem;">Itens Disponíveis</div>
+      <div class="filter-row" id="shopFilters"></div>
+      <div class="item-list" id="shopList"></div>
+    </div>
+    <div class="inv-box">
+      <div class="sh" style="margin:0 0 .3rem;">Inventário</div>
+      <div class="ibox" style="margin:.5rem .7rem;font-size:.78rem;">PI usados (consumíveis): <strong id="pi-used">0</strong> / <strong id="pi-max">6</strong></div>
+      <div id="invList"><div class="inv-empty">Nenhum item comprado.</div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ======================== ABA 3: MAGIAS ======================== -->
+<div id="pane-magias" class="pane"><div class="pg">
+  <div class="sh">✨ Arcanos & Feitiços
+    <span class="tip" style="background:#fff1;border-color:#fff4;color:#fff;">?<span class="tp">Selecione os feitiços que seu personagem aprendeu. Cada classe mágica tem sua lista. Feitiços são aprendidos através de poderes de classe como "Magia Elemental" ou "Magia Espiritual". Marcar aqui registra na sua ficha.</span></span>
+  </div>
+  <div class="ibox">Os feitiços abaixo são agrupados por classe. Selecione apenas os que seu personagem aprendeu através de poderes de classe. O número disponível depende do nível do poder.</div>
+  <div class="spell-filter-bar" id="spellFilters"></div>
+  <div class="cls-spell-grid" id="spellGrid"></div>
+</div></div>
+
+<!-- ======================== ABA 4: LAÇOS ======================== -->
+<div id="pane-bonds" class="pane"><div class="pg">
+  <div class="sh">🤝 Traços & Laços</div>
+  <div class="card">
+    <div class="sh" style="margin:-.9rem -.9rem .7rem;">Traços</div>
+    <div class="frow">
+      <div class="fg"><span class="flabel">Identidade</span><input class="finput" id="tr-ident" placeholder="Copie ou escreva aqui"></div>
+      <div class="fg"><span class="flabel">Tema</span><input class="finput" id="tr-theme" placeholder="Ex: Esperança, Vingança"></div>
+      <div class="fg"><span class="flabel">Origem</span><input class="finput" id="tr-origin" placeholder="Ex: Cidadela de Platea"></div>
+    </div>
+  </div>
+  <div class="ibox">Marque no máximo 1 sentimento de cada par de colunas. A <strong>força do Laço</strong> = total de sentimentos marcados (máx 3).</div>
+  <div id="bondsContainer"></div>
+</div></div>
+
+<!-- ======================== ABA 5: REGRAS ======================== -->
+<div id="pane-rules" class="pane"><div class="pg">
+  <div class="sh">📖 Como Jogar — Referência Rápida</div>
+  <div class="rules-sec"><h3>Os 4 Atributos</h3><ul>
+    <li><strong>Destreza (DES)</strong> — Precisão, agilidade. Base da <strong>Defesa</strong>.</li>
+    <li><strong>Vigor (VIG)</strong> — Força física. Determina <strong>PV máximos</strong> (Nível + VIG×5).</li>
+    <li><strong>Astúcia (AST)</strong> — Raciocínio e magia. Base da <strong>Defesa Mágica</strong>.</li>
+    <li><strong>Vontade (VON)</strong> — Carisma. Determina <strong>PM máximos</strong> (Nível + VON×5).</li>
+  </ul><p>Dados: d6 (fraco) → d8 → d10 → d12 (máximo). Só aumentam nos níveis 20 e 40.</p></div>
+  <div class="rules-sec"><h3>Testes</h3><p>Role 2 dados de atributo. Soma ≥ ND = sucesso. A <strong>RA</strong> (Resultado da Ação) = maior dado rolado → usada para calcular dano.</p>
+  <table class="rtable"><tr><th>ND</th><th>Dificuldade</th></tr><tr><td>7</td><td>Fácil</td></tr><tr><td>10</td><td>Médio</td></tr><tr><td>13</td><td>Difícil</td></tr><tr><td>16</td><td>Muito difícil</td></tr></table></div>
+  <div class="rules-sec"><h3>Combate — 2 ações por turno</h3><ul>
+    <li><strong>Ataque</strong> — Precisão vs DEF. Dano = RA + bônus da arma.</li>
+    <li><strong>Poder</strong> — Usa poder de classe (pode gastar PM).</li>
+    <li><strong>Feitiço</strong> — Lança feitiço (gasta PM). Teste de Magia vs DEF.M.</li>
+    <li><strong>Guarda</strong> — Cobre aliado ou prepara ação defensiva.</li>
+    <li><strong>Inventário</strong> — Usa consumível (gasta PI) ou reorganiza itens.</li>
+    <li><strong>Objetivo</strong> — Trabalha em grupo em um relógio de objetivo.</li>
+    <li><strong>Estudo</strong> — Examina criatura (AST+AST, ND 10) para revelar sua ficha.</li>
+  </ul></div>
+  <div class="rules-sec"><h3>Condições</h3><ul>
+    <li><strong>Abalado</strong>: −2 em todos os testes.</li><li><strong>Atordoado</strong>: Abalado + sem Reações.</li>
+    <li><strong>Fraco</strong>: Dano causado −2.</li><li><strong>Lento</strong>: −1 ação por turno.</li>
+    <li><strong>Enfurecido</strong>: Só pode Atacar.</li><li><strong>Envenenado</strong>: Perde PV no início de cada turno.</li>
+  </ul></div>
+  <div class="rules-sec"><h3>Progressão</h3><p>Fim da sessão: <strong>+5 EXP</strong> + EXP dos Pontos de Ultima dos vilões + EXP dos Pontos de Fábula do grupo ÷ PJs. Com 10+ EXP: suba 1 nível (+1 PV, +1 PM, 1 poder).</p>
+  <table class="rtable"><tr><th>Nível</th><th>Ouro equip.</th><th>Bônus</th></tr><tr><td>5</td><td>500z</td><td>Padrão</td></tr><tr><td>10</td><td>750z</td><td>—</td></tr><tr><td>20</td><td>1.250z</td><td>+1 atributo</td></tr><tr><td>40</td><td>2.250z</td><td>+1 atributo</td></tr><tr><td>50</td><td>2.750z</td><td>—</td></tr></table></div>
+</div></div>
+
+<!-- ======================== ABA 6: FICHA ======================== -->
+<div id="pane-sheet" class="pane"><div class="pg">
+  <div class="sh">📋 Ficha do Personagem</div>
+  <div class="sheet-wrap" id="sheetWrap">
+
+    <!-- LOGO + NOME -->
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.6rem;gap:1rem;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <div class="sh-lbl">NOME</div>
+        <div class="sh-field" style="font-size:1.1rem;font-weight:700;" id="s-name">—</div>
+        <div class="sh-lbl" style="margin-top:.4rem;">GÊNERO</div>
+        <div class="sh-field" id="s-gender">—</div>
+      </div>
+      <div style="text-align:center;flex-shrink:0;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.2rem;color:var(--green);">FÁBULA✦ÚLTIMA</div>
+        <div style="font-size:.62rem;letter-spacing:.15em;color:var(--muted);">T T J R P G</div>
+        <div style="margin-top:.5rem;display:flex;align-items:center;gap:.5rem;">
+          <div style="font-size:.68rem;color:var(--muted);">NÍVEL</div>
+          <div class="sh-nivel-circle" id="s-lvl">5</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAÇOS -->
+    <div class="tracos-row">
+      <div class="tracos-lbl">TRAÇOS</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;">
+        <div><div class="sh-lbl">IDENTIDADE</div><div class="sh-field sh-val" id="s-ident">—</div></div>
+        <div><div class="sh-lbl">TEMA</div><div class="sh-field sh-val" id="s-theme">—</div></div>
+        <div><div class="sh-lbl">ORIGEM</div><div class="sh-field sh-val" id="s-origin">—</div></div>
+      </div>
+    </div>
+
+    <!-- LAÇOS + ATRIBUTOS (2 col) -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.6rem 0;">
+      <!-- LAÇOS -->
+      <div>
+        <div class="sh" style="margin-bottom:.4rem;">LAÇOS</div>
+        <div class="lacos-block" id="s-lacos">
+          <!-- rendered by JS -->
+        </div>
+      </div>
+      <!-- ATRIBUTOS + RECURSOS -->
+      <div>
+        <div class="sh" style="margin-bottom:.4rem;">ATRIBUTOS E CONDIÇÕES</div>
+        <div style="display:grid;grid-template-columns:1fr auto;gap:.4rem;margin-bottom:.5rem;">
+          <div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem;font-size:.65rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--muted);margin-bottom:.2rem;"><span>BASE</span><span>ATUAL</span></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:.25rem .4rem;border-bottom:1px solid var(--border);gap:.3rem;">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;">DESTREZA 🎯</span>
+              <div style="display:flex;gap:.3rem;">
+                <div class="sh-field" style="width:2rem;text-align:center;padding:.1rem;" id="s-des">d8</div>
+                <div class="sh-field" style="width:2rem;text-align:center;padding:.1rem;"></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:.25rem .4rem;border-bottom:1px solid var(--border);gap:.3rem;">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;">ASTÚCIA 🧠</span>
+              <div style="display:flex;gap:.3rem;">
+                <div class="sh-field" style="width:2rem;text-align:center;padding:.1rem;" id="s-ast">d8</div>
+                <div class="sh-field" style="width:2rem;text-align:center;padding:.1rem;"></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:.25rem .4rem;border-bottom:1px solid var(--border);gap:.3rem;">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;">VIGOR 💪</span>
+              <div style="display:flex;gap:.3rem;">
+                <div class="sh-field" style="width:2rem;text-align:center;padding:.1rem;" id="s-vig">d8</div>
+                <div class="sh-field" style="width:2rem;text-align:center;padding:.1rem;"></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:.25rem .4rem;gap:.3rem;">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;">VONTADE ✨</span>
+              <div style="display:flex;gap:.3rem;">
+                <div class="sh-field" style="width:2rem;text-align:center;padding:.1rem;" id="s-von">d8</div>
+                <div class="sh-field" style="width:2rem;text-align:center;padding:.1rem;"></div>
+              </div>
+            </div>
+          </div>
+          <!-- CONDITIONS -->
+          <div style="padding:.4rem;background:var(--panel);border:1px solid var(--border);border-radius:3px;font-size:.72rem;">
+            <div style="display:flex;align-items:center;gap:.3rem;margin-bottom:.2rem;"><div class="cond-chk"></div><span>LENTO</span></div>
+            <div style="border-top:1px solid var(--border);padding:.15rem 0;"></div>
+            <div style="display:flex;align-items:center;gap:.3rem;margin-bottom:.2rem;"><div class="cond-chk"></div><span>ENFURECIDO</span></div>
+            <div style="border-top:1px solid var(--border);padding:.15rem 0;"></div>
+            <div style="display:flex;align-items:center;gap:.3rem;margin-bottom:.2rem;"><div class="cond-chk"></div><span>ATORDOADO</span></div>
+            <div style="border-top:1px solid var(--border);padding:.15rem 0;"></div>
+            <div style="display:flex;align-items:center;gap:.3rem;margin-bottom:.2rem;"><div class="cond-chk"></div><span>FRACO</span></div>
+            <div style="border-top:1px solid var(--border);padding:.15rem 0;"></div>
+            <div style="display:flex;align-items:center;gap:.3rem;margin-bottom:.2rem;"><div class="cond-chk"></div><span>ENVENENADO</span></div>
+            <div style="border-top:1px solid var(--border);padding:.15rem 0;"></div>
+            <div style="display:flex;align-items:center;gap:.3rem;"><div class="cond-chk"></div><span>ABALADO</span></div>
+          </div>
+        </div>
+        <!-- PV PM PI -->
+        <div class="sh" style="margin-bottom:.4rem;">PONTOS DE VIDA, MANA E INVENTÁRIO</div>
+        <table style="width:100%;border-collapse:collapse;font-size:.78rem;">
+          <tr><th style="background:var(--panel);text-align:left;padding:.28rem .4rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);border:1px solid var(--border);">MÁX.</th><th style="background:var(--panel);text-align:left;padding:.28rem .4rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);border:1px solid var(--border);">ATUAIS</th></tr>
+          <tr>
+            <td style="border:1px solid var(--border);padding:.3rem .4rem;"><strong style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;">PV</strong> <span style="font-size:.65rem;color:var(--muted);">(VIG×5)+Nível</span> <strong id="s-pv">45</strong> <span style="color:var(--red);font-size:.68rem;font-weight:700;">CRISE: <span id="s-crise">22</span></span></td>
+            <td style="border:1px solid var(--border);padding:.3rem .4rem;" id="s-pv-curr"> / <span id="s-pv2">45</span></td>
+          </tr>
+          <tr>
+            <td style="border:1px solid var(--border);padding:.3rem .4rem;"><strong style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;">PM</strong> <span style="font-size:.65rem;color:var(--muted);">(VON×5)+Nível</span> <strong id="s-pm">45</strong></td>
+            <td style="border:1px solid var(--border);padding:.3rem .4rem;"> / <span id="s-pm2">45</span></td>
+          </tr>
+          <tr>
+            <td style="border:1px solid var(--border);padding:.3rem .4rem;"><strong style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;">PI</strong> <span style="font-size:.65rem;color:var(--muted);">6+outro</span> <strong id="s-pi">6</strong></td>
+            <td style="border:1px solid var(--border);padding:.3rem .4rem;"> / <span id="s-pi2">6</span></td>
+          </tr>
+        </table>
+        <!-- ZÊNITES + DEF -->
+        <div style="display:flex;gap:.4rem;margin-top:.4rem;align-items:center;">
+          <div class="sh-zenites" style="flex:1;">💰 <div><div class="gold-lbl">ZÊNITES</div><div class="sh-zen-val" id="s-gold">500</div></div></div>
+          <div style="display:flex;flex-direction:column;gap:.3rem;">
+            <div class="sh-defbox"><div class="sh-deflbl">MOD. INICIATIVA</div><div class="sh-defval" id="s-ini">0</div></div>
+            <div class="sh-defbox"><div class="sh-deflbl">DEFESA</div><div class="sh-defval" id="s-def">8</div></div>
+            <div class="sh-defbox"><div class="sh-deflbl">DEF. MÁGICA</div><div class="sh-defval" id="s-defm">8</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PONTOS DE FÁBULA -->
+    <div class="sh-pfabula" style="margin:.4rem 0;">
+      <strong>PONTOS DE FÁBULA</strong> — Começa com 3. +1 se não tiver nenhum no início da sessão. +1 quando vilão entra em cena. +1 em Falha Crítica. +2 ao se render com 0 PV.<br>
+      • Gaste 1 para <strong>evocar Traço/Laço</strong> e rolar novamente 1 ou ambos os dados. • Gaste 1 para <strong>alterar a história</strong>.
+    </div>
+
+    <!-- EQUIPAMENTO -->
+    <div class="sh" style="margin:.4rem 0 .4rem;">EQUIPAMENTO</div>
+    <div class="equipavel-row">
+      <div class="eq-box"><div class="eq-chk" id="eq-arm-m"></div> Armadura marcial</div>
+      <div class="eq-box"><div class="eq-chk" id="eq-esc-m"></div> Escudo marcial</div>
+      <div class="eq-box"><div class="eq-chk" id="eq-cac-m"></div> Arma C/C marcial</div>
+      <div class="eq-box"><div class="eq-chk" id="eq-dis-m"></div> Arma Dist. marcial</div>
+    </div>
+    <table class="sh-equip-table" style="margin-bottom:.6rem;">
+      <tr><th>ITEM EQUIPADO</th><th>DESCRIÇÃO</th></tr>
+      <tr><td style="padding:.5rem;border:1px solid var(--border);"><span class="sh-equip-row-lbl">ACESSÓRIO</span><br id="s-acessorio"><span id="s-acc-v">—</span></td><td style="border:1px solid var(--border);padding:.5rem;font-size:.78rem;" id="s-acc-d">—</td></tr>
+      <tr><td style="padding:.5rem;border:1px solid var(--border);"><span class="sh-equip-row-lbl">ARMADURA</span><br><span id="s-arm-v">—</span></td><td style="border:1px solid var(--border);padding:.5rem;font-size:.78rem;" id="s-arm-d">—</td></tr>
+      <tr><td style="padding:.5rem;border:1px solid var(--border);"><span class="sh-equip-row-lbl">MÃO DOMINANTE</span><br><span id="s-md-v">—</span></td><td style="border:1px solid var(--border);padding:.5rem;font-size:.78rem;" id="s-md-d">—</td></tr>
+      <tr><td style="padding:.5rem;border:1px solid var(--border);"><span class="sh-equip-row-lbl">MÃO SECUNDÁRIA</span><br><span id="s-ms-v">—</span></td><td style="border:1px solid var(--border);padding:.5rem;font-size:.78rem;" id="s-ms-d">—</td></tr>
+    </table>
+
+    <!-- CLASSES -->
+    <div id="s-cls-blocks"><!-- rendered by JS --></div>
+
+    <!-- EXP -->
+    <div class="sh" style="margin:.4rem 0 .4rem;">EXPERIÊNCIA</div>
+    <div class="sh-exp">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+        <div class="sh-exp-num">___</div>
+        <div style="font-size:.72rem;color:var(--muted);">EXP acumulado</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.7rem;color:var(--green);margin-left:auto;">NÍVEL DE PERSONAGEM: <span id="s-lvl2">5</span></div>
+      </div>
+      <div style="font-size:.72rem;color:var(--muted);line-height:1.5;">+5 EXP automático por sessão. +EXP = Pontos de Ultima gastos pelos vilões. +EXP = Pts de Fábula do grupo ÷ PJs.<br>Com 10+ EXP → gaste 10 e suba 1 nível.</div>
+    </div>
+
+    <!-- MOCHILA -->
+    <div class="sh" style="margin:.5rem 0 .4rem;">MOCHILA E ANOTAÇÕES</div>
+    <div style="border:1px solid var(--border);border-radius:3px;min-height:80px;padding:.6rem;" id="s-mochila"><!-- items --></div>
+
+    <button class="exp-btn" onclick="exportPDF()">⬇ EXPORTAR FICHA EM PDF</button>
+  </div>
+</div></div>
+
+<script>
+// ==================== DATA ====================
+const CLASSES = [
+  {id:'andarilho',name:'Andarilho',src:'Básico',desc:'Explorador com companheiro fiel.',ben:'+2 PI',
+   powers:[{n:'Caçador de Tesouros (ç2)',d:'Descobre itens extras em viagens (tira NP+1 ou menos no teste de Viagem).'},{n:'Companheiro Fiel (ç5)',d:'Cria NPC companheiro (construto/elemental/fera/planta) nível 5. Use sua ação para fazê-lo agir.'},{n:'Papo de Taverna (ç3)',d:'Ao descansar em estalagem, faz (NP) perguntas ao Mestre — respostas verdadeiras.'},{n:'Prático (ç4)',d:'Recupera (NP) PI após cada teste de Viagem.'},{n:'Viajante Experiente',d:'Reduz dado de Viagem em 1 passo (mín. d6).'}]},
+  {id:'arcanista',name:'Arcanista',src:'Básico',desc:'Invoca avatares mágicos de Arcanos ancestrais.',ben:'+5 PM',
+   powers:[{n:'Arcanismo Ritualista',d:'Rituais da disciplina arcanismo ligados aos domínios dos seus Arcanos.'},{n:'Arcano Emergencial (ç6)',d:'Em crise, reduz custo de invocar Arcano em (NP × 5) PM.'},{n:'Círculo Arcano (ç4)',d:'Após dispensar Arcano voluntariamente: feitiço grátis (custo ≤ NP×5) com arma arcana.'},{n:'Regeneração Arcana (ç2)',d:'Ao invocar Arcano, recupera (NP × 5) PV.'},{n:'Vincular e Invocar',d:'Vincula Arcanos e invoca com ação + 40 PM. Começa com 1 Arcano.'}]},
+  {id:'atirador',name:'Atirador',src:'Básico',desc:'Especialista em ataques à distância.',ben:'+5 PV; armas dist. e escudos marciais',
+   powers:[{n:'Barragem',d:'Ataques à distância: gasta 10 PM para multi (2) ou aumenta multi em +1 (máx 3).'},{n:'Fogo Cruzado',d:'Reação: gasta PM = (5 + teste de Precisão do alvo) para fazer ataque à distância falhar.'},{n:'Maestria Armas à Distância (ç4)',d:'Bônus de (NP) em Precisão à distância.'},{n:'Olhos de Águia (ç5)',d:'Na ação Guarda (sem cobrir): próximo ataque à distância causa (NP×3) dano extra OU faz ataque livre (RA=0).'},{n:'Tiro de Aviso (ç4)',d:'Após acertar à distância: pode não causar dano e deixar alvos abalados, lentos, ou perder (NP×10) PM.'}]},
+  {id:'elementalista',name:'Elementalista',src:'Básico',desc:'Destrói com o poder dos elementos.',ben:'+5 PM; rituais de ritualismo',
+   powers:[{n:'Artilharia Mágica (ç3)',d:'Bônus (NP×2) em Magia para feitiços ofensivos com arma arcana.'},{n:'Cataclismo (ç3)',d:'Feitiços instantâneos com arma arcana: aumenta custo até (NP×10) PM → +5 dano por 10 PM extras.'},{n:'Elementalismo Ritualista',d:'Rituais de elementalismo. Testes: (AST+VON).'},{n:'Lâmina Mágica (ç4)',d:'Feitiços ofensivos de alvo único (custo ≤ NP×20 PM): usa fórmula de Precisão de arma não-arcana.'},{n:'Magia Elemental (ç10)',d:'Aprende 1 feitiço de Elementalista por aquisição.'}]},
+  {id:'entropista',name:'Entropista',src:'Básico',desc:'Canaliza energias caóticas do Cosmos.',ben:'+5 PM; rituais de ritualismo',
+   powers:[{n:'Absorver PM (ç5)',d:'Após sofrer dano, recupera (NP×2) PM.'},{n:'Entropismo Ritualista',d:'Rituais de entropismo. Testes: (AST+VON).'},{n:'Magia Entrópica (ç10)',d:'Aprende 1 feitiço de Entropista por aquisição.'},{n:'Sete da Sorte',d:'Número da sorte (começa em 7). Uma vez por cena: substitui 1 dado rolado pelo número da sorte.'},{n:'Tempo Roubado (ç4)',d:'Ação + até (NP×5) PM: por 5 PM cada, aplica/remove lento, causa dano a lentos, ou concede turno extra.'}]},
+  {id:'erudito',name:'Erudito',src:'Básico',desc:'Mestre do conhecimento e análise.',ben:'+5 PM',
+   powers:[{n:'Análise Rápida (ç6)',d:'Início do conflito: gasta até (NP×5) PM → por 5 PM revela 1 Traço ou 1 Afinidade de criatura visível.'},{n:'Concentrado (ç5)',d:'+(NP×3) PM máximos. Bônus (NP) em testes abertos (AST+AST).'},{n:'Conhecimento é Poder',d:'Teste de Precisão: pode substituir 1 dado de atributo por Astúcia.'},{n:'Lampejo de Saber (ç3)',d:'13+ num teste de investigação → faz até (NP) perguntas ao Mestre. Só uma vez por alvo.'},{n:'Memória Treinada',d:'Lembra perfeitamente de qualquer cena da última semana. Lampejo de Saber funciona nelas.'}]},
+  {id:'espiritualista',name:'Espiritualista',src:'Básico',desc:'Magia da alma, cura e luz.',ben:'+5 PM; rituais de ritualismo',
+   powers:[{n:'Espiritualismo Ritualista',d:'Rituais de espiritualismo. Testes: (AST+VON).'},{n:'Magia de Suporte',d:'Ao curar aliados com arma arcana: aliado com Laço recebe bônus = força do Laço no próximo teste.'},{n:'Magia Espiritual (ç10)',d:'Aprende 1 feitiço de Espiritualista por aquisição.'},{n:'Poder Curativo (ç2)',d:'Ao curar aliados com arma arcana: curam (3 + NP × Laços) PV extras.'},{n:'Vismagus',d:'Pode gastar PV em vez de PM: (10 + custo do feitiço) PV. Não cura o lançador.'}]},
+  {id:'furioso',name:'Furioso',src:'Básico',desc:'Fica mais forte quanto mais é ferido.',ben:'+5 PV; armas C/C e armaduras marciais',
+   powers:[{n:'Adrenalina (ç5)',d:'Em crise: causa (NP×2) dano adicional em tudo.'},{n:'Espírito Indomável (ç4)',d:'Ao gastar 1+ Pontos de Fábula: recupera (NP×5) PV ou PM, OU remove 1 condição.'},{n:'Frenesi',d:'Precisão com adaga/luta/malho/arremesso: sucesso crítico se ambos os dados iguais (não falha crítica).'},{n:'Provocar (ç5)',d:'Ação + 5 PM: (VIG+VON) vs alvo. Sucesso: inimigo enfurecido e focado em você.'},{n:'Resistir (ç5)',d:'Ação Guarda (sem cobrir): recupera (NP × maior força de Laço) PV. Até próximo turno: VIG ou VON +1 passo.'}]},
+  {id:'guardiao',name:'Guardião',src:'Básico',desc:'Protege aliados com armadura e escudo.',ben:'+5 PV; armaduras e escudos marciais',
+   powers:[{n:'Duplo Escudeiro',d:'Equipa escudo na mão dominante. Com 2 escudos: recebe bônus de ambos + arma Escudos Gêmeos (VIG+VIG, RA+5).'},{n:'Fortaleza (ç5)',d:'+(NP×3) PV máximos.'},{n:'Guarda-costas',d:'Ação Guarda cobrindo aliado: aliado fica Resistente a todos os danos até seu próximo turno.'},{n:'Maestria Defensiva (ç5)',d:'Com escudo ou armadura marcial: todo dano sofrido reduzido em (NP) antes das Afinidades.'},{n:'Proteger',d:'Reação: toma o lugar de criatura ameaçada. O perigo é direcionado a você.'}]},
+  {id:'guerreiro-sombrio',name:'Guerreiro Sombrio',src:'Básico',desc:'Sacrifica vida própria em golpes devastadores.',ben:'+5 PV; armas C/C e armaduras marciais',
+   powers:[{n:'Agonia (ç5)',d:'Uma vez por turno: após causar dano a inimigo com Laço, recupera (NP×2) PV e (NP×2) PM.'},{n:'Coração da Escuridão',d:'Uma vez por cena, ao entrar em crise: cria Laço de ódio com inimigo visível (sem Laço).'},{n:'Golpe das Sombras (ç5)',d:'Ação: rola VIG, perde esse PV. Se sobreviver: ataque livre com dano adicional = (NP + rolagem). Dano de trevas.'},{n:'Lição Dolorosa (ç3)',d:'Ao sofrer dano: pode imediatamente fazer ação Estudo contra o agressor com bônus (NP).'},{n:'Sangue das Trevas',d:'Em crise: Resistência a dano de trevas e veneno.'}]},
+  {id:'inventor',name:'Inventor',src:'Básico',desc:'Fabrica invenções mirabolantes.',ben:'+2 PI; pode iniciar Projetos',
+   powers:[{n:'Chuva de Poções (ç2)',d:'Ao criar poção de cura: afeta até (NP) criaturas extras (metade dos valores).'},{n:'Engenhocas (ç5)',d:'Aprende tipo de engenhoca: Alquimia (misturas d20), Infusões (elementos em ataques) ou Tecnomagia. Novas aquisições: nível Avançado/Superior.'},{n:'Fórmula Secreta (ç5)',d:'Poções/magisferas: +(NP×5) PV/PM. Itens de dano: +(NP) dano.'},{n:'Item Emergencial',d:'Uma vez por cena de conflito, em crise: ação adicional obrigatoriamente Inventário.'},{n:'Visionário (ç5)',d:'Projetos custam até (NP×100)z menos e geram (NP) progresso/dia extras.'}]},
+  {id:'ladino',name:'Ladino',src:'Básico',desc:'Oportunista que rouba poderes de inimigos.',ben:'+2 PI',
+   powers:[{n:'Alta Velocidade (ç3)',d:'Início do conflito: gasta 10 PM → faz ataque livre, Impedimento ou Objetivo antes da 1ª rodada. Bônus (NP).'},{n:'Esquiva (ç3)',d:'Sem escudos ou armaduras marciais: Defesa +(NP).'},{n:'Golpe Baixo (ç5)',d:'Ao acertar alvo único com 1+ condições: dano adicional = (NP + número de condições).'},{n:'Roubo de Alma (ç5)',d:'Ação: (DES+VON) vs DEF.M. Soldado: +(NP) PI. Elite/Campeão: item de alma (valor até nível×30z). Bônus (NP).'},{n:'Vejo Você Mais Tarde',d:'Ação + 1 Ponto de Fábula: some da cena e reapareça em qualquer outra cena com um PJ.'}]},
+  {id:'mestre-armas',name:'Mestre de Armas',src:'Básico',desc:'Mestre do combate corpo a corpo.',ben:'+5 PV; armas C/C e escudos marciais',
+   powers:[{n:'Chuva de Lâminas',d:'Ataque C/C: gasta 10 PM para multi (2) ou +1 multi (máx 3).'},{n:'Contra-ataque',d:'Reação: inimigo acerta/erra ataque C/C com resultado par → ataque livre C/C contra ele (RA=0).'},{n:'Maestria Armas C/C (ç4)',d:'Bônus (NP) em Precisão corpo a corpo.'},{n:'Quebra-ossos (ç4)',d:'Acerta C/C: pode não causar dano. Escolhe: atordoado, fraco, ou perde (NP×10) PM.'},{n:'Trespassar (ç3)',d:'Ação + 5 PM: ataque C/C sem dano. Destrói escudo ou armadura, OU todas as fontes causam (NP×2) dano extra até próximo turno.'}]},
+  {id:'orador',name:'Orador',src:'Básico',desc:'Usa palavras para influenciar conflitos.',ben:'+5 PM',
+   powers:[{n:'Aliado Inesperado',d:'Ação + 1 Ponto de Fábula: criatura não hostil que escuta torna-se solícita para pedidos razoáveis.'},{n:'Condenar (ç4)',d:'Ação + 5 PM: (AST+VON) vs inimigo. Sucesso: perde (NP×10) PM, fica abalado/atordoado, sofre (NP) dano extra até próximo turno.'},{n:'Confio em Você (ç2)',d:'Reação: aliado faz teste → gasta 1 Ponto de Fábula para invocar Traço/Laço do aliado. Com Laço: aliado recupera (NP×10) PM.'},{n:'Encorajar (ç6)',d:'Ação + 5 PM: aliado recupera (NP×5) PV. Considera DES/VIG/AST/VON (escolha) +1 passo até próximo turno.'},{n:'Persuasivo (ç2)',d:'Teste de relógio via charme/diplomacia: pode gastar até (NP×20) PM → +1 seção por 20 PM.'}]},
+  {id:'quimerista',name:'Quimerista',src:'Básico',desc:'Aprende feitiços de criaturas.',ben:'+5 PM; rituais de ritualismo',
+   powers:[{n:'Consumir (ç5)',d:'Ao causar dano com feitiço (com adaga/arcana/malho), recupera (NP×2) PM.'},{n:'Imitação Mágica (ç10)',d:'Ao ver feitiço de fera/monstro/planta: aprende como feitiço próprio. Memoriza até (NP+2). Define (AST+VON) ou (VIG+VON) para testes.'},{n:'Língua das Feras',d:'Comunica-se com feras, monstros e plantas.'},{n:'Patogênese',d:'Ao causar dano com feitiço de Quimerista: alvos da mesma espécie ficam envenenados.'},{n:'Quimerismo Ritualista',d:'Rituais de quimerismo. Escolhe (AST+VON) ou (VIG+VON) para testes.'}]},
+  {id:'comandante',name:'Comandante',src:'High Fantasy',desc:'Líder que coordena aliados em batalha.',ben:'+5 PV; armas C/C e dist. marciais',
+   powers:[{n:'Carga de Cavalaria (ç5)',d:'Ação + 10 PM: aliado que escuta faz ataque livre com bônus (NP) na Precisão (RA=0 para dano).'},{n:'Carruagem Devastadora',d:'Após usar Decreto/Carga/Roque: outro PJ ainda sem turno age imediatamente após você.'},{n:'Decreto do Bispo (ç5)',d:'Ação + 10 PM: todos os custos PM dobrados até próximo turno, OU todas as fontes causam (NP×3) dano extra.'},{n:'Gambito da Dama (ç6)',d:'Faz ataque livre (RA=0); depois usa Decreto/Carga/Roque sem ação, OU aliado recupera (5+NP×5) PV.'},{n:'Roque do Rei (ç4)',d:'Ação + 10 PM: ninguém recupera PV/PM até próximo turno, OU restaurações de PM dão (NP×5) extras.'}]},
+  {id:'dancarin',name:'Dançarino',src:'High Fantasy',desc:'Combatente acrobático com danças mágicas.',ben:'+5 PV ou +5 PM (escolha)',
+   powers:[{n:'Dança (ç10)',d:'Aprende 1 dança por aquisição. Em conflito sem armadura marcial: gasta 10 PM antes/após ação (1×/turno). Danças: Anjo, Banshee, Fênix, Golem, Grifo, Hidra, Ieti, Kraken, Leão, Mênade, Mirmidão, Morcego, Ouroboros, Pavão, Pesadelo, Sátiro, Unicórnio.'},{n:'Dançarino de Guerra (ç5)',d:'Após dança: ataques com adaga/arremesso/luta/malho causam (NP) dano extra. Com arma arcana: feitiços ofensivos também.'},{n:'Me Acompanhe',d:'Ao apresentar dança de duração: gasta 10 PM extras → aliado com Laço de afeto também recebe os benefícios.'},{n:'Sapateado Frenético (ç2)',d:'Após dança de duração: bônus (NP×2) em testes de acrobacia/coordenação/velocidade até próximo turno.'},{n:'Troca de Figurino',d:'Após dança: pode fazer ação Equipamento sem gastar ação.'}]},
+  {id:'simbolista',name:'Simbolista',src:'High Fantasy',desc:'Cria símbolos mágicos em criaturas.',ben:'+2 PI',
+   powers:[{n:'Conexão Simbólica',d:'Sabe direção de qualquer criatura com seus símbolos (raio de 2 dias de viagem).'},{n:'Miragem',d:'Rituais de ritualismo + ilusões visuais.'},{n:'Simbolismo (ç5)',d:'Aprende 2 símbolos por aquisição. Limite (NP+1) símbolos ativos. Ação Inventário + 2 PI: cria e aplica símbolo em si, aliado ou inimigos via ataque sem dano. Símbolos: Amarras, Crescimento, Criação, Desespero, Destino, Elementos, Feitiçaria, Fluxo, Fraqueza, Inimizade, Metamorfose, Proibição, Prosperidade, Proteção, Rebelião, Renascimento, Sacrifício, Verdade, Vingança.'},{n:'Símbolos Mágicos (ç3)',d:'Aliado com símbolo pode destruí-lo para lançar um de seus feitiços (custo ≤ NP×10 PM, aliado paga).'},{n:'Toque Pessoal (ç5)',d:'Criatura com símbolo sofre dano/cura: pode fazer sofrer (NP) extra ou recuperar (NP) PV/PM.'}]},
+  {id:'virtuoso',name:'Virtuoso',src:'High Fantasy',desc:'Bardo mágico que potencializa aliados.',ben:'+5 PM',
+   powers:[{n:'Barreira Sonora (ç5)',d:'Após cantar em voz média/alta: dano físico sofrido reduzido em (NP) até próximo turno.'},{n:'Canto da Sereia',d:'Rituais de ritualismo + ilusões sonoras.'},{n:'Esplendor (ç5)',d:'Aprende uma Estrela de Desempenho (performance com bônus para aliados e penalidade a inimigos).'},{n:'Magicanto (ç10)',d:'Aprende tipo de magia musical e 1 tom. Combinações geram feitiços únicos. Tipos: Chama, Ferro, Geada, Trovão, Vento etc.'},{n:'Vibrato (ç3)',d:'Após Magicanto: o feitiço produz efeito adicional baseado no tom escolhido.'}]},
+  {id:'floralista',name:'Floralista',src:'Natural Fantasy',desc:'Cultiva magissementes com efeitos progressivos.',ben:'+5 PV ou +5 PM (escolha)',
+   powers:[{n:'Árvore da Vida (ç5)',d:'Ao remover magissemente: cura aliado visível em crise por (5+NP×5) PV.'},{n:'Cloromancia (ç10)',d:'Aprende 1 magissemente por aquisição. Ação + 20 PM: planta no jardim (relógio de 4 seções). Efeitos crescem com relógio. Ex: Lírio-Medicinal (curas), Rosa-Serrilhada (lento), Asfódelo-do-Cemitério (trevas).'},{n:'Enxerto',d:'Com magissemente e 1+ seções: ação para trocar por outra sem resetar relógio.'},{n:'Influência Verdejante',d:'Rituais de ritualismo + criar/animar/controlar vegetação, pólen, esporos e toxinas.'},{n:'Jardinagem Marcial (ç3)',d:'Após plantar magissemente (não Enxerto): ataque livre OU feitiço (custo ≤ 5+NP×5 PM) sem ação. RA=0.'}]},
+  {id:'gourmet',name:'Gourmet',src:'Natural Fantasy',desc:'Chef que infunde alimentos com poderes mágicos.',ben:'+2 PI; cria comidas únicas como Projetos',
+   powers:[{n:'Cozinheiro Viajante (ç3)',d:'Após rolagem de Viagem (com Culinária): recebe (NP×2) ingredientes.'},{n:'Culinária (ç5)',d:'Ação: combina 2–3 ingredientes → iguaria com efeitos variados. Aplica em você + aliado, OU ataque sem dano aplicando em inimigos atingidos. Carrega até 10+(NP×5) ingredientes.'},{n:'Feito com Amor (ç3)',d:'Ao curar aliados com Culinária: gasta até (NP×10) PM → +1 aliado por 10 PM.'},{n:'Garfo e Faca',d:'Culinária com 2 ingredientes fazendo ataque: ataque pode causar dano normalmente (RA=0).'},{n:'Sal e Pimenta',d:'Ao preparar iguaria: gasta 2 PI extras para ampliar os efeitos.'}]},
+  {id:'invocador',name:'Invocador',src:'Natural Fantasy',desc:'Convoca espíritos e entidades.',ben:'+5 PM',
+   powers:[{n:'Barganha dos Espíritos',d:'Negocia com espíritos por informações ou poderes em troca de favores narrativos.'},{n:'Chamado da Natureza',d:'Convoca criaturas da natureza como NPCs aliados temporários.'},{n:'Elo Espiritual (ç5)',d:'Vínculo permanente com espírito específico → invocação mais fácil e poderosa.'},{n:'Mediunidade',d:'Comunica-se com mortos, espíritos locais e entidades do plano espiritual.'},{n:'Portal Espiritual (ç3)',d:'Abre portais temporários para o reino espiritual.'}]},
+  {id:'mercador',name:'Mercador',src:'Natural Fantasy',desc:'Usa riquezas e negócios como vantagem.',ben:'+ouro bônus; acesso a itens especiais',
+   powers:[{n:'Arte do Negócio',d:'Compra com desconto ou vende acima do valor de mercado.'},{n:'Contato Valioso (ç3)',d:'(NP) contatos em cidades: informações, itens raros ou favores.'},{n:'Investimento (ç5)',d:'Aplica zênites durante descansos longos para gerar renda passiva.'},{n:'Produto Especial',d:'Vende itens únicos para aliados/NPCs com efeitos vantajosos.'},{n:'Rede de Suprimentos',d:'Grupo acessa equipamentos mesmo em locais remotos.'}]},
+  {id:'esper',name:'Esper',src:'Techno Fantasy',desc:'Poderes psíquicos com Relógio Mental.',ben:'+5 PM',
+   powers:[{n:'Dons Psíquicos (ç5)',d:'Aprende 1 dom por aquisição. Custo: 5 × seções do Relógio Mental. Dons: Atmocinese (ar/raio), Clarividência, Escudo Psíquico, Fotocinese (trevas/luz), Gravitocinese (terra/físico), Presença Reconfortante, Retaliação Psíquica, Termocinese (fogo/gelo), Transferência de Vida.'},{n:'Foco Cognitivo (ç5)',d:'Início do turno: escolhe foco. Bônus (NP) em testes contra foco. Curas no foco: +(NP×2) PV/PM.'},{n:'Hipercognição (ç5)',d:'Custo de feitiços/versos com foco como alvo reduzido em (NP), ou (NP×2) se único alvo.'},{n:'Navegador',d:'Telepatia com aliados a 1 dia de viagem. Rituais de ritualismo + navegar/rastrear na rede de almas.'},{n:'Psicocinese',d:'Precisão: pode substituir 1 dado por Vontade. Ataques C/C com espada ou arma arcana acertam voadores.'}]},
+  {id:'mutante',name:'Mutante',src:'Techno Fantasy',desc:'Transforma o corpo com terioformas.',ben:'+5 PV',
+   powers:[{n:'Acromorfose (ç3)',d:'Ataques desarmados: bônus (NP) na Precisão e (6+NP×2) dano extra. Início do turno: muda categoria dos ataques desarmados.'},{n:'Biofagia (ç4)',d:'Em crise: após ataque/feitiço ofensivo fazer inimigos perderem PV, recupera (NP×5) PV.'},{n:'Ecdise',d:'Ao sofrer dano não-físico: gasta 10 PV → Resistência a esse tipo até usar novamente.'},{n:'Genoclepse (ç2)',d:'Ao causar dano a NPCs: descobre espécie. Mestre escolhe (NP) terioformas que os reflitam → pode usá-las com Teriomorfose pagando PV.'},{n:'Teriomorfose (ç6)',d:'Aprende 1 terioforma por aquisição. Ação + 1/3 PV: manifesta até 2 terioformas até fim da cena. Ex: Pterotéria (voo), Dinamotéria (VIG maior), Eletrófora (raio), Taquitéria (DES maior).'}]},
+  {id:'piloto',name:'Piloto',src:'Techno Fantasy',desc:'Pilota veículos e mechas de combate.',ben:'+5 PV; armas C/C e dist. marciais',
+   powers:[{n:'Compressão Tecnológica',d:'Guarda/invoca veículo pessoal fora do mundo. Ação Inventário + 2 PI: reaparecer perto.'},{n:'Configuração Flexível (ç4)',d:'Ao Equipar ou Guardar pilotando: desativa até (NP) módulos ativos e ativa (NP) inativos.'},{n:'Coração no Motor (ç3)',d:'Início do turno pilotando: gasta 10 PM → (NP×2) dano extra, OU reduz (NP×2) dano sofrido, OU remove lento/fraco.'},{n:'Pulso Firme',d:'Precisão com módulo de arma: pode substituir 1 atributo por Vigor.'},{n:'Veículo Pessoal (ç5)',d:'Veículo com estrutura (Montaria/Exosqueleto/Mecha) e 3 módulos. Cada nova aquisição: +2 módulos. Máx. módulos ativos = (3 + NP).'}]}
+];
+
+const SPELLS = {
+  'Elementalista':[
+    {n:'Arma Elemental',off:false,pm:'10',al:'Uma arma',dur:'Cena',d:'Imbui arma com elemento (ar/fogo/gelo/raio/terra). Dano torna-se do tipo escolhido. Com arma equipada: ataque livre como parte da ação.'},
+    {n:'Clarão ⚔',off:true,pm:'20',al:'Uma criatura',dur:'Instantânea',d:'Raio de fogo extremamente quente. Causa (RA+25) dano de fogo ignorando Resistências.'},
+    {n:'Fulgur ⚔',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Onda de raios. Causa (RA+15) dano de raio. Oportunidade: alvos ficam atordoados.'},
+    {n:'Glacies ⚔',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Camada de gelo. Causa (RA+15) dano de gelo. Oportunidade: alvos ficam lentos.'},
+    {n:'Golpe de Sobrevoo',off:false,pm:'10',al:'Pessoal',dur:'Instantânea',d:'Ataque livre com arma C/C que pode atingir alvos inalcançáveis (incluso voadores). +5 dano com espada/lança/luta. Voadores pousam ao ser atingidos.'},
+    {n:'Iceberg ⚔',off:true,pm:'20',al:'Uma criatura',dur:'Instantânea',d:'Pilar de gelo. Causa (RA+25) dano de gelo ignorando Resistências.'},
+    {n:'Ignis ⚔',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Chuva de fogo. Causa (RA+15) dano de fogo. Oportunidade: alvos ficam abalados.'},
+    {n:'Mortalha Elemental',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Cena',d:'Protege alvos. Escolhe tipo (ar/fogo/gelo/raio/terra): cada alvo torna-se Resistente.'},
+    {n:'Pedregulho ⚔',off:true,pm:'20',al:'Uma criatura',dur:'Instantânea',d:'Rocha colossal. Causa (RA+25) dano de terra ignorando Resistências.'},
+    {n:'Raio ⚔',off:true,pm:'20',al:'Uma criatura',dur:'Instantânea',d:'Relâmpago. Causa (RA+25) dano de raio ignorando Resistências.'},
+    {n:'Terra ⚔',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Pináculos de rocha. Causa (RA+15) dano de terra. Não afeta voadores. Oportunidade: alvos fazem −1 ação no próximo turno.'},
+    {n:'Ventus ⚔',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Ventos furiosos. Causa (RA+15) dano de ar. Oportunidade: voadores atingidos pousam.'},
+    {n:'Vórtice ⚔',off:true,pm:'20',al:'Uma criatura',dur:'Cena',d:'Ventos de alta pressão. Causa (RA+25) dano de ar ignorando Resistências.'}
+  ],
+  'Entropista':[
+    {n:'Aceleração',off:false,pm:'20',al:'Uma criatura',dur:'Cena',d:'No final de cada turno do alvo: pode fazer ataque livre com arma equipada OU lançar feitiço (custo ≤10 PM). Termina ao usar o efeito uma segunda vez.'},
+    {n:'Anomalia ⚔',off:true,pm:'20',al:'Uma criatura',dur:'Cena',d:'Altera a essência do alvo: dano de tipo Absorvido/Imune torna-se Vulnerável. Termina ao primeiro dano dessa natureza.'},
+    {n:'Apostar',off:false,pm:'até 20',al:'Especial',dur:'Instantânea',d:'Vórtice caótico. Role dado de VON por 10 PM: 1=perde metade PV e PM, 2-3=todos envenenados, 4-6=todos lentos, 7-8=três criaturas recuperam 50 PV, 9+=30 dano aleatório a criaturas visíveis.'},
+    {n:'Arma das Trevas',off:false,pm:'5',al:'Uma arma',dur:'Cena',d:'Imbui arma com trevas. Dano torna-se de trevas. Com arma equipada: ataque livre como parte da ação.'},
+    {n:'Dissipar',off:false,pm:'10',al:'Uma criatura',dur:'Instantânea',d:'Remove toda magia do alvo. Feitiços com duração "Cena" no alvo terminam.'},
+    {n:'Drenar Espírito ⚔',off:true,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'Consome psique do alvo. Perde (RA+20) PM. Você recupera PM = metade dos PM perdidos.'},
+    {n:'Drenar Vigor ⚔',off:true,pm:'10',al:'Uma criatura',dur:'Instantânea',d:'Rouba força vital. Causa (RA+15) dano de trevas. Você recupera PV = metade do dano causado.'},
+    {n:'Divinação',off:false,pm:'10',al:'Pessoal',dur:'Cena',d:'Vislumbre do futuro. Até 2 vezes: após qualquer criatura visível fazer teste (sem crítico), força ela a rolar novamente ambos os dados.'},
+    {n:'Espelhar',off:false,pm:'10',al:'Uma criatura',dur:'Cena',d:'Distorce leis mágicas. Se feitiço ofensivo atingir o alvo: a criatura que lançou passa a ser o alvo. Termina ao acontecer uma vez.'},
+    {n:'Parar ⚔',off:true,pm:'10',al:'Uma criatura',dur:'Instantânea',d:'Aprisiona o alvo em tempo distorcido. Faz −1 ação no próximo turno (mín. 0).'},
+    {n:'Umbra ⚔',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Tempestade de trevas. Causa (RA+15) dano de trevas. Oportunidade: alvos ficam fracos.'},
+    {n:'Ômega ⚔',off:true,pm:'15',al:'Uma criatura',dur:'Instantânea',d:'Ruína contra o alvo. Perde PV = (20 + metade do nível do alvo). Transforma força em fraqueza.'}
+  ],
+  'Espiritualista':[
+    {n:'Alucinação ⚔',off:true,pm:'5×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Altera sentidos dos inimigos. Escolhe abalado ou atordoado: cada alvo sofre a condição.'},
+    {n:'Arma Espiritual',off:false,pm:'5',al:'Uma arma',dur:'Cena',d:'Imbui arma com energia purificadora. Dano torna-se de luz. Com arma equipada: ataque livre como parte da ação.'},
+    {n:'Aura',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Cena',d:'Projeta a alma como proteção mágica. Defesa Mágica dos alvos torna-se 12 (ou 13 no nível 20+, 14 no 40+).'},
+    {n:'Barreira',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Cena',d:'Projeta a alma como barreira física. Defesa dos alvos torna-se 12 (ou 13 no nível 20+, 14 no 40+).'},
+    {n:'Bastião Espiritual',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Cena',d:'Protege alvos com energia mágica. Escolhe luz, trevas ou veneno: alvos tornam-se Resistentes.'},
+    {n:'Curar',off:false,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Revigora companheiros. Cada alvo recupera 40 PV (50 no nível 20+, 60 no 40+).'},
+    {n:'Despertar',off:false,pm:'20',al:'Uma criatura',dur:'Cena',d:'Permite ao alvo concentrar energia vital. Escolhe atributo: o dado desse atributo é considerado +1 passo (máx d12).'},
+    {n:'Enfurecer ⚔',off:true,pm:'10',al:'Uma criatura',dur:'Instantânea',d:'Faz criatura perder compostura. Fica enfurecida e não pode Guardar ou lançar Feitiço até fim do próximo turno.'},
+    {n:'Lux ⚔',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Barragem de raios solares. Causa (RA+15) dano de luz. Oportunidade: alvos ficam atordoados.'},
+    {n:'Piedade',off:false,pm:'20',al:'Uma criatura',dur:'Cena',d:'Fortalece a coragem. Se alvo ficaria com 0 PV, fica com exatamente 1 PV. Termina ao acontecer.'},
+    {n:'Purificar',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Purifica energia da alma. Todos os alvos se recuperam de todas as condições.'},
+    {n:'Reforçar',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Cena',d:'Protege contra condições. Escolhe uma: alvos tornam-se imunes a ela.'},
+    {n:'Torpor ⚔',off:true,pm:'5×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Sufoca energia da alma. Escolhe fraco ou lento: cada alvo sofre a condição.'}
+  ]
+};
+
+const ITEMS = [
+  {id:'des-at',cat:'Armas',n:'Ataque Desarmado',p:0,d:'(DES+VIG) · RA+0 físico · C/C',m:false,desc:'Ataque com o corpo, disponível sem custo. Equipado em espaços de mão vazios.'},
+  {id:'cajado',cat:'Armas',n:'Cajado',p:100,d:'(VON+VON) · RA+6 físico · Arcana · 2 mãos',m:false,desc:'Arma arcana de 2 mãos. Permite lançar feitiços usando Vontade.'},
+  {id:'tomo',cat:'Armas',n:'Tomo',p:100,d:'(AST+AST) · RA+6 físico · Arcana · 2 mãos',m:false,desc:'Arma arcana. Permite lançar feitiços usando Astúcia.'},
+  {id:'besta',cat:'Armas',n:'Besta',p:150,d:'(DES+AST) · RA+8 físico · Dist. · 2 mãos',m:false,desc:'Arma à distância. Boa para classes mistas que precisam de alcance.'},
+  {id:'soqueira',cat:'Armas',n:'Soqueira de Ferro',p:150,d:'(DES+VIG) · RA+6 físico · Luta · 1 mão',m:false,desc:'Arma de luta corpo a corpo. Boa sinergia com classe Furioso.'},
+  {id:'adaga',cat:'Armas',n:'Adaga de Aço',p:150,d:'(DES+AST)+1 · RA+4 físico · 1 mão',m:false,desc:'Precisa e versátil. Bônus de +1 na Precisão compensa o dano menor.'},
+  {id:'chicote',cat:'Armas',n:'Chicote de Correntes',p:150,d:'(DES+DES) · RA+8 físico · Malho · 2 mãos',m:false,desc:'Malho de correntes. Usa Destreza para ambos os dados.'},
+  {id:'shuriken',cat:'Armas',n:'Shuriken',p:150,d:'(DES+AST) · RA+4 físico · Arremesso · 1 mão',m:false,desc:'Arma de arremesso leve. Boa para Ladinos.'},
+  {id:'arco',cat:'Armas',n:'Arco Curto',p:200,d:'(DES+DES) · RA+8 físico · Dist. · 2 mãos',m:false,desc:'Arco à distância. Usa Destreza duas vezes. Ideal para Atiradores.'},
+  {id:'martelo',cat:'Armas',n:'Martelo de Ferro',p:200,d:'(VIG+VIG) · RA+6 físico · 1 mão',m:false,desc:'Arma de 1 mão usando Vigor. Compatível com escudo.'},
+  {id:'lanca-l',cat:'Armas',n:'Lança Leve ⚔',p:200,d:'(DES+VIG) · RA+8 físico · Lança · 1 mão',m:true,desc:'Lança marcial de 1 mão. Libera a outra para escudo.'},
+  {id:'lanca-p',cat:'Armas',n:'Lança Pesada ⚔',p:200,d:'(DES+VIG) · RA+12 físico · Lança · 2 mãos',m:true,desc:'Lança de 2 mãos com alto dano. Usa Destreza + Vigor.'},
+  {id:'espada-b',cat:'Armas',n:'Espada de Bronze ⚔',p:200,d:'(DES+VIG)+1 · RA+6 físico · Espada · 1 mão',m:true,desc:'Espada clássica com +1 na Precisão. Compatível com escudo.'},
+  {id:'montante',cat:'Armas',n:'Montante ⚔',p:200,d:'(DES+VIG)+1 · RA+10 físico · Espada · 2 mãos',m:true,desc:'Grande espada de 2 mãos. +1 Precisão + alto dano.'},
+  {id:'katana',cat:'Armas',n:'Katana ⚔',p:200,d:'(DES+AST)+1 · RA+10 físico · Espada · 2 mãos',m:true,desc:'Espada de 2 mãos usando Destreza + Astúcia. Ótima para personagens mágicos.'},
+  {id:'rapieira',cat:'Armas',n:'Rapieira ⚔',p:200,d:'(DES+AST)+1 · RA+6 físico · Espada · 1 mão',m:true,desc:'Espada ágil de 1 mão. +1 Precisão. Boa para combinação com escudo ou magia.'},
+  {id:'machado-l',cat:'Armas',n:'Machado Largo ⚔',p:250,d:'(VIG+VIG) · RA+10 físico · Pesada · 1 mão',m:true,desc:'Machado de 1 mão com alto dano. Usa Vigor duas vezes.'},
+  {id:'pistola',cat:'Armas',n:'Pistola ⚔',p:250,d:'(DES+AST) · RA+8 físico · Arma de Fogo · Dist. · 1 mão',m:true,desc:'Arma de fogo marcial à distância de 1 mão. Deixa a outra mão livre.'},
+  {id:'machado-g',cat:'Armas',n:'Machado de Guerra ⚔',p:250,d:'(VIG+VIG) · RA+14 físico · Pesada · 2 mãos',m:true,desc:'Maior machado disponível. Dano colossal usando Vigor duas vezes.'},
+  // Techno weapons
+  {id:'conector',cat:'Armas',n:'Conector',p:600,d:'(DES+DES) · RA+8 físico · Malho · 2 mãos',m:false,desc:'[Techno] Ignora custo PM do poder Sobreposição Tecnomágica.'},
+  {id:'rasgador',cat:'Armas',n:'Rasgador Therion ⚔',p:700,d:'(DES+VIG)+1 · RA+10 físico · Luta · 1 mão',m:true,desc:'[Techno] Dano extra = NP em Acromorfose. Beneficia-se de Acromorfose como ataque desarmado.'},
+  {id:'arco-carbono',cat:'Armas',n:'Arco de Carbono',p:800,d:'(DES+DES)+1 · RA+8 físico · Arco · Dist. · 2 mãos',m:false,desc:'[Techno] Ataques consideram DEF do alvo = dado atual de Destreza.'},
+  {id:'lanca-ignicao',cat:'Armas',n:'Lança de Ignição ⚔',p:1000,d:'(DES+VIG) · RA+16 fogo · Lança · 2 mãos C/C',m:true,desc:'[Techno] Com Compressão Tecnológica: invoca veículo gastando 10 PM em vez do custo normal em PI.'},
+  {id:'rifle-precisao',cat:'Armas',n:'Rifle de Precisão ⚔',p:1800,d:'(DES+AST)+1 · RA+16 físico · Arma de Fogo · Dist. · 2 mãos',m:true,desc:'[Techno] Com Olhos de Águia: NP considerado +3 maior (máx NP 8).'},
+  // Natural weapons
+  {id:'concha',cat:'Armas',n:'Concha',p:500,d:'(DES+AST) · RA+8 físico · Arremesso · 1 mão',m:false,desc:'[Natural] Com Feito com Amor: NP considerado +1 maior.'},
+  {id:'garrucha',cat:'Armas',n:'Garrucha',p:800,d:'(DES+AST)+1 · RA+8 físico · Arma de Fogo · Dist. · 1 mão',m:false,desc:'[Natural] Primeiro ataque na cena causa +5 dano. Não é marcial mesmo sendo arma de fogo.'},
+  // High Fantasy weapons
+  {id:'emissaria',cat:'Armas',n:'Emissária da Justiça',p:600,d:'(DES+VIG)+1 · RA+6 físico · Luta · 1 mão',m:false,desc:'[High Fantasy] Ao usar Provocar contra criatura com mais PV, sucesso automático.'},
+  {id:'aquiles',cat:'Armas',n:'Aquiles ⚔',p:1000,d:'(DES+VIG) · RA+12 físico · Lança · 1 mão',m:true,desc:'[High Fantasy] Imune a todas as condições enquanto PV atual = PV máximo.'},
+  // ARMADURAS
+  {id:'seda',cat:'Armaduras',n:'Camisa de Seda',p:100,d:'DEF: DES | DEF.M: AST+2 | Inic: −1',m:false,desc:'Armadura leve. Bônus em Defesa Mágica. Ideal para magos e suporte.'},
+  {id:'viagem',cat:'Armaduras',n:'Traje de Viagem',p:100,d:'DEF: DES+1 | DEF.M: AST+1 | Inic: −1',m:false,desc:'Armadura balanceada. +1 em ambas as Defesas. Boa escolha geral.'},
+  {id:'tunica',cat:'Armaduras',n:'Túnica de Combate',p:150,d:'DEF: DES+1 | DEF.M: AST+1 | Inic: 0',m:false,desc:'Armadura leve sem penalidade de Iniciativa. Boa para Ladinos.'},
+  {id:'brigantina',cat:'Armaduras',n:'Brigantina ⚔',p:150,d:'DEF: 10 (fixo) | DEF.M: AST | Inic: −2',m:true,desc:'Armadura marcial leve. DEF 10 fixo independente da Destreza.'},
+  {id:'vsabio',cat:'Armaduras',n:'Vestes de Sábio',p:200,d:'DEF: DES+1 | DEF.M: AST+2 | Inic: −2',m:false,desc:'Melhor armadura não-marcial para feiticeiros. +2 na Defesa Mágica.'},
+  {id:'placa-b',cat:'Armaduras',n:'Placa de Bronze ⚔',p:200,d:'DEF: 11 (fixo) | DEF.M: AST | Inic: −3',m:true,desc:'Armadura marcial pesada. DEF 11 fixo. Ótima proteção para tanques.'},
+  {id:'placa-r',cat:'Armaduras',n:'Placa Rúnica ⚔',p:250,d:'DEF: 11 (fixo) | DEF.M: AST+1 | Inic: −3',m:true,desc:'Armadura marcial aprimorada. DEF 11 fixo + bonus Defesa Mágica.'},
+  {id:'placa-a',cat:'Armaduras',n:'Placa de Aço ⚔',p:300,d:'DEF: 12 (fixo) | DEF.M: AST | Inic: −4',m:true,desc:'Armadura marcial máxima. Maior DEF disponível: 12 fixo.'},
+  // Techno armaduras
+  {id:'desdirecionador',cat:'Armaduras',n:'Desdirecionador',p:1000,d:'DEF: DES+1 | DEF.M: AST+1 | Inic: −1',m:false,desc:'[Techno] Sem escudo: Resistente a dano físico.'},
+  {id:'psiesqueleto',cat:'Armaduras',n:'Psiesqueleto ⚔',p:2000,d:'DEF: 11 (fixo) | DEF.M: AST+1 | Inic: −3',m:true,desc:'[Techno] Após ação Guarda com Relógio Mental cheio: pode apagar o Relógio.'},
+  // Natural armaduras
+  {id:'coura-la',cat:'Armaduras',n:'Couraça de Lã ⚔',p:800,d:'DEF: 11 | DEF.M: AST | Inic: −3',m:true,desc:'[Natural] Fora de crise: Resistente a gelo e Imune a fraco.'},
+  {id:'tunica-feeria',cat:'Armaduras',n:'Túnica Feérica',p:2000,d:'DEF: DES+1 | DEF.M: AST+2 | Inic: −2',m:false,desc:'[Natural] Com feitiço de duração "Cena" ativo: +2 Defesa Mágica.'},
+  // ESCUDOS
+  {id:'esc-b',cat:'Escudos',n:'Escudo de Bronze',p:100,d:'+2 DEF',m:false,desc:'Escudo básico. +2 Defesa. Compatível com qualquer classe.'},
+  {id:'esc-r',cat:'Escudos',n:'Escudo Rúnico ⚔',p:150,d:'+2 DEF, +2 DEF.M',m:true,desc:'Escudo marcial aprimorado. +2 em ambas as Defesas. Excelente relação custo/benefício.'},
+  {id:'escudo-balistico',cat:'Escudos',n:'Escudo Balístico',p:800,d:'+2 DEF',m:false,desc:'[Techno] +1 em testes de Precisão com armas à distância.'},
+  {id:'escudo-hecat',cat:'Escudos',n:'Escudo Hecat ⚔',p:2000,d:'+2 DEF, +2 DEF.M',m:true,desc:'[Techno] Resistente a dano de feitiços. Ao sofrer dano de feitiço: recupera 5 PM.'},
+  {id:'manica',cat:'Escudos',n:'Manica de Placas',p:800,d:'+2 DEF',m:false,desc:'[Natural] Sem armadura marcial ou outro escudo: pode usar efeitos de Esquiva.'},
+  {id:'esc-tampa',cat:'Escudos',n:'Escudo-tampa ⚔',p:1500,d:'+2 DEF, +2 DEF.M',m:true,desc:'[Natural] Ao causar dano com iguaria: +5 dano.'},
+  {id:'escudo-mochila',cat:'Escudos',n:'Escudo-mochila',p:1000,d:'+2 DEF',m:false,desc:'[High Fantasy] Quando poder faz você recuperar PI: recupera +1 PI adicional.'},
+  {id:'argus',cat:'Escudos',n:'Argus ⚔',p:2000,d:'+2 DEF, +2 DEF.M',m:true,desc:'[High Fantasy] Ao usar Roque do Rei e Decreto do Bispo: escolhe 1 criatura visível para não sofrer os efeitos.'},
+  // ACESSÓRIOS
+  {id:'mascara-gas',cat:'Acessórios',n:'Máscara de Gás',p:900,d:'Passivo',m:false,desc:'[Techno] Resistente a veneno. Imune a envenenado.'},
+  {id:'kit-socorros',cat:'Acessórios',n:'Kit de Primeiros-Socorros',p:1500,d:'Passivo',m:false,desc:'[Techno] Ao curar criaturas em crise com poção ou feitiço: +5 PV extras para cada uma.'},
+  {id:'omnidex',cat:'Acessórios',n:'Omnidex',p:2000,d:'Passivo',m:false,desc:'[Techno] Ao examinar ficha de NPC: resultado ≤12 é tratado como 13 (exceto Falha Crítica).'},
+  {id:'pente-reserva',cat:'Acessórios',n:'Pente Reserva',p:600,d:'Passivo',m:false,desc:'[Techno] Uma vez por cena: após teste de Precisão com arma de fogo, pode rolar novamente 1 dado.'},
+  {id:'anel-negacao',cat:'Acessórios',n:'Anel da Negação',p:600,d:'Passivo',m:false,desc:'[High Fantasy] Ao lançar Dissipar: custo torna-se 10×A e alvo passa a ser "até 3 criaturas".'},
+  {id:'paleta-magica',cat:'Acessórios',n:'Paleta Mágica',p:700,d:'Passivo',m:false,desc:'[High Fantasy] Ao causar dano a criatura com seu símbolo: dano ignora Resistências.'},
+  {id:'fita-danca',cat:'Acessórios',n:'Fita de Dança',p:2000,d:'Passivo',m:false,desc:'[High Fantasy] Enquanto equipado: dado de Destreza +1 passo (máx d12).'},
+  {id:'bolsa-alquimia',cat:'Acessórios',n:'Bolsa de Alquimia',p:1000,d:'Passivo',m:false,desc:'[High Fantasy] Ao criar poção com Engenhocas (Alquimia): pode rolar 1d20 adicional.'},
+  // CONSUMÍVEIS
+  {id:'pocao',cat:'Consumíveis',n:'Poção de Cura',p:100,d:'Gasta 1 PI',m:false,desc:'Cura 50 PV de uma criatura. Use com ação Inventário.'},
+  {id:'antidoto',cat:'Consumíveis',n:'Antídoto',p:75,d:'Gasta 1 PI',m:false,desc:'Remove condição envenenado. Use com ação Inventário.'},
+  {id:'elixir',cat:'Consumíveis',n:'Elixir',p:200,d:'Gasta 1 PI',m:false,desc:'Restaura 30 PM de uma criatura.'},
+  {id:'eter',cat:'Consumíveis',n:'Éter',p:150,d:'Gasta 1 PI',m:false,desc:'Restaura 50 PM de uma criatura.'},
+  {id:'fenix',cat:'Consumíveis',n:'Pluma de Fênix',p:300,d:'Gasta 1 PI',m:false,desc:'Revive aliado com 0 PV, deixando-o com 1 PV.'},
+  {id:'antitoxina',cat:'Consumíveis',n:'Antitoxina',p:120,d:'Gasta 1 PI',m:false,desc:'Imunidade a veneno durante 1 cena completa.'},
+];
+
+// ==================== STATE ====================
+const S = {
+  level:5, gold:500,
+  cls:{}, pows:{}, spells:{},
+  inv:[], hist:[],
+  bonds:Array(6).fill(null).map(()=>({name:'',f:{adm:0,inf:0,lea:0,des:0,afe:0,odi:0}})),
+};
+let shopCat='Todos', clsSrc='Todos', openCls=null, spellCls='Todos';
+
+function switchTab(id,btn){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('pane-'+id).classList.add('on');
+  btn.classList.add('on');
+  if(id==='sheet') renderSheet();
+}
+
+// LEVEL
+function adjLvl(d){
+  S.level=Math.max(1,Math.min(50,S.level+d));
+  const base=S.level<=5?500:500+(S.level-5)*50;
+  S.gold=base;
+  document.getElementById('lvl-disp').textContent=S.level;
+  document.getElementById('lvl-budget').textContent=S.level;
+  document.getElementById('gold-ini').textContent=base;
+  document.getElementById('gold-ini-disp').textContent=base;
+  document.getElementById('st-gold').textContent=base;
+  document.getElementById('gold-disp').textContent=base;
+  document.getElementById('gold-base').textContent=base+'z';
+  const msgs={1:'Nível mínimo.',5:'Nível inicial padrão — 5 pontos de classe.',10:'',20:'Nível 20 — aumenta 1 atributo!',40:'Nível 40 — aumenta mais 1 atributo!'};
+  document.getElementById('lvl-info').textContent=msgs[S.level]||(S.level<20?`Nível ${S.level}. ${S.level} pontos de classe.`:`Nível ${S.level}.`);
+  trimCls(); calcStats(); renderClasses(); renderShop();
+}
+function trimCls(){const tot=Object.values(S.cls).reduce((a,b)=>a+b,0);if(tot>S.level){let ov=tot-S.level;for(const k of Object.keys(S.cls).reverse()){if(S.cls[k]>0){const c=Math.min(S.cls[k],ov);S.cls[k]-=c;ov-=c;if(!ov)break;}}}}
+
+// ATTRS
+function dv(id){return parseInt(document.getElementById('a-'+id)?.value)||8;}
+function calcStats(){
+  const des=dv('des'),vig=dv('vig'),ast=dv('ast'),von=dv('von'),lvl=S.level;
+  let pvB=0,pmB=0,piB=0;
+  for(const[cid,l] of Object.entries(S.cls)){if(l<1)continue;const c=CLASSES.find(x=>x.id===cid);if(!c)continue;const b=c.ben||'';if(b.includes('+5 PV'))pvB+=5;if(b.includes('+5 PM'))pmB+=5;if(b.includes('+2 PI'))piB+=2;}
+  const pv=lvl+(5*vig)+pvB,pm=lvl+(5*von)+pmB,pi=6+piB,crise=Math.floor(pv/2);
+  const s=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  s('st-pv',pv);s('st-pm',pm);s('st-pi',pi);s('st-def',des);s('st-defm',ast);s('st-crise',crise);s('pi-max',pi);
+  return{pv,pm,pi,def:des,defm:ast,crise,des,vig,ast,von};
+}
+function setProfile(p){
+  document.querySelectorAll('.prf-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('prf-'+p).classList.add('on');
+  const m={spec:{des:10,vig:6,ast:10,von:6},mid:{des:10,vig:6,ast:8,von:8},all:{des:8,vig:8,ast:8,von:8}};
+  const v=m[p];['des','vig','ast','von'].forEach(k=>{document.getElementById('a-'+k).value=v[k];});
+  calcStats();
+}
+
+// CLASSES
+function renderSrcTabs(){
+  const el=document.getElementById('srcTabs');
+  const srcs=['Todos','Básico','High Fantasy','Natural Fantasy','Techno Fantasy'];
+  el.innerHTML=srcs.map(s=>`<button class="src-tab ${clsSrc===s?'on':''}" onclick="clsSrc='${s}';renderClasses();">${s}</button>`).join('');
+}
+function renderClasses(){
+  renderSrcTabs();
+  const filt=clsSrc==='Todos'?CLASSES:CLASSES.filter(c=>c.src===clsSrc);
+  document.getElementById('clsGrid').innerHTML=filt.map(cls=>{
+    const lvl=S.cls[cls.id]||0;const isOn=lvl>0;
+    const maxShow=Math.min(10,Math.max(5,lvl+2));
+    const pips=Array.from({length:maxShow},(_,i)=>`<div class="pip ${i<lvl?'on':''}" onclick="event.stopPropagation();setPip('${cls.id}',${i+1})" title="Nível ${i+1}">●</div>`).join('');
+    return`<div class="cls-card ${isOn?'on':''}" onclick="toggleCls('${cls.id}')"><div class="cls-head"><span>${cls.name}</span><span class="cls-src">${cls.src}</span></div><div class="cls-desc">${cls.desc}</div><div class="cls-ben">${cls.ben}</div><div class="cls-pips">${pips}<span class="pip-lbl">Nível ${lvl}</span></div></div>`;
+  }).join('');
+  // Summary
+  const act=Object.entries(S.cls).filter(([,v])=>v>0);
+  const tot=act.reduce((a,[,v])=>a+v,0);
+  const sw=document.getElementById('clsSummaryWrap');
+  const sc=document.getElementById('clsSumContent');
+  if(act.length){sw.style.display='block';sc.innerHTML=act.map(([cid,l])=>{const c=CLASSES.find(x=>x.id===cid);return`<div class="ss-row"><span class="ss-name">${c?c.name:cid}</span><span class="ss-lv">Nível ${l}${l>=10?' ★ DOMINADA':''}</span></div>`;}).join('')+`<div class="ss-row"><span class="ss-name" style="color:var(--muted)">Total</span><span class="ss-lv" style="color:${tot>S.level?'var(--red)':tot===S.level?'#2a8c62':'var(--muted)'};">${tot} / ${S.level}</span></div>`;}else{sw.style.display='none';}
+  calcStats();
+}
+function toggleCls(cid){if(S.cls[cid]>0){openCls=cid;renderPowers();}else{S.cls[cid]=1;trimCls();openCls=cid;renderClasses();renderPowers();}}
+function setPip(cid,l){const cur=S.cls[cid]||0;S.cls[cid]=(cur===l)?Math.max(0,l-1):l;trimCls();openCls=cid;renderClasses();renderPowers();calcStats();}
+function renderPowers(){
+  if(!openCls){document.getElementById('pwPanel').style.display='none';return;}
+  const cls=CLASSES.find(c=>c.id===openCls);if(!cls){document.getElementById('pwPanel').style.display='none';return;}
+  const clsLvl=S.cls[openCls]||0;
+  document.getElementById('pwPanel').style.display='block';
+  document.getElementById('pwTitle').textContent=`PODERES DE ${cls.name.toUpperCase()} (${cls.src}) — Nível ${clsLvl}`;
+  const selCount=cls.powers.map((_,i)=>S.pows[`${openCls}_${i}`]||false).filter(Boolean).length;
+  document.getElementById('pwList').innerHTML=cls.powers.map((pw,i)=>{
+    const key=`${openCls}_${i}`,sel=S.pows[key]||false;
+    // limit: can select at most clsLvl powers
+    const disabled=!sel&&selCount>=clsLvl;
+    return`<div class="pw-item ${sel?'on':''} ${disabled?'disabled':''}" onclick="${disabled?'showLimitWarn()':'togglePow(\''+openCls+'\','+i+')'}">
+      <div class="pw-chk ${sel?'on':''}"></div>
+      <div><div class="pw-name">${pw.n} ${disabled&&!sel?'<span class="pw-note">[nível insuficiente]</span>':''}</div><div class="pw-desc">${pw.d}</div></div>
+    </div>`;
+  }).join('');
+}
+function togglePow(cid,idx){const key=`${cid}_${idx}`;const cls=CLASSES.find(c=>c.id===cid);const clsLvl=S.cls[cid]||0;const curSel=cls.powers.map((_,i)=>S.pows[`${cid}_${i}`]||false).filter(Boolean).length;if(!S.pows[key]&&curSel>=clsLvl)return;S.pows[key]=!S.pows[key];renderPowers();}
+function showLimitWarn(){alert('Você não tem nível suficiente nesta classe para selecionar mais poderes. Aumente o nível da classe primeiro!');}
+
+// SHOP
+function renderShop(){
+  const cats=['Todos','Armas','Armaduras','Escudos','Acessórios','Consumíveis'];
+  document.getElementById('shopFilters').innerHTML=cats.map(c=>`<button class="filt ${shopCat===c?'on':''}" onclick="shopCat='${c}';renderShop();">${c}</button>`).join('');
+  const items=shopCat==='Todos'?ITEMS:ITEMS.filter(i=>i.cat===shopCat);
+  document.getElementById('shopList').innerHTML=items.map(it=>`<div class="sitem">
+    <div style="flex:1;">
+      <div class="iname">${it.n}${it.m?'<span class="mbadge">MARCIAL</span>':''}</div>
+      <div class="idesc">${it.d}</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:.4rem;flex-shrink:0;">
+      <div class="item-tooltip"><button class="info-btn" title="Ver detalhes">🔍</button><div class="itt">${it.desc}</div></div>
+      <div class="iprice">${it.p}z</div>
+      <button class="buy-btn" onclick="buyItem('${it.id}')" ${S.gold<it.p?'disabled':''}>Comprar</button>
+    </div>
+  </div>`).join('');
+  document.getElementById('gold-disp').textContent=S.gold;
+}
+function buyItem(id){const it=ITEMS.find(i=>i.id===id);if(!it||S.gold<it.p)return;S.gold-=it.p;S.hist.push({id,price:it.p,name:it.n});const ex=S.inv.find(i=>i.id===id);if(ex)ex.qty++;else S.inv.push({id,name:it.n,qty:1,cat:it.cat,desc:it.d});document.getElementById('gold-hist').textContent=`Última compra: ${it.n} (−${it.p}z) · Saldo: ${S.gold}z`;document.getElementById('st-gold').textContent=S.gold;renderShop();renderInv();}
+function undoBuy(){if(!S.hist.length)return;const last=S.hist.pop();S.gold+=last.price;const inv=S.inv.find(i=>i.id===last.id);if(inv){inv.qty--;if(inv.qty<=0)S.inv=S.inv.filter(i=>i.id!==last.id);}document.getElementById('gold-hist').textContent=S.hist.length?`Última compra: ${S.hist[S.hist.length-1].name}`:'Sem compras.';document.getElementById('st-gold').textContent=S.gold;renderShop();renderInv();}
+function renderInv(){const list=document.getElementById('invList');if(!S.inv.length){list.innerHTML='<div class="inv-empty">Nenhum item.</div>';document.getElementById('pi-used').textContent=0;return;}list.innerHTML=S.inv.map(it=>`<div class="inv-slot"><span class="inv-name">${it.name}</span>${it.qty>1?`<span class="inv-qty">${it.qty}</span>`:''}</div>`).join('');const cons=S.inv.filter(i=>ITEMS.find(x=>x.id===i.id&&x.cat==='Consumíveis')).reduce((a,b)=>a+b.qty,0);document.getElementById('pi-used').textContent=cons;calcStats();document.getElementById('pi-max').textContent=calcStats().pi;}
+
+// SPELLS
+function renderSpells(){
+  const clsNames=Object.keys(SPELLS);
+  const all=['Todos',...clsNames];
+  document.getElementById('spellFilters').innerHTML=all.map(c=>`<button class="src-tab ${spellCls===c?'on':''}" onclick="spellCls='${c}';renderSpells();">${c}</button>`).join('');
+  const show=spellCls==='Todos'?clsNames:[spellCls].filter(c=>SPELLS[c]);
+  document.getElementById('spellGrid').innerHTML=show.map(cls=>{
+    const list=SPELLS[cls];
+    const items=list.map((sp,i)=>{
+      const key=`${cls}_${i}`,sel=S.spells[key]||false;
+      return`<div class="spell-item ${sel?'on':''}" onclick="toggleSpell('${cls}',${i})">
+        <div class="spell-chk ${sel?'on':''}"></div>
+        <div>
+          <div class="spell-name">${sp.n} ${sp.off?'<span class="spell-off">⚔ Ofensivo</span>':''}</div>
+          <div class="spell-meta">${sp.pm} PM · ${sp.al} · ${sp.dur}</div>
+          <div class="spell-desc">${sp.d}</div>
+        </div>
+      </div>`;
+    }).join('');
+    return`<div class="spell-cls-card"><div class="spell-cls-hdr">✨ ${cls}</div>${items}</div>`;
+  }).join('');
+}
+function toggleSpell(cls,idx){const key=`${cls}_${idx}`;S.spells[key]=!S.spells[key];renderSpells();}
+
+// BONDS
+function renderBonds(){
+  const pairs=[['adm','Admiração','inf','Inferioridade'],['lea','Lealdade','des','Desconfiança'],['afe','Afeto','odi','Ódio']];
+  document.getElementById('bondsContainer').innerHTML=S.bonds.map((b,i)=>`<div class="bond-item">
+    <div>
+      <label class="flabel" style="margin-bottom:.3rem;">Laço ${i+1} — Força: ${Object.values(b.f).reduce((a,v)=>a+v,0)}/3</label>
+      <input class="finput" style="margin:0" type="text" placeholder="Nome do personagem..." value="${b.name}" oninput="S.bonds[${i}].name=this.value">
+    </div>
+    <div class="feelings">${pairs.map(([a,la,bk,lb])=>`<div class="fpair">
+      <span class="flbl">${la}</span>
+      <div class="fchk ${b.f[a]?'on':''}" onclick="toggleF(${i},'${a}','${bk}')"></div>
+      <div class="fdiv"></div>
+      <div class="fchk ${b.f[bk]?'on':''}" onclick="toggleF(${i},'${bk}','${a}')"></div>
+      <span style="font-size:.68rem;color:var(--muted);margin-left:.3rem;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;">${lb}</span>
+    </div>`).join('')}</div>
+  </div>`).join('');
+}
+function toggleF(bi,f,opp){const b=S.bonds[bi].f;if(b[f]){b[f]=0;}else{b[opp]=0;b[f]=1;}renderBonds();}
+function sync(){calcStats();}
+
+// ==================== SHEET ====================
+function renderSheet(){
+  const st=calcStats();
+  const gv=id=>document.getElementById(id)?.value||'';
+  const sv=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v||'—';};
+  sv('s-name',gv('c-name'));sv('s-gender',gv('c-gender'));
+  sv('s-ident',gv('c-ident'));sv('s-theme',gv('c-theme'));sv('s-origin',gv('c-origin'));
+  document.getElementById('s-lvl').textContent=S.level;
+  document.getElementById('s-lvl2').textContent=S.level;
+  ['des','vig','ast','von'].forEach(a=>sv('s-'+a,'d'+dv(a)));
+  sv('s-pv',st.pv);sv('s-pv2',st.pv);sv('s-pm',st.pm);sv('s-pm2',st.pm);sv('s-pi',st.pi);sv('s-pi2',st.pi);
+  sv('s-def',st.def);sv('s-defm',st.defm);sv('s-crise',st.crise);sv('s-ini','0');
+  sv('s-gold',S.gold+'z');
+  // LAÇOS
+  const laEl=document.getElementById('s-lacos');
+  const pairs=[['adm','Adm.','inf','Inf.'],['lea','Leal.','des','Desc.'],['afe','Afeto','odi','Ódio']];
+  laEl.innerHTML=S.bonds.map((b,i)=>`<div class="laco-row">
+    <span class="laco-num">${i+1}</span>
+    <span class="laco-name">${b.name||''}</span>
+    <div class="laco-checks">${pairs.map(([a,la,bk,lb])=>`<div class="laco-chk-group">
+      <span class="laco-chk-lbl">${la}</span>
+      <div class="laco-box ${b.f[a]?'filled':''}"></div>
+    </div>
+    <div class="laco-sep"></div>
+    <div class="laco-chk-group">
+      <span class="laco-chk-lbl">${lb}</span>
+      <div class="laco-box ${b.f[bk]?'filled':''}"></div>
+    </div>`).join('<div style="width:4px;"></div>')}</div>
+  </div>`).join('');
+  // EQUIPAVEL checks
+  const hasMartial=(type)=>{for(const[cid,l] of Object.entries(S.cls)){if(l<1)continue;const c=CLASSES.find(x=>x.id===cid);if(c&&c.ben&&c.ben.includes(type))return true;}return false;};
+  const setChk=(id,on)=>{const el=document.getElementById(id);if(el)el.className='eq-chk'+(on?' on':'');};
+  setChk('eq-arm-m',hasMartial('armaduras'));
+  setChk('eq-esc-m',hasMartial('escudos'));
+  setChk('eq-cac-m',hasMartial('C/C'));
+  setChk('eq-dis-m',hasMartial('dist.'));
+  // Equip slots
+  const armors=S.inv.filter(i=>ITEMS.find(x=>x.id===i.id&&x.cat==='Armaduras'));
+  const shields=S.inv.filter(i=>ITEMS.find(x=>x.id===i.id&&x.cat==='Escudos'));
+  const weapons=S.inv.filter(i=>ITEMS.find(x=>x.id===i.id&&x.cat==='Armas'));
+  const accs=S.inv.filter(i=>ITEMS.find(x=>x.id===i.id&&x.cat==='Acessórios'));
+  const getIt=(arr,idx)=>{if(!arr[idx])return['—','—'];const it=ITEMS.find(x=>x.id===arr[idx].id);return[arr[idx].name,it?it.d:''];};
+  const [am,ad]=getIt(armors,0);const [em,ed]=getIt(shields,0);const [m1n,m1d]=getIt(weapons,0);const [m2n,m2d]=getIt(weapons,1);const [an,ade]=getIt(accs,0);
+  sv('s-arm-v',am);sv('s-arm-d',ad);sv('s-esc-v',em);sv('s-esc-d',ed);
+  sv('s-md-v',m1n);sv('s-md-d',m1d);sv('s-ms-v',m2n);sv('s-ms-d',m2d);sv('s-acc-v',an);sv('s-acc-d',ade);
+  // CLASSES
+  const actCls=Object.entries(S.cls).filter(([,v])=>v>0);
+  document.getElementById('s-cls-blocks').innerHTML=actCls.length?actCls.map(([cid,lvl])=>{
+    const c=CLASSES.find(x=>x.id===cid);if(!c)return'';
+    const selPws=c.powers.map((pw,i)=>S.pows[`${cid}_${i}`]?pw.n:'').filter(Boolean).join(' · ');
+    return`<div class="sh-cls">
+      <div class="sh-cls-hdr">
+        <div><div class="sh-cls-lbl">CLASSE / NÍVEL</div><div class="sh-cls-val">${c.name} — Nível ${lvl}${lvl>=10?' ⭐':''}</div></div>
+        <div><div class="sh-cls-lbl">BENEFÍCIOS GRATUITOS</div><div class="sh-cls-ben-lbl">${c.ben}</div></div>
+      </div>
+      <div class="sh-cls-body">${selPws?`<strong>Poderes:</strong> ${selPws}`:'(Nenhum poder selecionado — vá até a Aba I para selecionar)'}</div>
+    </div>`;
+  }).join(''):'<div style="color:var(--dim);font-style:italic;font-size:.82rem;padding:.5rem;">Nenhuma classe selecionada.</div>';
+  // MOCHILA
+  const mEl=document.getElementById('s-mochila');
+  if(S.inv.length){mEl.innerHTML=S.inv.map(it=>`<div style="font-size:.82rem;padding:.2rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;"><span>${it.name}</span>${it.qty>1?`<span style="font-weight:600;">×${it.qty}</span>`:''}</div>`).join('');}
+  else{mEl.innerHTML='<div style="color:var(--dim);font-style:italic;font-size:.82rem;">Mochila vazia.</div>';}
+  // SPELLS on sheet
+  const selSpells=Object.entries(S.spells).filter(([,v])=>v).map(([k])=>{const[cls,idx]=k.split('_');const sp=SPELLS[cls]?.[parseInt(idx)];return sp?`${sp.n} (${sp.pm} PM, ${sp.dur})`:null;}).filter(Boolean);
+  // add spells to mochila section
+  if(selSpells.length){const mEl=document.getElementById('s-mochila');mEl.innerHTML+='<div style="font-size:.7rem;font-weight:700;color:var(--green);margin-top:.5rem;font-family:\'Barlow Condensed\',sans-serif;letter-spacing:.08em;">MAGIAS APRENDIDAS</div>'+selSpells.map(s=>`<div style="font-size:.78rem;padding:.15rem 0;border-bottom:1px solid var(--border);">${s}</div>`).join('');}
+}
+
+// EXPORT PDF
+function exportPDF(){
+  const st=calcStats();const gv=id=>document.getElementById(id)?.value||'';
+  const name=gv('c-name')||'personagem';
+  const actCls=Object.entries(S.cls).filter(([,v])=>v>0);
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Ficha — ${name}</title>
+  <style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:Arial,sans-serif;background:#fff;color:#1a1a1a;padding:1.5cm;font-size:11px;max-width:22cm;margin:0 auto;}
+  .logo{font-size:14px;font-weight:700;color:#1a6b4a;letter-spacing:.1em;}
+  h2{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#1a6b4a;color:#fff;padding:3px 7px;margin:8px 0 4px;}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
+  .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}
+  .g6{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;}
+  .box{border:1px solid #c8ddd4;border-radius:2px;padding:5px;text-align:center;}
+  .box .lbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#5a6b62;display:block;margin-bottom:2px;}
+  .box .val{font-size:16px;font-weight:700;color:#1a1a1a;}
+  .field .lbl2{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#1a6b4a;display:block;margin-bottom:1px;}
+  .field .val2{border-bottom:1.5px solid #1a1a1a;display:block;padding:2px 0;font-size:11px;min-height:1.4em;}
+  .item{padding:3px 0;border-bottom:1px solid #e0ede6;font-size:10px;color:#3a3a3a;}
+  .cls-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid #e0ede6;font-size:10px;}
+  .cls-ben{font-size:9px;color:#1a6b4a;font-weight:600;}
+  .cls-body{font-size:10px;color:#5a6b62;padding:4px 0;min-height:40px;line-height:1.5;}
+  @media print{body{padding:.8cm;}}
+  </style></head><body>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+    <div>
+      <div class="logo">⚔ FÁBULA ÚLTIMA TTJRPG</div>
+      <h2 style="background:none;color:#1a6b4a;padding:2px 0;margin:2px 0;">FICHA DE PERSONAGEM</h2>
+    </div>
+    <div style="text-align:center;border:2px solid #1a1a1a;border-radius:50%;width:45px;height:45px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;">${S.level}</div>
+  </div>
+  <div class="g2" style="margin-bottom:6px;">
+    <div class="field"><span class="lbl2">NOME</span><span class="val2">${gv('c-name')}</span></div>
+    <div class="field"><span class="lbl2">GÊNERO / PRONOMES</span><span class="val2">${gv('c-gender')}</span></div>
+  </div>
+  <div style="border:1px solid #c8ddd4;border-radius:2px;padding:5px;margin-bottom:6px;">
+    <div style="font-size:8px;font-weight:700;text-transform:uppercase;color:#1a6b4a;margin-bottom:3px;">TRAÇOS</div>
+    <div class="g3">
+      <div class="field"><span class="lbl2">IDENTIDADE</span><span class="val2">${gv('c-ident')}</span></div>
+      <div class="field"><span class="lbl2">TEMA</span><span class="val2">${gv('c-theme')}</span></div>
+      <div class="field"><span class="lbl2">ORIGEM</span><span class="val2">${gv('c-origin')}</span></div>
+    </div>
+  </div>
+  <h2>ATRIBUTOS</h2>
+  <div class="g4" style="margin-bottom:6px;">
+    <div class="box"><span class="lbl">DESTREZA</span><span class="val">d${dv('des')}</span></div>
+    <div class="box"><span class="lbl">VIGOR</span><span class="val">d${dv('vig')}</span></div>
+    <div class="box"><span class="lbl">ASTÚCIA</span><span class="val">d${dv('ast')}</span></div>
+    <div class="box"><span class="lbl">VONTADE</span><span class="val">d${dv('von')}</span></div>
+  </div>
+  <h2>PONTOS DE VIDA, MANA E INVENTÁRIO</h2>
+  <div class="g6" style="margin-bottom:6px;">
+    <div class="box"><span class="lbl">PV MÁX</span><span class="val">${st.pv}</span></div>
+    <div class="box"><span class="lbl">CRISE ≤</span><span class="val" style="color:#c0392b;">${st.crise}</span></div>
+    <div class="box"><span class="lbl">PM MÁX</span><span class="val">${st.pm}</span></div>
+    <div class="box"><span class="lbl">PI MÁX</span><span class="val">${st.pi}</span></div>
+    <div class="box"><span class="lbl">DEFESA</span><span class="val">${st.def}</span></div>
+    <div class="box"><span class="lbl">DEF. MÁG.</span><span class="val">${st.defm}</span></div>
+  </div>
+  <div style="display:flex;gap:6px;margin-bottom:6px;">
+    <div class="box" style="flex:1;"><span class="lbl">ZÊNITES</span><span class="val">${S.gold}z</span></div>
+    <div class="box" style="flex:1;"><span class="lbl">MOD. INICIATIVA</span><span class="val">0</span></div>
+    <div class="box" style="flex:1;"><span class="lbl">PTS DE FÁBULA</span><span class="val">3</span></div>
+  </div>
+  <h2>CLASSES & PODERES</h2>
+  ${actCls.length?actCls.map(([cid,lvl])=>{
+    const c=CLASSES.find(x=>x.id===cid);if(!c)return'';
+    const pws=c.powers.map((pw,i)=>S.pows[`${cid}_${i}`]?`<span>${pw.n.split(' (')[0]}</span>`:null).filter(Boolean).join(' · ');
+    return`<div style="border:1px solid #c8ddd4;border-radius:2px;margin-bottom:4px;">
+      <div class="cls-row" style="background:#f0f7f3;padding:3px 6px;"><strong>${c.name}</strong><span>Nível ${lvl}${lvl>=10?' ★':''}</span></div>
+      <div style="font-size:9px;color:#1a6b4a;padding:2px 6px;">${c.ben}</div>
+      <div class="cls-body" style="padding:3px 6px;">${pws||'—'}</div>
+    </div>`;
+  }).join(''):'<div class="item">Nenhuma classe.</div>'}
+  <h2>EQUIPAMENTOS</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:10px;margin-bottom:6px;">
+    <tr style="background:#f0f7f3;"><th style="border:1px solid #c8ddd4;padding:3px 5px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:#5a6b62;">ITEM</th><th style="border:1px solid #c8ddd4;padding:3px 5px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:#5a6b62;">DESCRIÇÃO</th></tr>
+    ${S.inv.map(it=>`<tr><td style="border:1px solid #e0ede6;padding:3px 5px;">${it.name}${it.qty>1?` ×${it.qty}`:''}</td><td style="border:1px solid #e0ede6;padding:3px 5px;color:#5a6b62;">${it.desc||''}</td></tr>`).join('')||'<tr><td colspan="2" style="border:1px solid #e0ede6;padding:3px 5px;color:#9aafa5;">Nenhum equipamento.</td></tr>'}
+  </table>
+  <h2>LAÇOS</h2>
+  ${S.bonds.map((b,i)=>{const fl=Object.entries(b.f).filter(([,v])=>v).map(([k])=>({adm:'Admiração',inf:'Inferioridade',lea:'Lealdade',des:'Desconfiança',afe:'Afeto',odi:'Ódio'}[k])).join(', ');return b.name?`<div class="item"><strong>${b.name}</strong>${fl?' — '+fl:''} (Força ${Object.values(b.f).reduce((a,v)=>a+v,0)})</div>`:''}).join('')||'<div class="item" style="color:#9aafa5;">Nenhum laço.</div>'}
+  <script>window.onload=()=>{window.print();}<\/script>
+  </body></html>`);
+  w.document.close();
+}
+
+// INIT
+document.addEventListener('DOMContentLoaded',()=>{
+  calcStats();renderClasses();renderShop();renderInv();renderBonds();renderSpells();
+  document.getElementById('c-ident')?.addEventListener('input',e=>{const t=document.getElementById('tr-ident');if(t&&!t.value)t.value=e.target.value;});
+  document.getElementById('c-theme')?.addEventListener('input',e=>{const t=document.getElementById('tr-theme');if(t&&!t.value)t.value=e.target.value;});
+  document.getElementById('c-origin')?.addEventListener('input',e=>{const t=document.getElementById('tr-origin');if(t&&!t.value)t.value=e.target.value;});
+});
+</script>
+</body>
+</html>
