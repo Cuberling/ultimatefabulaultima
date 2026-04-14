@@ -35,640 +35,646 @@ body{
     radial-gradient(ellipse at 10% 20%, rgba(75,168,180,0.07) 0%, transparent 60%),
     radial-gradient(ellipse at 90% 80%, rgba(75,168,180,0.05) 0%, transparent 50%);
 }
+
 /* ─── HEADER ─────────────────── */
 .app-header{
-background:var(–teal3);
-border-bottom:3px solid var(–dark);
-padding:0 1.2rem;
-display:flex;align-items:center;gap:.8rem;
-height:48px;
-position:sticky;top:0;z-index:100;
-box-shadow:0 3px 0 var(–dark);
+  background:var(--teal3);
+  border-bottom:3px solid var(--dark);
+  padding:0 1.2rem;
+  display:flex;align-items:center;gap:.8rem;
+  height:48px;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 3px 0 var(--dark);
 }
 .app-logo{
-font-family:var(–font);
-font-size:1.5rem;
-color:#fff;
-letter-spacing:.1em;
-display:flex;align-items:center;gap:.4rem;
-text-shadow:2px 2px 0 var(–dark);
+  font-family:var(--font);
+  font-size:1.5rem;
+  color:#fff;
+  letter-spacing:.1em;
+  display:flex;align-items:center;gap:.4rem;
+  text-shadow:2px 2px 0 var(--dark);
 }
 .app-badge{
-background:var(–teal);
-color:#fff;
-font-size:.65rem;
-font-family:var(–font2);
-padding:.15rem .5rem;
-border:1px solid rgba(255,255,255,.4);
-letter-spacing:.06em;
+  background:var(--teal);
+  color:#fff;
+  font-size:.65rem;
+  font-family:var(--font2);
+  padding:.15rem .5rem;
+  border:1px solid rgba(255,255,255,.4);
+  letter-spacing:.06em;
 }
 .header-spacer{flex:1;}
 .header-stat{
-display:flex;align-items:center;gap:.35rem;
-background:rgba(0,0,0,.25);
-border:1px solid rgba(255,255,255,.2);
-padding:.25rem .65rem;
-font-size:.78rem;
-color:#fff;
-font-family:var(–font);
-font-size:1rem;
+  display:flex;align-items:center;gap:.35rem;
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.2);
+  padding:.25rem .65rem;
+  font-size:.78rem;
+  color:#fff;
+  font-family:var(--font);
+  font-size:1rem;
 }
-.header-stat-label{color:rgba(255,255,255,.65);font-size:.7rem;font-family:var(–font2);}
+.header-stat-label{color:rgba(255,255,255,.65);font-size:.7rem;font-family:var(--font2);}
 
 /* ─── TABS ─────────────────── */
 .tab-bar{
-background:var(–dark2);
-border-bottom:3px solid var(–dark);
-padding:0 1rem;
-display:flex;gap:2px;
-overflow-x:auto;scrollbar-width:none;
+  background:var(--dark2);
+  border-bottom:3px solid var(--dark);
+  padding:0 1rem;
+  display:flex;gap:2px;
+  overflow-x:auto;scrollbar-width:none;
 }
 .tab-bar::-webkit-scrollbar{display:none;}
 .tab-btn{
-display:flex;align-items:center;gap:.35rem;
-padding:.5rem .9rem;
-font-family:var(–font);
-font-size:1.05rem;
-color:#aaa;
-background:var(–dark3);
-border:none;border-bottom:none;
-cursor:pointer;
-white-space:nowrap;
-transition:all .12s;
-border-top:2px solid transparent;
-letter-spacing:.05em;
+  display:flex;align-items:center;gap:.35rem;
+  padding:.5rem .9rem;
+  font-family:var(--font);
+  font-size:1.05rem;
+  color:#aaa;
+  background:var(--dark3);
+  border:none;border-bottom:none;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:all .12s;
+  border-top:2px solid transparent;
+  letter-spacing:.05em;
 }
 .tab-btn:hover{color:#fff;background:#3a3a3a;}
 .tab-btn.on{
-color:var(–cream2);
-background:var(–cream);
-border-top:2px solid var(–teal);
-border-left:1px solid var(–border);
-border-right:1px solid var(–border);
+  color:var(--cream2);
+  background:var(--cream);
+  border-top:2px solid var(--teal);
+  border-left:1px solid var(--border);
+  border-right:1px solid var(--border);
 }
+
 /* ─── PANELS & CONTENT ─────────────────── */
 .pane{display:none;}.pane.on{display:block;}
 .page{padding:1.2rem;max-width:1280px;margin:0 auto;}
 .page-2col{display:grid;grid-template-columns:1fr 300px;gap:1rem;align-items:start;}
 @media(max-width:900px){.page-2col{grid-template-columns:1fr;}}
 .sticky-col{position:sticky;top:68px;}
+
 /* ─── WINDOW CARDS ─────────────────── */
 .win{
-background:var(–cream3);
-border:2px solid var(–border);
-box-shadow:var(–shadow2);
-margin-bottom:.9rem;
-position:relative;
+  background:var(--cream3);
+  border:2px solid var(--border);
+  box-shadow:var(--shadow2);
+  margin-bottom:.9rem;
+  position:relative;
 }
 .win:last-child{margin-bottom:0;}
 .win-title{
-background:var(–teal3);
-color:#fff;
-font-family:var(–font);
-font-size:1.05rem;
-letter-spacing:.08em;
-padding:.3rem .7rem;
-border-bottom:2px solid var(–dark);
-display:flex;align-items:center;gap:.5rem;
-text-shadow:1px 1px 0 var(–dark);
+  background:var(--teal3);
+  color:#fff;
+  font-family:var(--font);
+  font-size:1.05rem;
+  letter-spacing:.08em;
+  padding:.3rem .7rem;
+  border-bottom:2px solid var(--dark);
+  display:flex;align-items:center;gap:.5rem;
+  text-shadow:1px 1px 0 var(--dark);
 }
-.win-title.tan{background:var(–tan);}
-.win-title.dark{background:var(–dark2);}
-.win-title.red{background:var(–red2);}
+.win-title.tan{background:var(--tan);}
+.win-title.dark{background:var(--dark2);}
+.win-title.red{background:var(--red2);}
 .win-body{padding:.8rem;}
+
 /* ─── SECTION LABEL ─────────────────── */
 .sec-lbl{
-font-family:var(–font);
-font-size:.95rem;
-color:var(–teal3);
-letter-spacing:.08em;
-margin-bottom:.5rem;
-display:flex;align-items:center;gap:.5rem;
-text-transform:uppercase;
+  font-family:var(--font);
+  font-size:.95rem;
+  color:var(--teal3);
+  letter-spacing:.08em;
+  margin-bottom:.5rem;
+  display:flex;align-items:center;gap:.5rem;
+  text-transform:uppercase;
 }
-.sec-lbl::after{content:’’;flex:1;height:1px;background:var(–border3);}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border3);}
+
 /* ─── STEP CHIPS ─────────────────── */
 .step-chip{
-display:inline-flex;align-items:center;gap:.3rem;
-background:var(–teal3);
-color:#fff;
-font-family:var(–font);
-font-size:.95rem;
-padding:.2rem .65rem;
-border:1.5px solid var(–dark);
-box-shadow:var(–shadow);
-letter-spacing:.05em;
+  display:inline-flex;align-items:center;gap:.3rem;
+  background:var(--teal3);
+  color:#fff;
+  font-family:var(--font);
+  font-size:.95rem;
+  padding:.2rem .65rem;
+  border:1.5px solid var(--dark);
+  box-shadow:var(--shadow);
+  letter-spacing:.05em;
 }
 .step-num{
-width:18px;height:18px;
-background:rgba(255,255,255,.2);
-border:1px solid rgba(255,255,255,.4);
-display:flex;align-items:center;justify-content:center;
-font-size:.8rem;font-weight:700;
+  width:18px;height:18px;
+  background:rgba(255,255,255,.2);
+  border:1px solid rgba(255,255,255,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:700;
 }
+
 /* ─── FORM ─────────────────── */
 .form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.7rem;margin-bottom:.8rem;}
 .form-group{display:flex;flex-direction:column;gap:.28rem;}
 .form-label{
-font-family:var(–font);
-font-size:.9rem;
-color:var(–teal3);
-letter-spacing:.05em;
-display:flex;align-items:center;gap:.3rem;
+  font-family:var(--font);
+  font-size:.9rem;
+  color:var(--teal3);
+  letter-spacing:.05em;
+  display:flex;align-items:center;gap:.3rem;
 }
 .form-input,.form-select{
-background:var(–cream2);
-border:1.5px solid var(–border);
-border-bottom:2.5px solid var(–teal3);
-color:var(–text);
-font-family:var(–font2);
-font-size:.87rem;
-padding:.38rem .6rem;
-outline:none;
-width:100%;
-transition:border-color .12s;
-box-shadow:inset 1px 1px 0 rgba(0,0,0,.05);
+  background:var(--cream2);
+  border:1.5px solid var(--border);
+  border-bottom:2.5px solid var(--teal3);
+  color:var(--text);
+  font-family:var(--font2);
+  font-size:.87rem;
+  padding:.38rem .6rem;
+  outline:none;
+  width:100%;
+  transition:border-color .12s;
+  box-shadow:inset 1px 1px 0 rgba(0,0,0,.05);
 }
-.form-input:focus,.form-select:focus{border-color:var(–teal);background:#fff;}
+.form-input:focus,.form-select:focus{border-color:var(--teal);background:#fff;}
 .form-textarea{
-background:var(–cream2);
-border:1.5px solid var(–border);
-border-bottom:2.5px solid var(–teal3);
-color:var(–text);
-font-family:var(–font2);
-font-size:.87rem;
-padding:.45rem .6rem;
-outline:none;
-width:100%;
-resize:vertical;
-min-height:90px;
-line-height:1.6;
-transition:border-color .12s;
+  background:var(--cream2);
+  border:1.5px solid var(--border);
+  border-bottom:2.5px solid var(--teal3);
+  color:var(--text);
+  font-family:var(--font2);
+  font-size:.87rem;
+  padding:.45rem .6rem;
+  outline:none;
+  width:100%;
+  resize:vertical;
+  min-height:90px;
+  line-height:1.6;
+  transition:border-color .12s;
 }
-.form-textarea:focus{border-color:var(–teal);background:#fff;}
+.form-textarea:focus{border-color:var(--teal);background:#fff;}
 
 /* ─── TOOLTIP ─────────────────── */
 .tip-wrap{position:relative;display:inline-flex;}
 .tip-btn{
-width:17px;height:17px;
-background:var(–teal-pale);
-border:1.5px solid var(–teal3);
-color:var(–teal3);
-font-family:var(–font);
-font-size:.9rem;
-cursor:pointer;
-display:flex;align-items:center;justify-content:center;
-flex-shrink:0;
-transition:all .12s;
+  width:17px;height:17px;
+  background:var(--teal-pale);
+  border:1.5px solid var(--teal3);
+  color:var(--teal3);
+  font-family:var(--font);
+  font-size:.9rem;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  transition:all .12s;
 }
-.tip-btn:hover{background:var(–teal3);color:#fff;}
+.tip-btn:hover{background:var(--teal3);color:#fff;}
 .tip-box{
-display:none;
-position:absolute;
-bottom:calc(100% + 5px);
-left:50%;
-transform:translateX(-50%);
-background:var(–dark2);
-color:var(–cream2);
-font-family:var(–font2);
-font-size:.78rem;
-line-height:1.5;
-padding:.5rem .7rem;
-width:240px;
-z-index:300;
-pointer-events:none;
-border:2px solid var(–teal);
-box-shadow:var(–shadow2);
+  display:none;
+  position:absolute;
+  bottom:calc(100% + 5px);
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--dark2);
+  color:var(--cream2);
+  font-family:var(--font2);
+  font-size:.78rem;
+  line-height:1.5;
+  padding:.5rem .7rem;
+  width:240px;
+  z-index:300;
+  pointer-events:none;
+  border:2px solid var(--teal);
+  box-shadow:var(--shadow2);
 }
 .tip-box::after{
-content:’’;position:absolute;top:100%;left:50%;
-transform:translateX(-50%);
-border:5px solid transparent;border-top-color:var(–teal);
+  content:'';position:absolute;top:100%;left:50%;
+  transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--teal);
 }
 .tip-wrap:hover .tip-box{display:block;}
 
 /* ─── LEVEL ─────────────────── */
 .level-ctrl{display:flex;align-items:center;gap:.7rem;}
 .level-disp{
-font-family:var(–font);
-font-size:2.8rem;
-color:var(–teal3);
-min-width:3rem;
-text-align:center;
-text-shadow:2px 2px 0 var(–border3);
-letter-spacing:-.02em;
+  font-family:var(--font);
+  font-size:2.8rem;
+  color:var(--teal3);
+  min-width:3rem;
+  text-align:center;
+  text-shadow:2px 2px 0 var(--border3);
+  letter-spacing:-.02em;
 }
 .level-btn{
-width:30px;height:30px;
-background:var(–teal-pale);
-border:2px solid var(–teal3);
-color:var(–teal3);
-font-family:var(–font);
-font-size:1.2rem;
-cursor:pointer;
-display:flex;align-items:center;justify-content:center;
-transition:all .12s;
-box-shadow:var(–shadow);
+  width:30px;height:30px;
+  background:var(--teal-pale);
+  border:2px solid var(--teal3);
+  color:var(--teal3);
+  font-family:var(--font);
+  font-size:1.2rem;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .12s;
+  box-shadow:var(--shadow);
 }
-.level-btn:hover{background:var(–teal3);color:#fff;box-shadow:none;transform:translate(1px,1px);}
+.level-btn:hover{background:var(--teal3);color:#fff;box-shadow:none;transform:translate(1px,1px);}
 
 /* ─── ALERTS ─────────────────── */
 .alert{
-display:flex;align-items:flex-start;gap:.5rem;
-padding:.55rem .75rem;
-font-size:.83rem;
-line-height:1.5;
-margin:.55rem 0;
-border:1.5px solid;
-font-family:var(–font2);
+  display:flex;align-items:flex-start;gap:.5rem;
+  padding:.55rem .75rem;
+  font-size:.83rem;
+  line-height:1.5;
+  margin:.55rem 0;
+  border:1.5px solid;
+  font-family:var(--font2);
 }
-.alert-info{background:var(–teal-pale);border-color:var(–teal3);color:#0A4A52;}
-.alert-success{background:var(–green-pale);border-color:#27AE60;color:#1A5E30;}
-.alert-warn{background:var(–gold-pale);border-color:var(–gold);color:#5A4200;}
-.alert-danger{background:var(–red-pale);border-color:var(–red);color:var(–red2);}
+.alert-info{background:var(--teal-pale);border-color:var(--teal3);color:#0A4A52;}
+.alert-success{background:var(--green-pale);border-color:#27AE60;color:#1A5E30;}
+.alert-warn{background:var(--gold-pale);border-color:var(--gold);color:#5A4200;}
+.alert-danger{background:var(--red-pale);border-color:var(--red);color:var(--red2);}
 
 /* ─── STAT GRID ─────────────────── */
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;}
 .stat-box{
-background:var(–cream2);
-border:1.5px solid var(–border);
-padding:.5rem;
-text-align:center;
-box-shadow:var(–shadow);
+  background:var(--cream2);
+  border:1.5px solid var(--border);
+  padding:.5rem;
+  text-align:center;
+  box-shadow:var(--shadow);
 }
-.stat-box.accent{background:var(–teal-pale);border-color:var(–teal3);}
-.stat-box.danger{background:var(–red-pale);border-color:var(–red);}
-.stat-box.gold{background:var(–gold-pale);border-color:var(–gold);}
-.stat-label{font-family:var(–font);font-size:.85rem;color:var(–teal3);letter-spacing:.05em;}
-.stat-box.danger .stat-label{color:var(–red2);}
-.stat-box.gold .stat-label{color:var(–gold);}
-.stat-value{font-family:var(–font);font-size:1.9rem;color:var(–dark);line-height:1.1;}
-.stat-box.accent .stat-value{color:var(–teal3);}
-.stat-box.danger .stat-value{color:var(–red);}
-.stat-box.gold .stat-value{color:var(–gold);}
-.stat-sub{font-size:.68rem;color:var(–text3);font-family:var(–font2);}
+.stat-box.accent{background:var(--teal-pale);border-color:var(--teal3);}
+.stat-box.danger{background:var(--red-pale);border-color:var(--red);}
+.stat-box.gold{background:var(--gold-pale);border-color:var(--gold);}
+.stat-label{font-family:var(--font);font-size:.85rem;color:var(--teal3);letter-spacing:.05em;}
+.stat-box.danger .stat-label{color:var(--red2);}
+.stat-box.gold .stat-label{color:var(--gold);}
+.stat-value{font-family:var(--font);font-size:1.9rem;color:var(--dark);line-height:1.1;}
+.stat-box.accent .stat-value{color:var(--teal3);}
+.stat-box.danger .stat-value{color:var(--red);}
+.stat-box.gold .stat-value{color:var(--gold);}
+.stat-sub{font-size:.68rem;color:var(--text3);font-family:var(--font2);}
 
 /* ─── PROFILE ─────────────────── */
 .profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:.8rem;}
 .profile-btn{
-background:var(–cream2);
-border:2px solid var(–border);
-padding:.55rem .4rem;
-cursor:pointer;
-text-align:center;
-transition:all .12s;
-font-family:var(–font);
-box-shadow:var(–shadow);
+  background:var(--cream2);
+  border:2px solid var(--border);
+  padding:.55rem .4rem;
+  cursor:pointer;
+  text-align:center;
+  transition:all .12s;
+  font-family:var(--font);
+  box-shadow:var(--shadow);
 }
-.profile-btn:hover{border-color:var(–teal3);box-shadow:none;transform:translate(1px,1px);}
-.profile-btn.on{border-color:var(–teal3);background:var(–teal-pale);box-shadow:none;transform:translate(1px,1px);}
-.profile-name{font-size:.95rem;color:var(–dark);letter-spacing:.03em;}
-.profile-btn.on .profile-name{color:var(–teal3);}
-.profile-vals{font-size:.72rem;color:var(–text3);margin-top:.1rem;font-family:var(–mono);}
+.profile-btn:hover{border-color:var(--teal3);box-shadow:none;transform:translate(1px,1px);}
+.profile-btn.on{border-color:var(--teal3);background:var(--teal-pale);box-shadow:none;transform:translate(1px,1px);}
+.profile-name{font-size:.95rem;color:var(--dark);letter-spacing:.03em;}
+.profile-btn.on .profile-name{color:var(--teal3);}
+.profile-vals{font-size:.72rem;color:var(--text3);margin-top:.1rem;font-family:var(--mono);}
 
 /* ─── ATTR ─────────────────── */
 .attr-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;}
 .attr-card{
-background:var(–cream2);
-border:2px solid var(–border);
-padding:.7rem;
-transition:border-color .12s;
-box-shadow:var(–shadow);
+  background:var(--cream2);
+  border:2px solid var(--border);
+  padding:.7rem;
+  transition:border-color .12s;
+  box-shadow:var(--shadow);
 }
-.attr-card:focus-within{border-color:var(–teal3);}
-.attr-name{font-family:var(–font);font-size:.95rem;color:var(–dark);margin-bottom:.15rem;display:flex;align-items:center;gap:.3rem;}
-.attr-desc{font-size:.72rem;color:var(–text3);margin-bottom:.4rem;font-family:var(–font2);}
+.attr-card:focus-within{border-color:var(--teal3);}
+.attr-name{font-family:var(--font);font-size:.95rem;color:var(--dark);margin-bottom:.15rem;display:flex;align-items:center;gap:.3rem;}
+.attr-desc{font-size:.72rem;color:var(--text3);margin-bottom:.4rem;font-family:var(--font2);}
 .dice-select{
-background:var(–teal-pale);
-border:2px solid var(–teal3);
-color:var(–teal3);
-font-family:var(–font);
-font-size:1.1rem;
-padding:.3rem .55rem;
-cursor:pointer;
-width:100%;
-transition:all .12s;
-box-shadow:var(–shadow);
+  background:var(--teal-pale);
+  border:2px solid var(--teal3);
+  color:var(--teal3);
+  font-family:var(--font);
+  font-size:1.1rem;
+  padding:.3rem .55rem;
+  cursor:pointer;
+  width:100%;
+  transition:all .12s;
+  box-shadow:var(--shadow);
 }
-.dice-select:focus{outline:none;background:var(–teal3);color:#fff;}
+.dice-select:focus{outline:none;background:var(--teal3);color:#fff;}
 
 /* ─── PI BOX ─────────────────── */
 .pi-info-box{
-background:var(–gold-pale);
-border:2px solid var(–gold);
-padding:.7rem;
-margin:.6rem 0;
-box-shadow:var(–shadow);
+  background:var(--gold-pale);
+  border:2px solid var(--gold);
+  padding:.7rem;
+  margin:.6rem 0;
+  box-shadow:var(--shadow);
 }
-.pi-info-title{font-family:var(–font);font-size:1rem;color:var(–gold);letter-spacing:.06em;margin-bottom:.35rem;}
+.pi-info-title{font-family:var(--font);font-size:1rem;color:var(--gold);letter-spacing:.06em;margin-bottom:.35rem;}
 .pi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.4rem;margin-top:.5rem;}
 .pi-item{
-background:rgba(255,255,255,.5);
-border:1px solid var(–gold);
-padding:.35rem .45rem;
-text-align:center;
-font-size:.75rem;
+  background:rgba(255,255,255,.5);
+  border:1px solid var(--gold);
+  padding:.35rem .45rem;
+  text-align:center;
+  font-size:.75rem;
 }
-.pi-item-name{font-family:var(–font);font-size:.9rem;color:var(–gold);}
-.pi-item-cost{font-family:var(–mono);font-size:.68rem;color:var(–text3);}
+.pi-item-name{font-family:var(--font);font-size:.9rem;color:var(--gold);}
+.pi-item-cost{font-family:var(--mono);font-size:.68rem;color:var(--text3);}
 
 /* ─── SOURCE CHIPS ─────────────────── */
 .chip-row{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.7rem;}
 .chip{
-background:var(–cream2);
-border:2px solid var(–border);
-color:var(–text2);
-font-family:var(–font);
-font-size:.9rem;
-padding:.2rem .65rem;
-cursor:pointer;
-transition:all .12s;
-box-shadow:var(–shadow);
-letter-spacing:.04em;
+  background:var(--cream2);
+  border:2px solid var(--border);
+  color:var(--text2);
+  font-family:var(--font);
+  font-size:.9rem;
+  padding:.2rem .65rem;
+  cursor:pointer;
+  transition:all .12s;
+  box-shadow:var(--shadow);
+  letter-spacing:.04em;
 }
-.chip:hover{border-color:var(–teal3);color:var(–teal3);}
-.chip.on{background:var(–teal3);border-color:var(–dark);color:#fff;box-shadow:none;transform:translate(1px,1px);}
+.chip:hover{border-color:var(--teal3);color:var(--teal3);}
+.chip.on{background:var(--teal3);border-color:var(--dark);color:#fff;box-shadow:none;transform:translate(1px,1px);}
 
 /* ─── CLASS GRID ─────────────────── */
 .class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:.6rem;}
 .cls-card{
-background:var(–cream3);
-border:2px solid var(–border);
-padding:.75rem;
-cursor:pointer;
-transition:all .12s;
-position:relative;
-box-shadow:var(–shadow);
+  background:var(--cream3);
+  border:2px solid var(--border);
+  padding:.75rem;
+  cursor:pointer;
+  transition:all .12s;
+  position:relative;
+  box-shadow:var(--shadow);
 }
-.cls-card:hover{border-color:var(–teal3);box-shadow:none;transform:translate(1px,1px);}
-.cls-card.on{border-color:var(–teal3);background:var(–teal-pale);box-shadow:none;transform:translate(1px,1px);}
+.cls-card:hover{border-color:var(--teal3);box-shadow:none;transform:translate(1px,1px);}
+.cls-card.on{border-color:var(--teal3);background:var(--teal-pale);box-shadow:none;transform:translate(1px,1px);}
 .cls-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.3rem;margin-bottom:.3rem;}
-.cls-name{font-family:var(–font);font-size:1rem;color:var(–dark);letter-spacing:.03em;}
-.cls-card.on .cls-name{color:var(–teal3);}
+.cls-name{font-family:var(--font);font-size:1rem;color:var(--dark);letter-spacing:.03em;}
+.cls-card.on .cls-name{color:var(--teal3);}
 .cls-src-tag{
-font-family:var(–font);
-font-size:.72rem;
-padding:.05rem .35rem;
-border:1px solid;
-white-space:nowrap;flex-shrink:0;letter-spacing:.04em;
+  font-family:var(--font);
+  font-size:.72rem;
+  padding:.05rem .35rem;
+  border:1px solid;
+  white-space:nowrap;flex-shrink:0;letter-spacing:.04em;
 }
 .tag-basic{background:#F1F5F9;color:#5A6A7A;border-color:#A0B0C0;}
 .tag-high{background:#FEF3C7;color:#8B5E00;border-color:#D4A017;}
-.tag-natural{background:var(–green-pale);color:#1A6B30;border-color:#4CAF70;}
+.tag-natural{background:var(--green-pale);color:#1A6B30;border-color:#4CAF70;}
 .tag-techno{background:#EDE9FE;color:#4A2A8A;border-color:#9A7ACA;}
 .tag-codex{background:#FCE4EC;color:#880E4F;border-color:#C06080;}
-.cls-desc{font-family:var(–font2);font-size:.76rem;color:var(–text3);line-height:1.4;margin-bottom:.35rem;}
-.cls-ben{font-family:var(–font);font-size:.78rem;color:var(–teal3);margin-bottom:.4rem;letter-spacing:.03em;}
+.cls-desc{font-family:var(--font2);font-size:.76rem;color:var(--text3);line-height:1.4;margin-bottom:.35rem;}
+.cls-ben{font-family:var(--font);font-size:.78rem;color:var(--teal3);margin-bottom:.4rem;letter-spacing:.03em;}
 .cls-pips{display:flex;align-items:center;gap:.22rem;flex-wrap:wrap;}
 .pip{
-width:19px;height:19px;
-border:1.5px solid var(–border);
-background:var(–cream);
-cursor:pointer;
-transition:all .1s;
-flex-shrink:0;
+  width:19px;height:19px;
+  border:1.5px solid var(--border);
+  background:var(--cream);
+  cursor:pointer;
+  transition:all .1s;
+  flex-shrink:0;
 }
-.pip:hover{border-color:var(–teal3);}
-.pip.on{background:var(–teal3);border-color:var(–teal2);}
-.pip-label{font-family:var(–font);font-size:.85rem;color:var(–text3);margin-left:.15rem;}
+.pip:hover{border-color:var(--teal3);}
+.pip.on{background:var(--teal3);border-color:var(--teal2);}
+.pip-label{font-family:var(--font);font-size:.85rem;color:var(--text3);margin-left:.15rem;}
 
 /* ─── CLASS INFO BTN ─────────────────── */
 .cls-info-btn{
-position:absolute;top:.4rem;right:.4rem;
-width:18px;height:18px;
-background:var(–teal-pale);
-border:1.5px solid var(–teal3);
-color:var(–teal3);
-font-family:var(–font);
-font-size:.85rem;
-cursor:pointer;
-display:flex;align-items:center;justify-content:center;
-transition:all .12s;
-z-index:5;
+  position:absolute;top:.4rem;right:.4rem;
+  width:18px;height:18px;
+  background:var(--teal-pale);
+  border:1.5px solid var(--teal3);
+  color:var(--teal3);
+  font-family:var(--font);
+  font-size:.85rem;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .12s;
+  z-index:5;
 }
-.cls-info-btn:hover{background:var(–teal3);color:#fff;}
+.cls-info-btn:hover{background:var(--teal3);color:#fff;}
 
 /* ─── CLASS INFO MODAL ─────────────────── */
 .modal-overlay{
-display:none;
-position:fixed;inset:0;
-background:rgba(0,0,0,.6);
-z-index:500;
-align-items:center;
-justify-content:center;
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:500;
+  align-items:center;
+  justify-content:center;
 }
 .modal-overlay.open{display:flex;}
 .modal-win{
-background:var(–cream3);
-border:3px solid var(–teal3);
-box-shadow:4px 4px 0 var(–dark);
-max-width:480px;
-width:90%;
-max-height:80vh;
-overflow-y:auto;
+  background:var(--cream3);
+  border:3px solid var(--teal3);
+  box-shadow:4px 4px 0 var(--dark);
+  max-width:480px;
+  width:90%;
+  max-height:80vh;
+  overflow-y:auto;
 }
 .modal-title{
-background:var(–teal3);
-color:#fff;
-font-family:var(–font);
-font-size:1.2rem;
-padding:.4rem .8rem;
-border-bottom:2px solid var(–dark);
-display:flex;justify-content:space-between;align-items:center;
-letter-spacing:.06em;
-text-shadow:1px 1px 0 var(–dark);
+  background:var(--teal3);
+  color:#fff;
+  font-family:var(--font);
+  font-size:1.2rem;
+  padding:.4rem .8rem;
+  border-bottom:2px solid var(--dark);
+  display:flex;justify-content:space-between;align-items:center;
+  letter-spacing:.06em;
+  text-shadow:1px 1px 0 var(--dark);
 }
 .modal-close{
-background:var(–red2);
-border:1.5px solid var(–dark);
-color:#fff;
-font-family:var(–font);
-font-size:1rem;
-width:22px;height:22px;
-cursor:pointer;
-display:flex;align-items:center;justify-content:center;
+  background:var(--red2);
+  border:1.5px solid var(--dark);
+  color:#fff;
+  font-family:var(--font);
+  font-size:1rem;
+  width:22px;height:22px;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
 }
-.modal-close:hover{background:var(–red);}
+.modal-close:hover{background:var(--red);}
 .modal-body{padding:.85rem;}
-.modal-src{font-family:var(–font);font-size:.85rem;color:var(–teal3);margin-bottom:.4rem;letter-spacing:.05em;}
-.modal-desc{font-family:var(–font2);font-size:.85rem;color:var(–text2);line-height:1.6;margin-bottom:.6rem;}
-.modal-ben{font-family:var(–font);font-size:.9rem;color:var(–teal3);margin-bottom:.5rem;letter-spacing:.04em;}
-.modal-pows-title{font-family:var(–font);font-size:.9rem;color:var(–dark);margin-bottom:.3rem;letter-spacing:.05em;border-bottom:1px solid var(–border3);padding-bottom:.2rem;}
-.modal-pow-item{margin:.35rem 0;padding:.35rem .5rem;background:var(–cream);border-left:2.5px solid var(–teal);}
-.modal-pow-name{font-family:var(–font);font-size:.85rem;color:var(–teal3);}
-.modal-pow-desc{font-family:var(–font2);font-size:.75rem;color:var(–text3);line-height:1.4;margin-top:.1rem;}
+.modal-src{font-family:var(--font);font-size:.85rem;color:var(--teal3);margin-bottom:.4rem;letter-spacing:.05em;}
+.modal-desc{font-family:var(--font2);font-size:.85rem;color:var(--text2);line-height:1.6;margin-bottom:.6rem;}
+.modal-ben{font-family:var(--font);font-size:.9rem;color:var(--teal3);margin-bottom:.5rem;letter-spacing:.04em;}
+.modal-pows-title{font-family:var(--font);font-size:.9rem;color:var(--dark);margin-bottom:.3rem;letter-spacing:.05em;border-bottom:1px solid var(--border3);padding-bottom:.2rem;}
+.modal-pow-item{margin:.35rem 0;padding:.35rem .5rem;background:var(--cream);border-left:2.5px solid var(--teal);}
+.modal-pow-name{font-family:var(--font);font-size:.85rem;color:var(--teal3);}
+.modal-pow-desc{font-family:var(--font2);font-size:.75rem;color:var(--text3);line-height:1.4;margin-top:.1rem;}
 
 /* ─── POWERS PANEL ─────────────────── */
 .powers-panel{
-background:var(–cream3);
-border:2px solid var(–border);
-margin-top:.75rem;
-box-shadow:var(–shadow);
+  background:var(--cream3);
+  border:2px solid var(--border);
+  margin-top:.75rem;
+  box-shadow:var(--shadow);
 }
 .powers-header{
-background:var(–teal3);
-color:#fff;
-padding:.38rem .8rem;
-font-family:var(–font);
-font-size:.95rem;
-letter-spacing:.06em;
-display:flex;align-items:center;justify-content:space-between;
-border-bottom:2px solid var(–dark);
-text-shadow:1px 1px 0 var(–dark);
+  background:var(--teal3);
+  color:#fff;
+  padding:.38rem .8rem;
+  font-family:var(--font);
+  font-size:.95rem;
+  letter-spacing:.06em;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:2px solid var(--dark);
+  text-shadow:1px 1px 0 var(--dark);
 }
 .power-item{
-padding:.55rem .8rem;
-border-bottom:1px solid var(–border3);
-cursor:pointer;
-transition:background .1s;
-display:flex;align-items:flex-start;gap:.6rem;
+  padding:.55rem .8rem;
+  border-bottom:1px solid var(--border3);
+  cursor:pointer;
+  transition:background .1s;
+  display:flex;align-items:flex-start;gap:.6rem;
 }
 .power-item:last-child{border-bottom:none;}
-.power-item:hover{background:var(–teal-pale);}
-.power-item.on{background:var(–teal-pale);}
+.power-item:hover{background:var(--teal-pale);}
+.power-item.on{background:var(--teal-pale);}
 .power-item.locked{opacity:.35;cursor:not-allowed;}
 .power-check{
-width:15px;height:15px;
-border:2px solid var(–border);
-background:var(–cream);
-flex-shrink:0;margin-top:2px;
-transition:all .1s;
-display:flex;align-items:center;justify-content:center;
-font-size:.6rem;
+  width:15px;height:15px;
+  border:2px solid var(--border);
+  background:var(--cream);
+  flex-shrink:0;margin-top:2px;
+  transition:all .1s;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;
 }
-.power-check.on{background:var(–teal3);border-color:var(–teal2);color:#fff;}
-.power-name{font-family:var(–font);font-size:.9rem;color:var(–dark);}
-.power-item.on .power-name{color:var(–teal3);}
-.power-desc{font-family:var(–font2);font-size:.75rem;color:var(–text3);line-height:1.4;margin-top:.12rem;}
-.power-locked-note{font-family:var(–font);font-size:.75rem;color:var(–red);margin-top:.1rem;letter-spacing:.03em;}
+.power-check.on{background:var(--teal3);border-color:var(--teal2);color:#fff;}
+.power-name{font-family:var(--font);font-size:.9rem;color:var(--dark);}
+.power-item.on .power-name{color:var(--teal3);}
+.power-desc{font-family:var(--font2);font-size:.75rem;color:var(--text3);line-height:1.4;margin-top:.12rem;}
+.power-locked-note{font-family:var(--font);font-size:.75rem;color:var(--red);margin-top:.1rem;letter-spacing:.03em;}
 
 /* ─── SUMMARY ─────────────────── */
 .summary-box{
-background:var(–cream);
-border:1.5px solid var(–border);
-padding:.65rem .8rem;
-margin:.6rem 0;
+  background:var(--cream);
+  border:1.5px solid var(--border);
+  padding:.65rem .8rem;
+  margin:.6rem 0;
 }
 .summary-row{
-display:flex;justify-content:space-between;align-items:center;
-padding:.2rem 0;border-bottom:1px solid var(–border3);
-font-family:var(–font2);font-size:.85rem;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.2rem 0;border-bottom:1px solid var(--border3);
+  font-family:var(--font2);font-size:.85rem;
 }
 .summary-row:last-child{border-bottom:none;}
-.summary-lvl{font-family:var(–font);font-size:.85rem;color:var(–teal3);letter-spacing:.04em;}
+.summary-lvl{font-family:var(--font);font-size:.85rem;color:var(--teal3);letter-spacing:.04em;}
 
 /* ─── SHOP ─────────────────── */
 .gold-bar{
-background:var(–gold-pale);
-border:2px solid var(–gold);
-padding:.65rem .9rem;
-display:flex;align-items:center;gap:.8rem;
-margin-bottom:.8rem;
-box-shadow:var(–shadow);
-flex-wrap:wrap;
+  background:var(--gold-pale);
+  border:2px solid var(--gold);
+  padding:.65rem .9rem;
+  display:flex;align-items:center;gap:.8rem;
+  margin-bottom:.8rem;
+  box-shadow:var(--shadow);
+  flex-wrap:wrap;
 }
-.gold-amount{font-family:var(–font);font-size:2rem;color:var(–gold);letter-spacing:-.01em;}
-.gold-label{font-family:var(–font);font-size:.85rem;color:var(–tan);letter-spacing:.06em;}
+.gold-amount{font-family:var(--font);font-size:2rem;color:var(--gold);letter-spacing:-.01em;}
+.gold-label{font-family:var(--font);font-size:.85rem;color:var(--tan);letter-spacing:.06em;}
 .gold-undo{
-margin-left:auto;
-background:var(–cream2);
-border:2px solid var(–border);
-color:var(–text2);
-font-family:var(–font);
-font-size:.9rem;
-padding:.28rem .7rem;
-cursor:pointer;
-box-shadow:var(–shadow);
-letter-spacing:.04em;
-transition:all .12s;
+  margin-left:auto;
+  background:var(--cream2);
+  border:2px solid var(--border);
+  color:var(--text2);
+  font-family:var(--font);
+  font-size:.9rem;
+  padding:.28rem .7rem;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  letter-spacing:.04em;
+  transition:all .12s;
 }
-.gold-undo:hover{border-color:var(–red);color:var(–red);box-shadow:none;transform:translate(1px,1px);}
+.gold-undo:hover{border-color:var(--red);color:var(--red);box-shadow:none;transform:translate(1px,1px);}
 
 .shop-layout{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
 @media(max-width:720px){.shop-layout{grid-template-columns:1fr;}}
 .shop-panel,.inv-panel{
-background:var(–cream3);
-border:2px solid var(–border);
-box-shadow:var(–shadow);
+  background:var(--cream3);
+  border:2px solid var(--border);
+  box-shadow:var(--shadow);
 }
 .panel-head{
-background:var(–dark2);
-color:var(–cream2);
-padding:.4rem .8rem;
-border-bottom:2px solid var(–dark);
-font-family:var(–font);
-font-size:.95rem;
-letter-spacing:.06em;
-text-shadow:1px 1px 0 var(–dark);
+  background:var(--dark2);
+  color:var(--cream2);
+  padding:.4rem .8rem;
+  border-bottom:2px solid var(--dark);
+  font-family:var(--font);
+  font-size:.95rem;
+  letter-spacing:.06em;
+  text-shadow:1px 1px 0 var(--dark);
 }
-.item-list{max-height:420px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(–border) transparent;}
+.item-list{max-height:420px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
 .shop-item{
-display:flex;align-items:flex-start;gap:.5rem;
-padding:.5rem .75rem;
-border-bottom:1px solid var(–border3);
-transition:background .1s;
+  display:flex;align-items:flex-start;gap:.5rem;
+  padding:.5rem .75rem;
+  border-bottom:1px solid var(--border3);
+  transition:background .1s;
 }
-.shop-item:hover{background:var(–teal-pale);}
+.shop-item:hover{background:var(--teal-pale);}
 .item-info{flex:1;min-width:0;}
-.item-name{font-family:var(–font);font-size:.9rem;color:var(–dark);}
-.item-detail{font-family:var(–font2);font-size:.72rem;color:var(–text3);margin-top:.12rem;line-height:1.35;}
+.item-name{font-family:var(--font);font-size:.9rem;color:var(--dark);}
+.item-detail{font-family:var(--font2);font-size:.72rem;color:var(--text3);margin-top:.12rem;line-height:1.35;}
 .martial-badge{
-display:inline-block;
-background:var(–red-pale);color:var(–red);
-font-family:var(–font);font-size:.68rem;
-padding:.02rem .35rem;border:1px solid var(–red);
-margin-left:.2rem;
+  display:inline-block;
+  background:var(--red-pale);color:var(--red);
+  font-family:var(--font);font-size:.68rem;
+  padding:.02rem .35rem;border:1px solid var(--red);
+  margin-left:.2rem;
 }
 .item-right{display:flex;flex-direction:column;align-items:flex-end;gap:.3rem;flex-shrink:0;}
-.item-price{font-family:var(–font);font-size:.9rem;color:var(–gold);}
+.item-price{font-family:var(--font);font-size:.9rem;color:var(--gold);}
 .btn-buy{
-background:var(–teal3);
-color:#fff;
-border:2px solid var(–dark);
-font-family:var(–font);
-font-size:.8rem;
-padding:.22rem .6rem;
-cursor:pointer;
-letter-spacing:.04em;
-box-shadow:var(–shadow);
-transition:all .12s;
+  background:var(--teal3);
+  color:#fff;
+  border:2px solid var(--dark);
+  font-family:var(--font);
+  font-size:.8rem;
+  padding:.22rem .6rem;
+  cursor:pointer;
+  letter-spacing:.04em;
+  box-shadow:var(--shadow);
+  transition:all .12s;
 }
-.btn-buy:hover{background:var(–teal2);box-shadow:none;transform:translate(1px,1px);}
-.btn-buy:disabled{background:var(–border3);color:var(–cream);cursor:not-allowed;box-shadow:none;}
+.btn-buy:hover{background:var(--teal2);box-shadow:none;transform:translate(1px,1px);}
+.btn-buy:disabled{background:var(--border3);color:var(--cream);cursor:not-allowed;box-shadow:none;}
 .info-btn{
-background:none;border:none;cursor:pointer;
-font-size:.9rem;padding:2px;color:var(–text3);
-position:relative;transition:color .1s;
+  background:none;border:none;cursor:pointer;
+  font-size:.9rem;padding:2px;color:var(--text3);
+  position:relative;transition:color .1s;
 }
-.info-btn:hover{color:var(–teal3);}
+.info-btn:hover{color:var(--teal3);}
 .item-tooltip{
-display:none;position:absolute;right:0;top:100%;margin-top:4px;
-background:var(–dark2);color:var(–cream2);
-font-family:var(–font2);font-size:.75rem;line-height:1.5;
-padding:.5rem .65rem;width:220px;z-index:200;
-border:2px solid var(–teal);
-box-shadow:var(–shadow2);
+  display:none;position:absolute;right:0;top:100%;margin-top:4px;
+  background:var(--dark2);color:var(--cream2);
+  font-family:var(--font2);font-size:.75rem;line-height:1.5;
+  padding:.5rem .65rem;width:220px;z-index:200;
+  border:2px solid var(--teal);
+  box-shadow:var(--shadow2);
 }
 .info-btn:hover .item-tooltip{display:block;}
 
-.pi-bar{display:flex;align-items:center;gap:.5rem;padding:.5rem .75rem;border-bottom:1px solid var(–border3);background:var(–gold-pale);}
-.pi-track{flex:1;height:8px;background:var(–border3);border:1px solid var(–border);overflow:hidden;}
-.pi-fill{height:100%;background:var(–teal3);transition:width .3s;}
-.inv-slot{display:flex;align-items:center;gap:.5rem;padding:.4rem .75rem;border-bottom:1px solid var(–border3);font-family:var(–font2);font-size:.83rem;}
-.inv-slot:hover{background:var(–teal-pale);}
+.pi-bar{display:flex;align-items:center;gap:.5rem;padding:.5rem .75rem;border-bottom:1px solid var(--border3);background:var(--gold-pale);}
+.pi-track{flex:1;height:8px;background:var(--border3);border:1px solid var(--border);overflow:hidden;}
+.pi-fill{height:100%;background:var(--teal3);transition:width .3s;}
+.inv-slot{display:flex;align-items:center;gap:.5rem;padding:.4rem .75rem;border-bottom:1px solid var(--border3);font-family:var(--font2);font-size:.83rem;}
+.inv-slot:hover{background:var(--teal-pale);}
 .inv-qty{
-background:var(–teal3);color:#fff;
-font-family:var(–font);font-size:.8rem;
-width:18px;height:18px;
-border:1px solid var(–dark);
-display:flex;align-items:center;justify-content:center;
+  background:var(--teal3);color:#fff;
+  font-family:var(--font);font-size:.8rem;
+  width:18px;height:18px;
+  border:1px solid var(--dark);
+  display:flex;align-items:center;justify-content:center;
 }
-.inv-empty{color:var(–text3);font-style:italic;font-family:var(–font2);font-size:.85rem;padding:.9rem;text-align:center;}
+.inv-empty{color:var(--text3);font-style:italic;font-family:var(--font2);font-size:.85rem;padding:.9rem;text-align:center;}
 
 /* ─── SPELLS ─────────────────── */
 .spell-cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.75rem;}
-.spell-cls-block{background:var(–cream3);border:2px solid var(–border);box-shadow:var(–shadow);}
-.spell-cls-hdr{padding:.4rem .8rem;font-family:var(–font);font-size:.95rem;color:#fff;letter-spacing:.06em;border-bottom:2px solid var(–dark);text-shadow:1px 1px 0 var(–dark);}
+.spell-cls-block{background:var(--cream3);border:2px solid var(--border);box-shadow:var(--shadow);}
+.spell-cls-hdr{padding:.4rem .8rem;font-family:var(--font);font-size:.95rem;color:#fff;letter-spacing:.06em;border-bottom:2px solid var(--dark);text-shadow:1px 1px 0 var(--dark);}
 .hdr-elem{background:#B8600A;}
 .hdr-entro{background:#6A2D8A;}
 .hdr-espiri{background:#1A7AA0;}
@@ -677,151 +683,150 @@ display:flex;align-items:center;justify-content:center;
 .hdr-astro{background:#7A6A00;}
 .hdr-necro{background:#3A2A4A;}
 .spell-item{
-padding:.5rem .8rem;
-border-bottom:1px solid var(–border3);
-cursor:pointer;transition:background .1s;
-display:flex;align-items:flex-start;gap:.5rem;
+  padding:.5rem .8rem;
+  border-bottom:1px solid var(--border3);
+  cursor:pointer;transition:background .1s;
+  display:flex;align-items:flex-start;gap:.5rem;
 }
 .spell-item:last-child{border-bottom:none;}
-.spell-item:hover{background:var(–teal-pale);}
-.spell-item.on{background:var(–teal-pale);}
+.spell-item:hover{background:var(--teal-pale);}
+.spell-item.on{background:var(--teal-pale);}
 .spell-chk{
-width:14px;height:14px;
-border:2px solid var(–border);
-background:var(–cream);
-flex-shrink:0;margin-top:2px;
-transition:all .1s;
-display:flex;align-items:center;justify-content:center;font-size:.55rem;
+  width:14px;height:14px;
+  border:2px solid var(--border);
+  background:var(--cream);
+  flex-shrink:0;margin-top:2px;
+  transition:all .1s;
+  display:flex;align-items:center;justify-content:center;font-size:.55rem;
 }
-.spell-chk.on{background:var(–teal3);border-color:var(–teal2);color:#fff;}
-.spell-name{font-family:var(–font);font-size:.88rem;color:var(–dark);}
-.spell-item.on .spell-name{color:var(–teal3);}
-.spell-off{color:var(–red);font-family:var(–font);font-size:.78rem;font-weight:700;background:var(–red-pale);padding:.02rem .3rem;border:1px solid var(–red);margin-left:.25rem;}
-.spell-meta{font-family:var(–mono);font-size:.7rem;color:var(–text3);margin-top:.1rem;}
-.spell-desc{font-family:var(–font2);font-size:.75rem;color:var(–text2);line-height:1.4;margin-top:.14rem;}
+.spell-chk.on{background:var(--teal3);border-color:var(--teal2);color:#fff;}
+.spell-name{font-family:var(--font);font-size:.88rem;color:var(--dark);}
+.spell-item.on .spell-name{color:var(--teal3);}
+.spell-off{color:var(--red);font-family:var(--font);font-size:.78rem;font-weight:700;background:var(--red-pale);padding:.02rem .3rem;border:1px solid var(--red);margin-left:.25rem;}
+.spell-meta{font-family:var(--mono);font-size:.7rem;color:var(--text3);margin-top:.1rem;}
+.spell-desc{font-family:var(--font2);font-size:.75rem;color:var(--text2);line-height:1.4;margin-top:.14rem;}
 
 /* ─── BONDS ─────────────────── */
 .bond-card{
-background:var(–cream3);
-border:2px solid var(–border);
-padding:.75rem;
-margin-bottom:.55rem;
-display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:start;
-box-shadow:var(–shadow);
+  background:var(--cream3);
+  border:2px solid var(--border);
+  padding:.75rem;
+  margin-bottom:.55rem;
+  display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:start;
+  box-shadow:var(--shadow);
 }
 @media(max-width:560px){.bond-card{grid-template-columns:1fr;}}
 .feelings-col{display:flex;flex-direction:column;gap:.3rem;}
 .f-pair{display:flex;align-items:center;gap:.4rem;}
-.f-lbl{font-family:var(–font);font-size:.8rem;color:var(–text3);width:70px;text-align:right;flex-shrink:0;letter-spacing:.04em;}
+.f-lbl{font-family:var(--font);font-size:.8rem;color:var(--text3);width:70px;text-align:right;flex-shrink:0;letter-spacing:.04em;}
 .f-chk{
-width:15px;height:15px;
-border:2px solid var(–border);
-background:var(–cream);
-cursor:pointer;transition:all .1s;flex-shrink:0;
-display:flex;align-items:center;justify-content:center;font-size:.55rem;
+  width:15px;height:15px;
+  border:2px solid var(--border);
+  background:var(--cream);
+  cursor:pointer;transition:all .1s;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:.55rem;
 }
-.f-chk:hover{border-color:var(–teal3);}
-.f-chk.on{background:var(–teal3);border-color:var(–teal2);color:#fff;}
-.f-sep{width:1px;height:15px;background:var(–border);flex-shrink:0;}
+.f-chk:hover{border-color:var(--teal3);}
+.f-chk.on{background:var(--teal3);border-color:var(--teal2);color:#fff;}
+.f-sep{width:1px;height:15px;background:var(--border);flex-shrink:0;}
 .bond-strength{
-font-family:var(–font);font-size:.85rem;color:var(–teal3);
-background:var(–teal-pale);
-border:1px solid var(–teal3);
-padding:.1rem .4rem;letter-spacing:.04em;
+  font-family:var(--font);font-size:.85rem;color:var(--teal3);
+  background:var(--teal-pale);
+  border:1px solid var(--teal3);
+  padding:.1rem .4rem;letter-spacing:.04em;
 }
 
 /* ─── LORE ─────────────────── */
 .lore-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.9rem;}
-.lore-block{background:var(–cream3);border:2px solid var(–border);box-shadow:var(–shadow);}
+.lore-block{background:var(--cream3);border:2px solid var(--border);box-shadow:var(--shadow);}
 .lore-hdr{
-background:var(–tan);
-color:#fff;padding:.35rem .75rem;
-border-bottom:2px solid var(–dark);
-font-family:var(–font);font-size:1rem;
-display:flex;align-items:center;gap:.4rem;
-letter-spacing:.06em;text-shadow:1px 1px 0 var(–dark);
+  background:var(--tan);
+  color:#fff;padding:.35rem .75rem;
+  border-bottom:2px solid var(--dark);
+  font-family:var(--font);font-size:1rem;
+  display:flex;align-items:center;gap:.4rem;
+  letter-spacing:.06em;text-shadow:1px 1px 0 var(--dark);
 }
 .lore-body{padding:.75rem;}
 .img-zone{
-border:2px dashed var(–border);
-padding:2rem;text-align:center;
-cursor:pointer;transition:all .18s;
-background:var(–cream);
-position:relative;overflow:hidden;
+  border:2px dashed var(--border);
+  padding:2rem;text-align:center;
+  cursor:pointer;transition:all .18s;
+  background:var(--cream);
+  position:relative;overflow:hidden;
 }
-.img-zone:hover{border-color:var(–teal3);background:var(–teal-pale);}
+.img-zone:hover{border-color:var(--teal3);background:var(--teal-pale);}
 .img-zone.has-img{border-style:solid;padding:0;}
 .img-zone img{width:100%;max-height:300px;object-fit:cover;}
 .img-input{position:absolute;inset:0;opacity:0;cursor:pointer;}
-.img-ph{display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(–text3);}
+.img-ph{display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(--text3);}
 .img-ph-icon{font-size:2.2rem;}
-.img-ph-text{font-family:var(–font);font-size:.95rem;letter-spacing:.04em;}
-.img-ph-sub{font-family:var(–font2);font-size:.72rem;}
+.img-ph-text{font-family:var(--font);font-size:.95rem;letter-spacing:.04em;}
+.img-ph-sub{font-family:var(--font2);font-size:.72rem;}
 
 /* ─── RULES ─────────────────── */
 .rules-sec{margin-bottom:1.5rem;}
-.rules-sec h3{font-family:var(–font);font-size:1.1rem;color:var(–teal3);margin-bottom:.55rem;padding-bottom:.3rem;border-bottom:2px solid var(–border3);letter-spacing:.06em;}
-.rules-sec p{font-family:var(–font2);font-size:.86rem;color:var(–text2);line-height:1.7;margin-bottom:.5rem;}
+.rules-sec h3{font-family:var(--font);font-size:1.1rem;color:var(--teal3);margin-bottom:.55rem;padding-bottom:.3rem;border-bottom:2px solid var(--border3);letter-spacing:.06em;}
+.rules-sec p{font-family:var(--font2);font-size:.86rem;color:var(--text2);line-height:1.7;margin-bottom:.5rem;}
 .rules-sec ul{padding-left:1rem;margin-bottom:.5rem;}
-.rules-sec li{font-family:var(–font2);font-size:.84rem;color:var(–text2);line-height:1.7;margin-bottom:.2rem;}
-.rules-sec strong{color:var(–dark);}
-.rules-table{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.82rem;border:2px solid var(–border);}
-.rules-table th{background:var(–tan);color:#fff;font-family:var(–font);font-size:.85rem;letter-spacing:.06em;padding:.38rem .65rem;text-align:left;border-bottom:2px solid var(–dark);text-shadow:1px 1px 0 var(–dark);}
-.rules-table td{padding:.38rem .65rem;border-bottom:1px solid var(–border3);font-family:var(–font2);color:var(–text2);}
+.rules-sec li{font-family:var(--font2);font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:.2rem;}
+.rules-sec strong{color:var(--dark);}
+.rules-table{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:.82rem;border:2px solid var(--border);}
+.rules-table th{background:var(--tan);color:#fff;font-family:var(--font);font-size:.85rem;letter-spacing:.06em;padding:.38rem .65rem;text-align:left;border-bottom:2px solid var(--dark);text-shadow:1px 1px 0 var(--dark);}
+.rules-table td{padding:.38rem .65rem;border-bottom:1px solid var(--border3);font-family:var(--font2);color:var(--text2);}
 .rules-table tr:last-child td{border-bottom:none;}
-.rules-table tr:hover td{background:var(–teal-pale);}
+.rules-table tr:hover td{background:var(--teal-pale);}
 
 /* ─── SHEET ─────────────────── */
 .sheet-page{max-width:850px;margin:0 auto;}
-.sheet-win{background:var(–cream3);border:2px solid var(–border);box-shadow:var(–shadow2);margin-bottom:.8rem;}
+.sheet-win{background:var(--cream3);border:2px solid var(--border);box-shadow:var(--shadow2);margin-bottom:.8rem;}
 .sheet-win-title{
-background:var(–dark2);color:var(–cream2);
-padding:.35rem .8rem;
-font-family:var(–font);font-size:.95rem;letter-spacing:.08em;
-border-bottom:2px solid var(–dark);text-shadow:1px 1px 0 var(–dark);
+  background:var(--dark2);color:var(--cream2);
+  padding:.35rem .8rem;
+  font-family:var(--font);font-size:.95rem;letter-spacing:.08em;
+  border-bottom:2px solid var(--dark);text-shadow:1px 1px 0 var(--dark);
 }
 .sheet-win-body{padding:.85rem;}
 .sh-field{margin-bottom:.5rem;}
-.sh-lbl{font-family:var(–font);font-size:.8rem;color:var(–teal3);letter-spacing:.07em;display:block;margin-bottom:.15rem;}
-.sh-val{font-family:var(–font2);font-size:.9rem;color:var(–dark);border-bottom:1.5px solid var(–border);padding:.15rem 0;min-height:1.5rem;}
-.sheet-cls-block{border:2px solid var(–border);margin-bottom:.5rem;box-shadow:var(–shadow);}
-.sheet-cls-hdr{background:var(–teal-pale);padding:.38rem .65rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(–border);}
-.sheet-cls-name{font-family:var(–font);font-size:.9rem;color:var(–dark);}
-.sheet-cls-lvl{font-family:var(–font);font-size:.85rem;color:var(–teal3);letter-spacing:.04em;}
-.sheet-cls-ben{font-family:var(–font);font-size:.78rem;color:var(–teal3);padding:.2rem .65rem;background:var(–green-pale);border-bottom:1px solid var(–border);}
-.sheet-cls-body{padding:.4rem .65rem;font-family:var(–font2);font-size:.78rem;color:var(–text3);line-height:1.6;min-height:44px;}
-.laco-row{display:flex;align-items:center;gap:.45rem;padding:.28rem 0;border-bottom:1px solid var(–border3);}
+.sh-lbl{font-family:var(--font);font-size:.8rem;color:var(--teal3);letter-spacing:.07em;display:block;margin-bottom:.15rem;}
+.sh-val{font-family:var(--font2);font-size:.9rem;color:var(--dark);border-bottom:1.5px solid var(--border);padding:.15rem 0;min-height:1.5rem;}
+.sheet-cls-block{border:2px solid var(--border);margin-bottom:.5rem;box-shadow:var(--shadow);}
+.sheet-cls-hdr{background:var(--teal-pale);padding:.38rem .65rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+.sheet-cls-name{font-family:var(--font);font-size:.9rem;color:var(--dark);}
+.sheet-cls-lvl{font-family:var(--font);font-size:.85rem;color:var(--teal3);letter-spacing:.04em;}
+.sheet-cls-ben{font-family:var(--font);font-size:.78rem;color:var(--teal3);padding:.2rem .65rem;background:var(--green-pale);border-bottom:1px solid var(--border);}
+.sheet-cls-body{padding:.4rem .65rem;font-family:var(--font2);font-size:.78rem;color:var(--text3);line-height:1.6;min-height:44px;}
+.laco-row{display:flex;align-items:center;gap:.45rem;padding:.28rem 0;border-bottom:1px solid var(--border3);}
 .laco-row:last-child{border-bottom:none;}
-.laco-num{font-family:var(–font);font-size:.75rem;color:var(–text3);width:14px;}
-.laco-name-val{flex:1;font-family:var(–font2);font-size:.82rem;border-bottom:1px solid var(–border3);min-height:1.15rem;}
+.laco-num{font-family:var(--font);font-size:.75rem;color:var(--text3);width:14px;}
+.laco-name-val{flex:1;font-family:var(--font2);font-size:.82rem;border-bottom:1px solid var(--border3);min-height:1.15rem;}
 .laco-dots{display:flex;gap:.22rem;}
-.laco-dot{width:11px;height:11px;border:1.5px solid var(–dark);}
-.laco-dot.filled{background:var(–teal3);border-color:var(–teal2);}
-.laco-vsep{width:1px;height:12px;background:var(–dark);}
-.cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.32rem;font-family:var(–font);font-size:.85rem;}
+.laco-dot{width:11px;height:11px;border:1.5px solid var(--dark);}
+.laco-dot.filled{background:var(--teal3);border-color:var(--teal2);}
+.laco-vsep{width:1px;height:12px;background:var(--dark);}
+.cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.32rem;font-family:var(--font);font-size:.85rem;}
 .cond-row{display:flex;align-items:center;gap:.32rem;}
-.cond-box{width:12px;height:12px;border:1.5px solid var(–dark);}
+.cond-box{width:12px;height:12px;border:1.5px solid var(--dark);}
 .eq-table{width:100%;border-collapse:collapse;}
-.eq-table td{padding:.35rem .5rem;border:1px solid var(–border);}
-.eq-row-lbl{font-family:var(–font);font-size:.68rem;color:var(–text3);letter-spacing:.06em;text-transform:uppercase;}
+.eq-table td{padding:.35rem .5rem;border:1px solid var(--border);}
+.eq-row-lbl{font-family:var(--font);font-size:.68rem;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;}
 .export-btn{
-width:100%;
-background:var(–teal3);color:#fff;
-border:3px solid var(–dark);
-font-family:var(–font);font-size:1.1rem;
-letter-spacing:.1em;
-padding:.8rem;cursor:pointer;
-box-shadow:var(–shadow2);
-transition:all .18s;
-margin-top:.9rem;
-text-shadow:1px 1px 0 var(–dark);
+  width:100%;
+  background:var(--teal3);color:#fff;
+  border:3px solid var(--dark);
+  font-family:var(--font);font-size:1.1rem;
+  letter-spacing:.1em;
+  padding:.8rem;cursor:pointer;
+  box-shadow:var(--shadow2);
+  transition:all .18s;
+  margin-top:.9rem;
+  text-shadow:1px 1px 0 var(--dark);
 }
-.export-btn:hover{background:var(–teal2);box-shadow:none;transform:translate(2px,2px);}
+.export-btn:hover{background:var(--teal2);box-shadow:none;transform:translate(2px,2px);}
 
 /* ─── MISC ─────────────────── */
-hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
+hr.div{border:none;border-top:1px solid var(--border3);margin:.8rem 0;}
 </style>
-
 </head>
 <body>
 
@@ -844,7 +849,6 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
 </nav>
 
 <!-- CLASS INFO MODAL -->
-
 <div class="modal-overlay" id="classModal" onclick="if(event.target===this)closeModal()">
   <div class="modal-win">
     <div class="modal-title">
@@ -855,8 +859,8 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
   </div>
 </div>
 
-<!-- ═══ ABA 1: IDENTIDADE ═══ -->
 
+<!-- ═══ ABA 1: IDENTIDADE ═══ -->
 <div id="pane-iden" class="pane on"><div class="page">
 <div class="page-2col">
 <div>
@@ -933,7 +937,6 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
 </div>
 
 <!-- PI INFO -->
-
 <div class="win">
   <div class="win-title tan">🎒 PONTOS DE INVENTÁRIO (PI) <div class="tip-wrap" style="background:rgba(0,0,0,.2);border-color:rgba(255,255,255,.4);"><button class="tip-btn" style="background:rgba(0,0,0,.2);border-color:rgba(255,255,255,.4);color:#fff;">?</button><div class="tip-box">PI representam o espaço na mochila do personagem. Consumíveis gastam PI quando usados. Aumentam por classe (+2 PI certas classes) ou por poderes específicos.</div></div></div>
   <div class="win-body">
@@ -977,7 +980,6 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
 </div><!-- end left col -->
 
 <!-- RIGHT COL -->
-
 <div class="sticky-col">
   <div class="win">
     <div class="win-title">⑥ RECURSOS <div class="tip-wrap"><button class="tip-btn">?</button><div class="tip-box">Calculados automaticamente com base nos atributos, nível e bônus de classe.</div></div></div>
@@ -1022,7 +1024,6 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
 </div></div>
 
 <!-- ═══ ABA 2: EQUIPAMENTOS ═══ -->
-
 <div id="pane-equip" class="pane"><div class="page">
   <div class="gold-bar">
     <div><div class="gold-label">ZÊNITES DISPONÍVEIS</div><div class="gold-amount" id="gold-disp">500</div></div>
@@ -1049,7 +1050,6 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
 </div></div>
 
 <!-- ═══ ABA 3: MAGIAS ═══ -->
-
 <div id="pane-magias" class="pane"><div class="page">
   <div class="alert alert-info" style="margin-bottom:.9rem;">ℹ Selecione os feitiços, invocações e versos aprendidos através de poderes de classe. Eles aparecem na ficha automaticamente.</div>
   <div class="chip-row" id="spellFilters"></div>
@@ -1057,7 +1057,6 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
 </div></div>
 
 <!-- ═══ ABA 4: LAÇOS ═══ -->
-
 <div id="pane-bonds" class="pane"><div class="page">
   <div class="win">
     <div class="win-title">🏷 TRAÇOS</div>
@@ -1074,7 +1073,6 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
 </div></div>
 
 <!-- ═══ ABA 5: LORE ═══ -->
-
 <div id="pane-lore" class="pane"><div class="page">
   <div class="lore-grid">
     <div class="lore-block">
@@ -1127,7 +1125,6 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
 </div></div>
 
 <!-- ═══ ABA 6: REGRAS ═══ -->
-
 <div id="pane-rules" class="pane"><div class="page">
   <div class="win"><div class="win-title dark">📖 REFERÊNCIA RÁPIDA</div><div class="win-body">
     <div class="rules-sec"><h3>Os 4 Atributos</h3><ul>
@@ -1152,7 +1149,6 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
 </div></div>
 
 <!-- ═══ ABA 7: FICHA ═══ -->
-
 <div id="pane-sheet" class="pane"><div class="page">
 <div class="sheet-page">
 
@@ -1280,8 +1276,7 @@ hr.div{border:none;border-top:1px solid var(–border3);margin:.8rem 0;}
     <div class="sheet-win-body" id="s-mochila" style="min-height:70px;"></div>
   </div>
 
-<button class="export-btn" onclick="exportPDF()">⬇ EXPORTAR FICHA EM PDF</button>
-
+  <button class="export-btn" onclick="exportPDF()">⬇ EXPORTAR FICHA EM PDF</button>
 </div>
 </div></div>
 <script>
@@ -1329,228 +1324,236 @@ const CLASSES=[
 ];
 
 const SPELLS={
-‘Elementalista’:[
-{n:‘Arma Elemental’,off:false,pm:‘10’,al:‘Uma arma’,dur:‘Cena’,d:‘Imbui arma com elemento escolhido (ar/fogo/gelo/raio/terra). Com arma equipada: ataque livre como parte da ação.’},
-{n:‘Clarão’,off:true,pm:‘20’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Causa (RA+25) dano de fogo ignorando Resistências.’},
-{n:‘Fulgur’,off:true,pm:‘10×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Causa (RA+15) dano de raio. Oportunidade: alvos ficam atordoados.’},
-{n:‘Glacies’,off:true,pm:‘10×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Causa (RA+15) dano de gelo. Oportunidade: alvos ficam lentos.’},
-{n:‘Golpe de Sobrevoo’,off:false,pm:‘10’,al:‘Pessoal’,dur:‘Instantânea’,d:‘Ataque livre C/C que alcança voadores. +5 dano com espada/lança/luta. Força voadores a pousar.’},
-{n:‘Iceberg’,off:true,pm:‘20’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Causa (RA+25) dano de gelo ignorando Resistências.’},
-{n:‘Ignis’,off:true,pm:‘10×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Causa (RA+15) dano de fogo. Oportunidade: alvos ficam abalados.’},
-{n:‘Mortalha Elemental’,off:false,pm:‘5×A’,al:‘Até 3 criaturas’,dur:‘Cena’,d:‘Escolhe tipo: cada alvo torna-se Resistente a esse tipo de dano.’},
-{n:‘Pedregulho’,off:true,pm:‘20’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Causa (RA+25) dano de terra ignorando Resistências.’},
-{n:‘Raio’,off:true,pm:‘20’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Causa (RA+25) dano de raio ignorando Resistências.’},
-{n:‘Terra’,off:true,pm:‘10×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Causa (RA+15) dano de terra. Não afeta voadores. Oportunidade: faz -1 ação no próximo turno.’},
-{n:‘Ventus’,off:true,pm:‘10×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Causa (RA+15) dano de ar. Oportunidade: voadores atingidos pousam.’},
-{n:‘Vórtice’,off:true,pm:‘20’,al:‘Uma criatura’,dur:‘Cena’,d:‘Causa (RA+25) dano de ar ignorando Resistências.’}
-],
-‘Entropista’:[
-{n:‘Aceleração’,off:false,pm:‘20’,al:‘Uma criatura’,dur:‘Cena’,d:‘Fim de cada turno: ataque livre com arma OU feitiço (≤10 PM). Termina ao usar 2 vezes.’},
-{n:‘Anomalia’,off:true,pm:‘20’,al:‘Uma criatura’,dur:‘Cena’,d:‘Dano Absorvido/Imune torna-se Vulnerável. Termina ao 1° dano desse tipo.’},
-{n:‘Apostar’,off:false,pm:‘até 20’,al:‘Especial’,dur:‘Instantânea’,d:‘Vórtice caótico. Role dado de VON por 10 PM: 1=perde metade PV/PM; 2-3=todos envenenados; 4-6=todos lentos; 7-8=3 criaturas recuperam 50 PV; 9+=30 dano aleatório.’},
-{n:‘Arma das Trevas’,off:false,pm:‘5’,al:‘Uma arma’,dur:‘Cena’,d:‘Imbui arma com trevas. Com arma equipada: ataque livre como parte da ação.’},
-{n:‘Dissipar’,off:false,pm:‘10’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Remove toda magia. Feitiços com duração “Cena” terminam.’},
-{n:‘Drenar Espírito’,off:true,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Alvo perde (RA+20) PM. Você recupera PM = metade dos PM perdidos.’},
-{n:‘Drenar Vigor’,off:true,pm:‘10’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Causa (RA+15) dano de trevas. Você recupera PV = metade do dano.’},
-{n:‘Divinação’,off:false,pm:‘10’,al:‘Pessoal’,dur:‘Cena’,d:‘Até 2 vezes: após qualquer criatura fazer teste (sem crítico), força ela a rolar novamente ambos os dados.’},
-{n:‘Espelhar’,off:false,pm:‘10’,al:‘Uma criatura’,dur:‘Cena’,d:‘Se feitiço ofensivo atingir alvo: a criatura que lançou passa a ser o alvo. Termina ao acontecer.’},
-{n:‘Parar’,off:true,pm:‘10’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Alvo faz -1 ação no próximo turno (mín. 0).’},
-{n:‘Umbra’,off:true,pm:‘10×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Causa (RA+15) dano de trevas. Oportunidade: alvos ficam fracos.’},
-{n:‘Ômega’,off:true,pm:‘15’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Alvo perde PV = (20 + metade do nível do alvo).’}
-],
-‘Espiritualista’:[
-{n:‘Alucinação’,off:true,pm:‘5×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Escolhe abalado ou atordoado: cada alvo sofre a condição.’},
-{n:‘Arma Espiritual’,off:false,pm:‘5’,al:‘Uma arma’,dur:‘Cena’,d:‘Dano torna-se de luz. Com arma equipada: ataque livre como parte da ação.’},
-{n:‘Aura’,off:false,pm:‘5×A’,al:‘Até 3 criaturas’,dur:‘Cena’,d:‘DEF.M dos alvos torna-se 12 (13 no nível 20+, 14 no 40+).’},
-{n:‘Barreira’,off:false,pm:‘5×A’,al:‘Até 3 criaturas’,dur:‘Cena’,d:‘DEF dos alvos torna-se 12 (13 no nível 20+, 14 no 40+).’},
-{n:‘Bastião Espiritual’,off:false,pm:‘5×A’,al:‘Até 3 criaturas’,dur:‘Cena’,d:‘Escolhe luz, trevas ou veneno: alvos tornam-se Resistentes.’},
-{n:‘Curar’,off:false,pm:‘10×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Cada alvo recupera 40 PV (50 no nível 20+, 60 no 40+).’},
-{n:‘Despertar’,off:false,pm:‘20’,al:‘Uma criatura’,dur:‘Cena’,d:‘Escolhe atributo: dado considerado +1 passo (máx d12).’},
-{n:‘Enfurecer’,off:true,pm:‘10’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Alvo fica enfurecido e não pode Guardar/Feitiço até fim do próximo turno.’},
-{n:‘Lux’,off:true,pm:‘10×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Causa (RA+15) dano de luz. Oportunidade: alvos ficam atordoados.’},
-{n:‘Piedade’,off:false,pm:‘20’,al:‘Uma criatura’,dur:‘Cena’,d:‘Se alvo ficaria com 0 PV, fica com 1 PV. Termina ao acontecer.’},
-{n:‘Purificar’,off:false,pm:‘5×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Todos os alvos se recuperam de todas as condições.’},
-{n:‘Reforçar’,off:false,pm:‘5×A’,al:‘Até 3 criaturas’,dur:‘Cena’,d:‘Escolhe condição: alvos tornam-se imunes a ela.’},
-{n:‘Torpor’,off:true,pm:‘5×A’,al:‘Até 3 criaturas’,dur:‘Instantânea’,d:‘Escolhe fraco ou lento: cada alvo sofre a condição.’}
-],
-‘Invocador (Mananciais)’:[
-{n:‘Aero Explosão’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Ar] Causa 20 dano de ar ao alvo. (NP 1+)’},
-{n:‘Aero Praga’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Até próx. turno’,d:’[Ar] Alvo sofre +5 dano de raio e fogo de todas as fontes. (NP 2+)’},
-{n:‘Brisa’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Ar] Alvo recupera 30 PV. (NP 3+)’},
-{n:‘Tornado’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Ar] Causa 10 dano de ar e alvo fica atordoado. (NP 3+)’},
-{n:‘Geo Explosão’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Terra] Causa 20 dano de terra ao alvo. (NP 1+)’},
-{n:‘Geo Praga’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Até próx. turno’,d:’[Terra] Alvo sofre +5 dano de ar e gelo de todas as fontes. (NP 2+)’},
-{n:‘Germinar’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Terra] Alvo recupera 30 PV. (NP 3+)’},
-{n:‘Areia Movediça’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Terra] Causa 10 dano de terra e alvo fica lento. (NP 3+)’},
-{n:‘Pyro Explosão’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Fogo] Causa 20 dano de fogo ao alvo. (NP 1+)’},
-{n:‘Pyro Praga’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Até próx. turno’,d:’[Fogo] Alvo sofre +5 dano de terra e gelo de todas as fontes. (NP 2+)’},
-{n:‘Centelha’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Fogo] Causa 10 dano de fogo e alvo fica abalado. (NP 3+)’},
-{n:‘Fumaça’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Fogo] Alvo perde 20 PM e fica fraco. (NP 3+)’},
-{n:‘Electro Explosão’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Raio] Causa 20 dano de raio ao alvo. (NP 1+)’},
-{n:‘Electro Praga’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Até próx. turno’,d:’[Raio] Alvo sofre +5 dano de terra e fogo de todas as fontes. (NP 2+)’},
-{n:‘Estática’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Raio] Causa 10 dano de raio e alvo fica lento. (NP 3+)’},
-{n:‘Trovão Invoc.’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Raio] Alvo perde 20 PM e fica atordoado. (NP 3+)’},
-{n:‘Hidro Explosão’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Água/Gelo] Causa 20 dano de gelo ao alvo. (NP 1+)’},
-{n:‘Hidro Praga’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Até próx. turno’,d:’[Água/Gelo] Alvo sofre +5 dano de ar e raio de todas as fontes. (NP 2+)’},
-{n:‘Calafrio’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Água/Gelo] Alvo perde 20 PM e fica atordoado. (NP 3+)’},
-{n:‘Congelamento’,off:false,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’[Água/Gelo] Causa 10 dano de gelo e alvo fica fraco. (NP 3+)’}
-],
-‘Virtuoso (Versos)’:[
-{n:‘Fraco · Agitado’,off:true,pm:‘10’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Causa dano (tipo da escala) = 2× dado de VON atual do alvo.’},
-{n:‘Fraco · Animado’,off:false,pm:‘10’,al:‘Uma criatura’,dur:‘Até próx. turno’,d:‘Ao passar em teste com Atributo da escala para relógio: preenche/apaga 1 seção extra.’},
-{n:‘Fraco · Calmo’,off:false,pm:‘10’,al:‘Uma criatura’,dur:‘Instantânea’,d:‘Alvo recupera (PV/PM da escala) = 10 + 2× dado de Vontade.’},
-{n:‘Fraco · Mórbido’,off:false,pm:‘10’,al:‘Uma criatura’,dur:‘Até próx. turno’,d:‘Alvo sofre Condição da escala e perde Resistência ao tipo da escala.’},
-{n:‘Fraco · Solene’,off:false,pm:‘10’,al:‘Uma criatura’,dur:‘Até próx. turno’,d:‘Alvo se recupera da Condição da escala e torna-se Resistente ao tipo.’},
-{n:‘Fraco · Vibrante’,off:false,pm:‘10’,al:‘Uma criatura’,dur:‘Até próx. turno’,d:‘Alvo considera Atributo da escala +1 passo (máx d12).’},
-{n:‘Fraco · Ameaçador’,off:false,pm:‘10’,al:‘Uma criatura’,dur:‘Próx. dano sofrido’,d:‘Próximo dano sofrido torna-se do tipo da escala.’},
-{n:‘Médio · Calmo’,off:false,pm:‘20’,al:‘Todos os aliados’,dur:‘Instantânea’,d:‘Cada aliado recupera (PV/PM) = 10 + 2× dado de Vontade.’},
-{n:‘Médio · Solene’,off:false,pm:‘20’,al:‘Todos os aliados’,dur:‘Até próx. turno’,d:‘Cada aliado se recupera da Condição e torna-se Resistente ao tipo.’},
-{n:‘Médio · Vibrante’,off:false,pm:‘20’,al:‘Todos os aliados’,dur:‘Até próx. turno’,d:‘Cada aliado considera Atributo da escala +1 passo.’},
-{n:‘Forte · Agitado’,off:true,pm:‘30’,al:‘Todos os inimigos’,dur:‘Instantânea’,d:‘Cada inimigo sofre dano da escala = 2× dado de VON.’},
-{n:‘Forte · Mórbido’,off:true,pm:‘30’,al:‘Todos os inimigos’,dur:‘Até próx. turno’,d:‘Cada inimigo sofre a Condição e perde Resistência ao tipo da escala.’},
-{n:‘Forte · Ameaçador’,off:true,pm:‘30’,al:‘Todos os inimigos’,dur:‘Próx. dano sofrido’,d:‘Próximo dano de cada inimigo torna-se do tipo da escala.’},
-{n:‘Escalas Disponíveis’,off:false,pm:’—’,al:’—’,dur:’—’,d:‘Chama(fogo/abalado/VIG/PV) · Geada(gelo/fraco/VON/PM) · Ferro(físico/lento/VON/PM) · Resplendor(luz/atordoado/AST/PV) · Sombra(trevas/fraco/DES/PM) · Pedra(terra/atordoado/VIG/PV) · Trovão(raio/abalado/DES/PV) · Vento(ar/lento/AST/PM)’}
-],
-‘Astrólogo (Constelações)’:[
-{n:‘Boitatá — Dano de Fogo’,off:true,pm:‘5’,al:‘Uma criatura’,dur:‘Instantânea’,d:’(AST+VON) vs DEF.M → (NP×10) dano de fogo. Consumir carga celeste: 1 criatura fica Resistente a fogo. Gera (NP) cargas solares.’},
-{n:‘Boto — Alinhar Astros’,off:false,pm:‘5’,al:‘Um aliado’,dur:‘Cena’,d:‘Alvo pode trocar 1 atributo de testes por AST ou VON. Consumir carga solar: +1 ao teste. Gera (NP) cargas estelares.’},
-{n:‘Cão Dourado — Amaldiçoar’,off:false,pm:‘10’,al:‘Um inimigo’,dur:‘Até próx. turno’,d:‘Fontes de luz causam (NP) dano adicional ao alvo. Consumir carga estelar: dano de luz ignora Im/Resist. Gera (NP) cargas meteóricas.’},
-{n:‘Saci — Acelerar’,off:false,pm:‘10’,al:‘Um aliado’,dur:‘Próx. turno’,d:‘No próximo turno: faz Equip/Guarda/Estudo/Objetivo sem ação. Consumir carga meteórica: também faz ataque livre (RA=0). Gera (NP) cargas celestes.’}
-],
-‘Necromante (Poderes)’:[
-{n:‘Feitiço Ofensivo Aprendido’,off:true,pm:‘Variável’,al:‘Variável’,dur:‘Variável’,d:‘Necromantes podem aprender feitiços de elementalista, entropista ou espiritualista através de poderes específicos e combinações de classe.’},
-{n:‘Rondó do Pesadelo’,off:true,pm:‘2 Pts Túmulo’,al:‘Todas as criaturas’,dur:‘Instantânea’,d:‘Um feitiço ofensivo com alvo “uma criatura” pode atingir TODAS as criaturas visíveis (1 teste vs DEF.M de cada). Todo dano torna-se de trevas.’}
-]
+  'Elementalista':[
+    {n:'Arma Elemental',off:false,pm:'10',al:'Uma arma',dur:'Cena',d:'Imbui arma com elemento escolhido (ar/fogo/gelo/raio/terra). Com arma equipada: ataque livre como parte da ação.'},
+    {n:'Clarão',off:true,pm:'20',al:'Uma criatura',dur:'Instantânea',d:'Causa (RA+25) dano de fogo ignorando Resistências.'},
+    {n:'Fulgur',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Causa (RA+15) dano de raio. Oportunidade: alvos ficam atordoados.'},
+    {n:'Glacies',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Causa (RA+15) dano de gelo. Oportunidade: alvos ficam lentos.'},
+    {n:'Golpe de Sobrevoo',off:false,pm:'10',al:'Pessoal',dur:'Instantânea',d:'Ataque livre C/C que alcança voadores. +5 dano com espada/lança/luta. Força voadores a pousar.'},
+    {n:'Iceberg',off:true,pm:'20',al:'Uma criatura',dur:'Instantânea',d:'Causa (RA+25) dano de gelo ignorando Resistências.'},
+    {n:'Ignis',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Causa (RA+15) dano de fogo. Oportunidade: alvos ficam abalados.'},
+    {n:'Mortalha Elemental',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Cena',d:'Escolhe tipo: cada alvo torna-se Resistente a esse tipo de dano.'},
+    {n:'Pedregulho',off:true,pm:'20',al:'Uma criatura',dur:'Instantânea',d:'Causa (RA+25) dano de terra ignorando Resistências.'},
+    {n:'Raio',off:true,pm:'20',al:'Uma criatura',dur:'Instantânea',d:'Causa (RA+25) dano de raio ignorando Resistências.'},
+    {n:'Terra',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Causa (RA+15) dano de terra. Não afeta voadores. Oportunidade: faz -1 ação no próximo turno.'},
+    {n:'Ventus',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Causa (RA+15) dano de ar. Oportunidade: voadores atingidos pousam.'},
+    {n:'Vórtice',off:true,pm:'20',al:'Uma criatura',dur:'Cena',d:'Causa (RA+25) dano de ar ignorando Resistências.'}
+  ],
+  'Entropista':[
+    {n:'Aceleração',off:false,pm:'20',al:'Uma criatura',dur:'Cena',d:'Fim de cada turno: ataque livre com arma OU feitiço (≤10 PM). Termina ao usar 2 vezes.'},
+    {n:'Anomalia',off:true,pm:'20',al:'Uma criatura',dur:'Cena',d:'Dano Absorvido/Imune torna-se Vulnerável. Termina ao 1° dano desse tipo.'},
+    {n:'Apostar',off:false,pm:'até 20',al:'Especial',dur:'Instantânea',d:'Vórtice caótico. Role dado de VON por 10 PM: 1=perde metade PV/PM; 2-3=todos envenenados; 4-6=todos lentos; 7-8=3 criaturas recuperam 50 PV; 9+=30 dano aleatório.'},
+    {n:'Arma das Trevas',off:false,pm:'5',al:'Uma arma',dur:'Cena',d:'Imbui arma com trevas. Com arma equipada: ataque livre como parte da ação.'},
+    {n:'Dissipar',off:false,pm:'10',al:'Uma criatura',dur:'Instantânea',d:'Remove toda magia. Feitiços com duração "Cena" terminam.'},
+    {n:'Drenar Espírito',off:true,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'Alvo perde (RA+20) PM. Você recupera PM = metade dos PM perdidos.'},
+    {n:'Drenar Vigor',off:true,pm:'10',al:'Uma criatura',dur:'Instantânea',d:'Causa (RA+15) dano de trevas. Você recupera PV = metade do dano.'},
+    {n:'Divinação',off:false,pm:'10',al:'Pessoal',dur:'Cena',d:'Até 2 vezes: após qualquer criatura fazer teste (sem crítico), força ela a rolar novamente ambos os dados.'},
+    {n:'Espelhar',off:false,pm:'10',al:'Uma criatura',dur:'Cena',d:'Se feitiço ofensivo atingir alvo: a criatura que lançou passa a ser o alvo. Termina ao acontecer.'},
+    {n:'Parar',off:true,pm:'10',al:'Uma criatura',dur:'Instantânea',d:'Alvo faz -1 ação no próximo turno (mín. 0).'},
+    {n:'Umbra',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Causa (RA+15) dano de trevas. Oportunidade: alvos ficam fracos.'},
+    {n:'Ômega',off:true,pm:'15',al:'Uma criatura',dur:'Instantânea',d:'Alvo perde PV = (20 + metade do nível do alvo).'}
+  ],
+  'Espiritualista':[
+    {n:'Alucinação',off:true,pm:'5×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Escolhe abalado ou atordoado: cada alvo sofre a condição.'},
+    {n:'Arma Espiritual',off:false,pm:'5',al:'Uma arma',dur:'Cena',d:'Dano torna-se de luz. Com arma equipada: ataque livre como parte da ação.'},
+    {n:'Aura',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Cena',d:'DEF.M dos alvos torna-se 12 (13 no nível 20+, 14 no 40+).'},
+    {n:'Barreira',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Cena',d:'DEF dos alvos torna-se 12 (13 no nível 20+, 14 no 40+).'},
+    {n:'Bastião Espiritual',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Cena',d:'Escolhe luz, trevas ou veneno: alvos tornam-se Resistentes.'},
+    {n:'Curar',off:false,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Cada alvo recupera 40 PV (50 no nível 20+, 60 no 40+).'},
+    {n:'Despertar',off:false,pm:'20',al:'Uma criatura',dur:'Cena',d:'Escolhe atributo: dado considerado +1 passo (máx d12).'},
+    {n:'Enfurecer',off:true,pm:'10',al:'Uma criatura',dur:'Instantânea',d:'Alvo fica enfurecido e não pode Guardar/Feitiço até fim do próximo turno.'},
+    {n:'Lux',off:true,pm:'10×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Causa (RA+15) dano de luz. Oportunidade: alvos ficam atordoados.'},
+    {n:'Piedade',off:false,pm:'20',al:'Uma criatura',dur:'Cena',d:'Se alvo ficaria com 0 PV, fica com 1 PV. Termina ao acontecer.'},
+    {n:'Purificar',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Todos os alvos se recuperam de todas as condições.'},
+    {n:'Reforçar',off:false,pm:'5×A',al:'Até 3 criaturas',dur:'Cena',d:'Escolhe condição: alvos tornam-se imunes a ela.'},
+    {n:'Torpor',off:true,pm:'5×A',al:'Até 3 criaturas',dur:'Instantânea',d:'Escolhe fraco ou lento: cada alvo sofre a condição.'}
+  ],
+  'Invocador (Mananciais)':[
+    {n:'Aero Explosão',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Ar] Causa 20 dano de ar ao alvo. (NP 1+)'},
+    {n:'Aero Praga',off:false,pm:'5',al:'Uma criatura',dur:'Até próx. turno',d:'[Ar] Alvo sofre +5 dano de raio e fogo de todas as fontes. (NP 2+)'},
+    {n:'Brisa',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Ar] Alvo recupera 30 PV. (NP 3+)'},
+    {n:'Tornado',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Ar] Causa 10 dano de ar e alvo fica atordoado. (NP 3+)'},
+    {n:'Geo Explosão',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Terra] Causa 20 dano de terra ao alvo. (NP 1+)'},
+    {n:'Geo Praga',off:false,pm:'5',al:'Uma criatura',dur:'Até próx. turno',d:'[Terra] Alvo sofre +5 dano de ar e gelo de todas as fontes. (NP 2+)'},
+    {n:'Germinar',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Terra] Alvo recupera 30 PV. (NP 3+)'},
+    {n:'Areia Movediça',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Terra] Causa 10 dano de terra e alvo fica lento. (NP 3+)'},
+    {n:'Pyro Explosão',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Fogo] Causa 20 dano de fogo ao alvo. (NP 1+)'},
+    {n:'Pyro Praga',off:false,pm:'5',al:'Uma criatura',dur:'Até próx. turno',d:'[Fogo] Alvo sofre +5 dano de terra e gelo de todas as fontes. (NP 2+)'},
+    {n:'Centelha',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Fogo] Causa 10 dano de fogo e alvo fica abalado. (NP 3+)'},
+    {n:'Fumaça',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Fogo] Alvo perde 20 PM e fica fraco. (NP 3+)'},
+    {n:'Electro Explosão',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Raio] Causa 20 dano de raio ao alvo. (NP 1+)'},
+    {n:'Electro Praga',off:false,pm:'5',al:'Uma criatura',dur:'Até próx. turno',d:'[Raio] Alvo sofre +5 dano de terra e fogo de todas as fontes. (NP 2+)'},
+    {n:'Estática',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Raio] Causa 10 dano de raio e alvo fica lento. (NP 3+)'},
+    {n:'Trovão Invoc.',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Raio] Alvo perde 20 PM e fica atordoado. (NP 3+)'},
+    {n:'Hidro Explosão',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Água/Gelo] Causa 20 dano de gelo ao alvo. (NP 1+)'},
+    {n:'Hidro Praga',off:false,pm:'5',al:'Uma criatura',dur:'Até próx. turno',d:'[Água/Gelo] Alvo sofre +5 dano de ar e raio de todas as fontes. (NP 2+)'},
+    {n:'Calafrio',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Água/Gelo] Alvo perde 20 PM e fica atordoado. (NP 3+)'},
+    {n:'Congelamento',off:false,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'[Água/Gelo] Causa 10 dano de gelo e alvo fica fraco. (NP 3+)'}
+  ],
+  'Virtuoso (Versos)':[
+    {n:'Fraco · Agitado',off:true,pm:'10',al:'Uma criatura',dur:'Instantânea',d:'Causa dano (tipo da escala) = 2× dado de VON atual do alvo.'},
+    {n:'Fraco · Animado',off:false,pm:'10',al:'Uma criatura',dur:'Até próx. turno',d:'Ao passar em teste com Atributo da escala para relógio: preenche/apaga 1 seção extra.'},
+    {n:'Fraco · Calmo',off:false,pm:'10',al:'Uma criatura',dur:'Instantânea',d:'Alvo recupera (PV/PM da escala) = 10 + 2× dado de Vontade.'},
+    {n:'Fraco · Mórbido',off:false,pm:'10',al:'Uma criatura',dur:'Até próx. turno',d:'Alvo sofre Condição da escala e perde Resistência ao tipo da escala.'},
+    {n:'Fraco · Solene',off:false,pm:'10',al:'Uma criatura',dur:'Até próx. turno',d:'Alvo se recupera da Condição da escala e torna-se Resistente ao tipo.'},
+    {n:'Fraco · Vibrante',off:false,pm:'10',al:'Uma criatura',dur:'Até próx. turno',d:'Alvo considera Atributo da escala +1 passo (máx d12).'},
+    {n:'Fraco · Ameaçador',off:false,pm:'10',al:'Uma criatura',dur:'Próx. dano sofrido',d:'Próximo dano sofrido torna-se do tipo da escala.'},
+    {n:'Médio · Calmo',off:false,pm:'20',al:'Todos os aliados',dur:'Instantânea',d:'Cada aliado recupera (PV/PM) = 10 + 2× dado de Vontade.'},
+    {n:'Médio · Solene',off:false,pm:'20',al:'Todos os aliados',dur:'Até próx. turno',d:'Cada aliado se recupera da Condição e torna-se Resistente ao tipo.'},
+    {n:'Médio · Vibrante',off:false,pm:'20',al:'Todos os aliados',dur:'Até próx. turno',d:'Cada aliado considera Atributo da escala +1 passo.'},
+    {n:'Forte · Agitado',off:true,pm:'30',al:'Todos os inimigos',dur:'Instantânea',d:'Cada inimigo sofre dano da escala = 2× dado de VON.'},
+    {n:'Forte · Mórbido',off:true,pm:'30',al:'Todos os inimigos',dur:'Até próx. turno',d:'Cada inimigo sofre a Condição e perde Resistência ao tipo da escala.'},
+    {n:'Forte · Ameaçador',off:true,pm:'30',al:'Todos os inimigos',dur:'Próx. dano sofrido',d:'Próximo dano de cada inimigo torna-se do tipo da escala.'},
+    {n:'Escalas Disponíveis',off:false,pm:'—',al:'—',dur:'—',d:'Chama(fogo/abalado/VIG/PV) · Geada(gelo/fraco/VON/PM) · Ferro(físico/lento/VON/PM) · Resplendor(luz/atordoado/AST/PV) · Sombra(trevas/fraco/DES/PM) · Pedra(terra/atordoado/VIG/PV) · Trovão(raio/abalado/DES/PV) · Vento(ar/lento/AST/PM)'}
+  ],
+  'Astrólogo (Constelações)':[
+    {n:'Boitatá — Dano de Fogo',off:true,pm:'5',al:'Uma criatura',dur:'Instantânea',d:'(AST+VON) vs DEF.M → (NP×10) dano de fogo. Consumir carga celeste: 1 criatura fica Resistente a fogo. Gera (NP) cargas solares.'},
+    {n:'Boto — Alinhar Astros',off:false,pm:'5',al:'Um aliado',dur:'Cena',d:'Alvo pode trocar 1 atributo de testes por AST ou VON. Consumir carga solar: +1 ao teste. Gera (NP) cargas estelares.'},
+    {n:'Cão Dourado — Amaldiçoar',off:false,pm:'10',al:'Um inimigo',dur:'Até próx. turno',d:'Fontes de luz causam (NP) dano adicional ao alvo. Consumir carga estelar: dano de luz ignora Im/Resist. Gera (NP) cargas meteóricas.'},
+    {n:'Saci — Acelerar',off:false,pm:'10',al:'Um aliado',dur:'Próx. turno',d:'No próximo turno: faz Equip/Guarda/Estudo/Objetivo sem ação. Consumir carga meteórica: também faz ataque livre (RA=0). Gera (NP) cargas celestes.'}
+  ],
+  'Necromante (Poderes)':[
+    {n:'Feitiço Ofensivo Aprendido',off:true,pm:'Variável',al:'Variável',dur:'Variável',d:'Necromantes podem aprender feitiços de elementalista, entropista ou espiritualista através de poderes específicos e combinações de classe.'},
+    {n:'Rondó do Pesadelo',off:true,pm:'2 Pts Túmulo',al:'Todas as criaturas',dur:'Instantânea',d:'Um feitiço ofensivo com alvo "uma criatura" pode atingir TODAS as criaturas visíveis (1 teste vs DEF.M de cada). Todo dano torna-se de trevas.'}
+  ]
 };
 
 const ITEMS=[
-{id:‘cajado’,cat:‘Armas’,n:‘Cajado’,p:100,d:’(VON+VON) · RA+6 físico · Arcana · 2 mãos’,m:false,desc:‘Arma arcana. Usa Vontade para ambos os dados de Precisão. Ótima para feiticeiros que se baseiam em VON.’},
-{id:‘tomo’,cat:‘Armas’,n:‘Tomo’,p:100,d:’(AST+AST) · RA+6 físico · Arcana · 2 mãos’,m:false,desc:‘Arma arcana. Usa Astúcia para ambos os dados. Melhor para Arcanistas e Elementalistas.’},
-{id:‘besta’,cat:‘Armas’,n:‘Besta’,p:150,d:’(DES+AST) · RA+8 físico · Dist. · 2 mãos’,m:false,desc:‘Arco à distância. Bom equilíbrio para classes que usam DES e AST.’},
-{id:‘soqueira’,cat:‘Armas’,n:‘Soqueira de Ferro’,p:150,d:’(DES+VIG) · RA+6 físico · Luta · 1 mão’,m:false,desc:‘Arma de luta. Boa sinergia com a classe Furioso e poderes de Frenesi.’},
-{id:‘adaga’,cat:‘Armas’,n:‘Adaga de Aço’,p:150,d:’(DES+AST)+1 · RA+4 físico · 1 mão’,m:false,desc:‘Precisa e versátil. O bônus +1 na Precisão compensa o dano menor. Ótima para Ladinos.’},
-{id:‘chicote’,cat:‘Armas’,n:‘Chicote de Correntes’,p:150,d:’(DES+DES) · RA+8 físico · Malho · 2 mãos’,m:false,desc:‘Malho de 2 mãos usando Destreza duas vezes.’},
-{id:‘shuriken’,cat:‘Armas’,n:‘Shuriken’,p:150,d:’(DES+AST) · RA+4 físico · Arremesso · 1 mão’,m:false,desc:‘Arma de arremesso. Leve e barata, perfeita para Ladinos que precisam de alcance.’},
-{id:‘arco’,cat:‘Armas’,n:‘Arco Curto’,p:200,d:’(DES+DES) · RA+8 físico · Dist. · 2 mãos’,m:false,desc:‘Arco clássico. Usa Destreza duas vezes. Ideal para Atiradores que investiram em DES.’},
-{id:‘martelo’,cat:‘Armas’,n:‘Martelo de Ferro’,p:200,d:’(VIG+VIG) · RA+6 físico · 1 mão’,m:false,desc:‘Arma de 1 mão usando Vigor duas vezes. Compatível com escudo.’},
-{id:‘lanca-l’,cat:‘Armas’,n:‘Lança Leve ⚔’,p:200,d:’(DES+VIG) · RA+8 físico · Lança · 1 mão’,m:true,desc:‘Lança marcial de 1 mão. Bom equilíbrio e permite usar escudo na outra mão.’},
-{id:‘lanca-p’,cat:‘Armas’,n:‘Lança Pesada ⚔’,p:200,d:’(DES+VIG) · RA+12 físico · Lança · 2 mãos’,m:true,desc:‘Lança marcial de 2 mãos com alto dano. Usa Destreza + Vigor.’},
-{id:‘espada-b’,cat:‘Armas’,n:‘Espada de Bronze ⚔’,p:200,d:’(DES+VIG)+1 · RA+6 físico · 1 mão’,m:true,desc:‘Espada clássica com +1 na Precisão. Compatível com escudo.’},
-{id:‘montante’,cat:‘Armas’,n:‘Montante ⚔’,p:200,d:’(DES+VIG)+1 · RA+10 físico · 2 mãos’,m:true,desc:‘Grande espada marcial de 2 mãos. +1 Precisão + dano sólido.’},
-{id:‘katana’,cat:‘Armas’,n:‘Katana ⚔’,p:200,d:’(DES+AST)+1 · RA+10 físico · 2 mãos’,m:true,desc:‘Espada de 2 mãos usando DES + AST. Perfeita para magos guerreiros.’},
-{id:‘rapieira’,cat:‘Armas’,n:‘Rapieira ⚔’,p:200,d:’(DES+AST)+1 · RA+6 físico · 1 mão’,m:true,desc:‘Espada ágil de 1 mão. +1 Precisão. Ótima combinada com escudo ou feitiços.’},
-{id:‘machado-l’,cat:‘Armas’,n:‘Machado Largo ⚔’,p:250,d:’(VIG+VIG) · RA+10 físico · 1 mão’,m:true,desc:‘Machado marcial de 1 mão com alto dano usando Vigor duas vezes.’},
-{id:‘pistola’,cat:‘Armas’,n:‘Pistola ⚔’,p:250,d:’(DES+AST) · RA+8 físico · Arma de Fogo · Dist. · 1 mão’,m:true,desc:‘Arma de fogo de 1 mão. Deixa a outra mão livre para escudo ou outra arma.’},
-{id:‘machado-g’,cat:‘Armas’,n:‘Machado de Guerra ⚔’,p:250,d:’(VIG+VIG) · RA+14 físico · 2 mãos’,m:true,desc:‘Maior machado disponível. Dano massivo usando Vigor duas vezes.’},
-{id:‘rifle’,cat:‘Armas’,n:‘Rifle de Precisão ⚔’,p:1800,d:’(DES+AST)+1 · RA+16 físico · Arma de Fogo · Dist. · 2 mãos’,m:true,desc:’[Techno] Com Olhos de Águia: NP considerado +3 maior (máx NP 8).’},
-{id:‘garrucha’,cat:‘Armas’,n:‘Garrucha’,p:800,d:’(DES+AST)+1 · RA+8 físico · Arma de Fogo · Dist. · 1 mão’,m:false,desc:’[Natural] Primeiro ataque na cena causa +5 dano. Não é marcial mesmo sendo arma de fogo.’},
-{id:‘aquiles’,cat:‘Armas’,n:‘Aquiles ⚔’,p:1000,d:’(DES+VIG) · RA+12 físico · Lança · 1 mão’,m:true,desc:’[High Fantasy] Imune a todas as condições enquanto PV atual = PV máximo.’},
-{id:‘seda’,cat:‘Armaduras’,n:‘Camisa de Seda’,p:100,d:‘DEF: DES | DEF.M: AST+2 | Inic: −1’,m:false,desc:‘Armadura leve. +2 Defesa Mágica. Ideal para magos e suporte.’},
-{id:‘viagem’,cat:‘Armaduras’,n:‘Traje de Viagem’,p:100,d:‘DEF: DES+1 | DEF.M: AST+1 | Inic: −1’,m:false,desc:‘Armadura balanceada. +1 em ambas as defesas. Boa escolha geral.’},
-{id:‘tunica’,cat:‘Armaduras’,n:‘Túnica de Combate’,p:150,d:‘DEF: DES+1 | DEF.M: AST+1 | Inic: 0’,m:false,desc:‘Sem penalidade de Iniciativa. Boa para Ladinos e classes que precisam agir rápido.’},
-{id:‘brigantina’,cat:‘Armaduras’,n:‘Brigantina ⚔’,p:150,d:‘DEF: 10 (fixo) | DEF.M: AST | Inic: −2’,m:true,desc:‘Armadura marcial leve. DEF 10 fixo independente da Destreza.’},
-{id:‘vsabio’,cat:‘Armaduras’,n:‘Vestes de Sábio’,p:200,d:‘DEF: DES+1 | DEF.M: AST+2 | Inic: −2’,m:false,desc:‘Melhor armadura não-marcial para feiticeiros. +2 na Defesa Mágica.’},
-{id:‘placa-b’,cat:‘Armaduras’,n:‘Placa de Bronze ⚔’,p:200,d:‘DEF: 11 (fixo) | DEF.M: AST | Inic: −3’,m:true,desc:‘DEF 11 fixo. Excelente proteção para guerreiros.’},
-{id:‘placa-r’,cat:‘Armaduras’,n:‘Placa Rúnica ⚔’,p:250,d:‘DEF: 11 (fixo) | DEF.M: AST+1 | Inic: −3’,m:true,desc:‘DEF 11 fixo + bônus na Defesa Mágica. Melhor opção intermediária.’},
-{id:‘placa-a’,cat:‘Armaduras’,n:‘Placa de Aço ⚔’,p:300,d:‘DEF: 12 (fixo) | DEF.M: AST | Inic: −4’,m:true,desc:‘Maior DEF disponível: 12 fixo. Para tanques extremos.’},
-{id:‘esc-b’,cat:‘Escudos’,n:‘Escudo de Bronze’,p:100,d:’+2 DEF’,m:false,desc:‘Escudo básico. +2 Defesa. Compatível com qualquer classe.’},
-{id:‘esc-r’,cat:‘Escudos’,n:‘Escudo Rúnico ⚔’,p:150,d:’+2 DEF, +2 DEF.M’,m:true,desc:‘Escudo marcial. +2 em ambas as defesas. Excelente relação custo/benefício.’},
-{id:‘escudo-hecat’,cat:‘Escudos’,n:‘Escudo Hecat ⚔’,p:2000,d:’+2 DEF, +2 DEF.M’,m:true,desc:’[Techno] Resistente a dano de feitiços. Ao sofrer dano de feitiço: recupera 5 PM.’},
-{id:‘esc-mochila’,cat:‘Escudos’,n:‘Escudo-mochila’,p:1000,d:’+2 DEF’,m:false,desc:’[High Fantasy] Quando poder faz você recuperar PI: recupera +1 PI adicional.’},
-{id:‘mascara-gas’,cat:‘Acessórios’,n:‘Máscara de Gás’,p:900,d:‘Passivo’,m:false,desc:’[Techno] Resistente a veneno e imune a envenenado.’},
-{id:‘kit-socorros’,cat:‘Acessórios’,n:‘Kit de Primeiros-Socorros’,p:1500,d:‘Passivo’,m:false,desc:’[Techno] Ao curar criaturas em crise com poção ou feitiço: +5 PV extras para cada.’},
-{id:‘fita-danca’,cat:‘Acessórios’,n:‘Fita de Dança’,p:2000,d:‘Passivo’,m:false,desc:’[High Fantasy] Equipa: dado de Destreza +1 passo (máx d12).’},
-{id:‘anel-negacao’,cat:‘Acessórios’,n:‘Anel da Negação’,p:600,d:‘Passivo’,m:false,desc:’[High Fantasy] Ao lançar Dissipar: custo = 10×A e alvo = “até 3 criaturas”.’},
-{id:‘pocao’,cat:‘Consumíveis’,n:‘Poção de Cura’,p:100,d:‘Gasta 1 PI’,m:false,desc:‘Cura 50 PV de uma criatura.’},
-{id:‘antidoto’,cat:‘Consumíveis’,n:‘Antídoto’,p:75,d:‘Gasta 1 PI’,m:false,desc:‘Remove condição envenenado.’},
-{id:‘elixir’,cat:‘Consumíveis’,n:‘Elixir’,p:200,d:‘Gasta 1 PI’,m:false,desc:‘Restaura 30 PM de uma criatura.’},
-{id:‘eter’,cat:‘Consumíveis’,n:‘Éter’,p:150,d:‘Gasta 1 PI’,m:false,desc:‘Restaura 50 PM de uma criatura.’},
-{id:‘fenix’,cat:‘Consumíveis’,n:‘Pluma de Fênix’,p:300,d:‘Gasta 1 PI’,m:false,desc:‘Revive aliado com 0 PV, deixando com 1 PV.’},
-{id:‘antitoxina’,cat:‘Consumíveis’,n:‘Antitoxina’,p:120,d:‘Gasta 1 PI’,m:false,desc:‘Imunidade a veneno durante 1 cena.’},
+  {id:'cajado',cat:'Armas',n:'Cajado',p:100,d:'(VON+VON) · RA+6 físico · Arcana · 2 mãos',m:false,desc:'Arma arcana. Usa Vontade para ambos os dados de Precisão. Ótima para feiticeiros que se baseiam em VON.'},
+  {id:'tomo',cat:'Armas',n:'Tomo',p:100,d:'(AST+AST) · RA+6 físico · Arcana · 2 mãos',m:false,desc:'Arma arcana. Usa Astúcia para ambos os dados. Melhor para Arcanistas e Elementalistas.'},
+  {id:'besta',cat:'Armas',n:'Besta',p:150,d:'(DES+AST) · RA+8 físico · Dist. · 2 mãos',m:false,desc:'Arco à distância. Bom equilíbrio para classes que usam DES e AST.'},
+  {id:'soqueira',cat:'Armas',n:'Soqueira de Ferro',p:150,d:'(DES+VIG) · RA+6 físico · Luta · 1 mão',m:false,desc:'Arma de luta. Boa sinergia com a classe Furioso e poderes de Frenesi.'},
+  {id:'adaga',cat:'Armas',n:'Adaga de Aço',p:150,d:'(DES+AST)+1 · RA+4 físico · 1 mão',m:false,desc:'Precisa e versátil. O bônus +1 na Precisão compensa o dano menor. Ótima para Ladinos.'},
+  {id:'chicote',cat:'Armas',n:'Chicote de Correntes',p:150,d:'(DES+DES) · RA+8 físico · Malho · 2 mãos',m:false,desc:'Malho de 2 mãos usando Destreza duas vezes.'},
+  {id:'shuriken',cat:'Armas',n:'Shuriken',p:150,d:'(DES+AST) · RA+4 físico · Arremesso · 1 mão',m:false,desc:'Arma de arremesso. Leve e barata, perfeita para Ladinos que precisam de alcance.'},
+  {id:'arco',cat:'Armas',n:'Arco Curto',p:200,d:'(DES+DES) · RA+8 físico · Dist. · 2 mãos',m:false,desc:'Arco clássico. Usa Destreza duas vezes. Ideal para Atiradores que investiram em DES.'},
+  {id:'martelo',cat:'Armas',n:'Martelo de Ferro',p:200,d:'(VIG+VIG) · RA+6 físico · 1 mão',m:false,desc:'Arma de 1 mão usando Vigor duas vezes. Compatível com escudo.'},
+  {id:'lanca-l',cat:'Armas',n:'Lança Leve ⚔',p:200,d:'(DES+VIG) · RA+8 físico · Lança · 1 mão',m:true,desc:'Lança marcial de 1 mão. Bom equilíbrio e permite usar escudo na outra mão.'},
+  {id:'lanca-p',cat:'Armas',n:'Lança Pesada ⚔',p:200,d:'(DES+VIG) · RA+12 físico · Lança · 2 mãos',m:true,desc:'Lança marcial de 2 mãos com alto dano. Usa Destreza + Vigor.'},
+  {id:'espada-b',cat:'Armas',n:'Espada de Bronze ⚔',p:200,d:'(DES+VIG)+1 · RA+6 físico · 1 mão',m:true,desc:'Espada clássica com +1 na Precisão. Compatível com escudo.'},
+  {id:'montante',cat:'Armas',n:'Montante ⚔',p:200,d:'(DES+VIG)+1 · RA+10 físico · 2 mãos',m:true,desc:'Grande espada marcial de 2 mãos. +1 Precisão + dano sólido.'},
+  {id:'katana',cat:'Armas',n:'Katana ⚔',p:200,d:'(DES+AST)+1 · RA+10 físico · 2 mãos',m:true,desc:'Espada de 2 mãos usando DES + AST. Perfeita para magos guerreiros.'},
+  {id:'rapieira',cat:'Armas',n:'Rapieira ⚔',p:200,d:'(DES+AST)+1 · RA+6 físico · 1 mão',m:true,desc:'Espada ágil de 1 mão. +1 Precisão. Ótima combinada com escudo ou feitiços.'},
+  {id:'machado-l',cat:'Armas',n:'Machado Largo ⚔',p:250,d:'(VIG+VIG) · RA+10 físico · 1 mão',m:true,desc:'Machado marcial de 1 mão com alto dano usando Vigor duas vezes.'},
+  {id:'pistola',cat:'Armas',n:'Pistola ⚔',p:250,d:'(DES+AST) · RA+8 físico · Arma de Fogo · Dist. · 1 mão',m:true,desc:'Arma de fogo de 1 mão. Deixa a outra mão livre para escudo ou outra arma.'},
+  {id:'machado-g',cat:'Armas',n:'Machado de Guerra ⚔',p:250,d:'(VIG+VIG) · RA+14 físico · 2 mãos',m:true,desc:'Maior machado disponível. Dano massivo usando Vigor duas vezes.'},
+  {id:'rifle',cat:'Armas',n:'Rifle de Precisão ⚔',p:1800,d:'(DES+AST)+1 · RA+16 físico · Arma de Fogo · Dist. · 2 mãos',m:true,desc:'[Techno] Com Olhos de Águia: NP considerado +3 maior (máx NP 8).'},
+  {id:'garrucha',cat:'Armas',n:'Garrucha',p:800,d:'(DES+AST)+1 · RA+8 físico · Arma de Fogo · Dist. · 1 mão',m:false,desc:'[Natural] Primeiro ataque na cena causa +5 dano. Não é marcial mesmo sendo arma de fogo.'},
+  {id:'aquiles',cat:'Armas',n:'Aquiles ⚔',p:1000,d:'(DES+VIG) · RA+12 físico · Lança · 1 mão',m:true,desc:'[High Fantasy] Imune a todas as condições enquanto PV atual = PV máximo.'},
+  {id:'seda',cat:'Armaduras',n:'Camisa de Seda',p:100,d:'DEF: DES | DEF.M: AST+2 | Inic: −1',m:false,desc:'Armadura leve. +2 Defesa Mágica. Ideal para magos e suporte.'},
+  {id:'viagem',cat:'Armaduras',n:'Traje de Viagem',p:100,d:'DEF: DES+1 | DEF.M: AST+1 | Inic: −1',m:false,desc:'Armadura balanceada. +1 em ambas as defesas. Boa escolha geral.'},
+  {id:'tunica',cat:'Armaduras',n:'Túnica de Combate',p:150,d:'DEF: DES+1 | DEF.M: AST+1 | Inic: 0',m:false,desc:'Sem penalidade de Iniciativa. Boa para Ladinos e classes que precisam agir rápido.'},
+  {id:'brigantina',cat:'Armaduras',n:'Brigantina ⚔',p:150,d:'DEF: 10 (fixo) | DEF.M: AST | Inic: −2',m:true,desc:'Armadura marcial leve. DEF 10 fixo independente da Destreza.'},
+  {id:'vsabio',cat:'Armaduras',n:'Vestes de Sábio',p:200,d:'DEF: DES+1 | DEF.M: AST+2 | Inic: −2',m:false,desc:'Melhor armadura não-marcial para feiticeiros. +2 na Defesa Mágica.'},
+  {id:'placa-b',cat:'Armaduras',n:'Placa de Bronze ⚔',p:200,d:'DEF: 11 (fixo) | DEF.M: AST | Inic: −3',m:true,desc:'DEF 11 fixo. Excelente proteção para guerreiros.'},
+  {id:'placa-r',cat:'Armaduras',n:'Placa Rúnica ⚔',p:250,d:'DEF: 11 (fixo) | DEF.M: AST+1 | Inic: −3',m:true,desc:'DEF 11 fixo + bônus na Defesa Mágica. Melhor opção intermediária.'},
+  {id:'placa-a',cat:'Armaduras',n:'Placa de Aço ⚔',p:300,d:'DEF: 12 (fixo) | DEF.M: AST | Inic: −4',m:true,desc:'Maior DEF disponível: 12 fixo. Para tanques extremos.'},
+  {id:'esc-b',cat:'Escudos',n:'Escudo de Bronze',p:100,d:'+2 DEF',m:false,desc:'Escudo básico. +2 Defesa. Compatível com qualquer classe.'},
+  {id:'esc-r',cat:'Escudos',n:'Escudo Rúnico ⚔',p:150,d:'+2 DEF, +2 DEF.M',m:true,desc:'Escudo marcial. +2 em ambas as defesas. Excelente relação custo/benefício.'},
+  {id:'escudo-hecat',cat:'Escudos',n:'Escudo Hecat ⚔',p:2000,d:'+2 DEF, +2 DEF.M',m:true,desc:'[Techno] Resistente a dano de feitiços. Ao sofrer dano de feitiço: recupera 5 PM.'},
+  {id:'esc-mochila',cat:'Escudos',n:'Escudo-mochila',p:1000,d:'+2 DEF',m:false,desc:'[High Fantasy] Quando poder faz você recuperar PI: recupera +1 PI adicional.'},
+  {id:'mascara-gas',cat:'Acessórios',n:'Máscara de Gás',p:900,d:'Passivo',m:false,desc:'[Techno] Resistente a veneno e imune a envenenado.'},
+  {id:'kit-socorros',cat:'Acessórios',n:'Kit de Primeiros-Socorros',p:1500,d:'Passivo',m:false,desc:'[Techno] Ao curar criaturas em crise com poção ou feitiço: +5 PV extras para cada.'},
+  {id:'fita-danca',cat:'Acessórios',n:'Fita de Dança',p:2000,d:'Passivo',m:false,desc:'[High Fantasy] Equipa: dado de Destreza +1 passo (máx d12).'},
+  {id:'anel-negacao',cat:'Acessórios',n:'Anel da Negação',p:600,d:'Passivo',m:false,desc:'[High Fantasy] Ao lançar Dissipar: custo = 10×A e alvo = "até 3 criaturas".'},
+  {id:'pocao',cat:'Consumíveis',n:'Poção de Cura',p:100,d:'Gasta 1 PI',m:false,desc:'Cura 50 PV de uma criatura.'},
+  {id:'antidoto',cat:'Consumíveis',n:'Antídoto',p:75,d:'Gasta 1 PI',m:false,desc:'Remove condição envenenado.'},
+  {id:'elixir',cat:'Consumíveis',n:'Elixir',p:200,d:'Gasta 1 PI',m:false,desc:'Restaura 30 PM de uma criatura.'},
+  {id:'eter',cat:'Consumíveis',n:'Éter',p:150,d:'Gasta 1 PI',m:false,desc:'Restaura 50 PM de uma criatura.'},
+  {id:'fenix',cat:'Consumíveis',n:'Pluma de Fênix',p:300,d:'Gasta 1 PI',m:false,desc:'Revive aliado com 0 PV, deixando com 1 PV.'},
+  {id:'antitoxina',cat:'Consumíveis',n:'Antitoxina',p:120,d:'Gasta 1 PI',m:false,desc:'Imunidade a veneno durante 1 cena.'},
 ];
 
 // STATE
-const S={level:5,gold:500,cls:{},pows:{},spells:{},inv:[],hist:[],bonds:Array(6).fill(null).map(()=>({name:’’,f:{adm:0,inf:0,lea:0,des:0,afe:0,odi:0}}))};
-let shopCat=‘Todos’,clsSrc=‘Todos’,openCls=null,spellCls=‘Todos’;
+const S={level:5,gold:500,cls:{},pows:{},spells:{},inv:[],hist:[],bonds:Array(6).fill(null).map(()=>({name:'',f:{adm:0,inf:0,lea:0,des:0,afe:0,odi:0}}))};
+let shopCat='Todos',clsSrc='Todos',openCls=null,spellCls='Todos';
 
 // HELPERS
-function switchTab(id,btn){document.querySelectorAll(’.pane’).forEach(p=>p.classList.remove(‘on’));document.querySelectorAll(’.tab-btn’).forEach(b=>b.classList.remove(‘on’));document.getElementById(‘pane-’+id).classList.add(‘on’);btn.classList.add(‘on’);if(id===‘sheet’)renderSheet();}
-function dv(id){return parseInt(document.getElementById(‘a-’+id)?.value)||8;}
-function sv(id,v){const el=document.getElementById(id);if(el)el.textContent=v!=null?v:’’;}
-function gv(id){return document.getElementById(id)?.value||’’;}
+function switchTab(id,btn){document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));document.getElementById('pane-'+id).classList.add('on');btn.classList.add('on');if(id==='sheet')renderSheet();}
+function dv(id){return parseInt(document.getElementById('a-'+id)?.value)||8;}
+function sv(id,v){const el=document.getElementById(id);if(el)el.textContent=v!=null?v:'';}
+function gv(id){return document.getElementById(id)?.value||'';}
 
 // LEVEL
-function adjLvl(d){S.level=Math.max(1,Math.min(50,S.level+d));const base=S.level<=5?500:500+(S.level-5)*50;S.gold=base;sv(‘lvl-disp’,S.level);sv(‘hdr-lvl’,S.level);sv(‘lvl-budget’,S.level);sv(‘gold-ini’,base);sv(‘gold-ini-r’,base);sv(‘st-gold’,base);sv(‘hdr-gold’,base+‘z’);sv(‘gold-base-e’,base);document.getElementById(‘gold-disp’).textContent=base;const m=S.level===20?‘🌟 NÍVEL 20 — AUMENTA 1 ATRIBUTO!’:S.level===40?‘🌟 NÍVEL 40 — AUMENTA MAIS 1!’:S.level===50?‘NÍVEL MÁXIMO!’:S.level<=5?‘Nível inicial padrão.’:`Nível ${S.level} — ${S.level} pontos de classe.`;sv(‘lvl-info’,m);trimCls();calcStats();renderClasses();renderShop();}
+function adjLvl(d){S.level=Math.max(1,Math.min(50,S.level+d));const base=S.level<=5?500:500+(S.level-5)*50;S.gold=base;sv('lvl-disp',S.level);sv('hdr-lvl',S.level);sv('lvl-budget',S.level);sv('gold-ini',base);sv('gold-ini-r',base);sv('st-gold',base);sv('hdr-gold',base+'z');sv('gold-base-e',base);document.getElementById('gold-disp').textContent=base;const m=S.level===20?'🌟 NÍVEL 20 — AUMENTA 1 ATRIBUTO!':S.level===40?'🌟 NÍVEL 40 — AUMENTA MAIS 1!':S.level===50?'NÍVEL MÁXIMO!':S.level<=5?'Nível inicial padrão.':`Nível ${S.level} — ${S.level} pontos de classe.`;sv('lvl-info',m);trimCls();calcStats();renderClasses();renderShop();}
 function trimCls(){const tot=Object.values(S.cls).reduce((a,b)=>a+b,0);if(tot>S.level){let ov=tot-S.level;for(const k of Object.keys(S.cls).reverse()){if(S.cls[k]>0){const c=Math.min(S.cls[k],ov);S.cls[k]-=c;ov-=c;if(!ov)break;}}}}
 
 // ATTRS + STATS
 function calcStats(){
-const des=dv(‘des’),vig=dv(‘vig’),ast=dv(‘ast’),von=dv(‘von’),lvl=S.level;
-let pvB=0,pmB=0,piB=0;
-for(const[cid,l] of Object.entries(S.cls)){if(l<1)continue;const c=CLASSES.find(x=>x.id===cid);if(!c)continue;const b=c.ben||’’;if(b.includes(’+5 PV’))pvB+=5;if(b.includes(’+5 PM’))pmB+=5;if(b.includes(’+2 PI’))piB+=2;}
-const pv=lvl+(5*vig)+pvB,pm=lvl+(5*von)+pmB,pi=6+piB,crise=Math.floor(pv/2);
-sv(‘st-pv’,pv);sv(‘st-pm’,pm);sv(‘st-pi’,pi);sv(‘st-def’,des);sv(‘st-defm’,ast);sv(‘st-crise’,crise);sv(‘hdr-pv’,pv);sv(‘pi-max’,pi);sv(‘pi-calc-display’,pi);sv(‘pi-bonus-display’,’+’+piB);
-const piFill=document.getElementById(‘pi-fill’);if(piFill){const used=parseInt(document.getElementById(‘pi-used’)?.textContent||0);piFill.style.width=Math.min(100,Math.round(used/pi*100))+’%’;}
-return{pv,pm,pi,def:des,defm:ast,crise,des,vig,ast,von};
+  const des=dv('des'),vig=dv('vig'),ast=dv('ast'),von=dv('von'),lvl=S.level;
+  let pvB=0,pmB=0,piB=0;
+  for(const[cid,l] of Object.entries(S.cls)){if(l<1)continue;const c=CLASSES.find(x=>x.id===cid);if(!c)continue;const b=c.ben||'';if(b.includes('+5 PV'))pvB+=5;if(b.includes('+5 PM'))pmB+=5;if(b.includes('+2 PI'))piB+=2;}
+  const pv=lvl+(5*vig)+pvB,pm=lvl+(5*von)+pmB,pi=6+piB,crise=Math.floor(pv/2);
+  sv('st-pv',pv);sv('st-pm',pm);sv('st-pi',pi);sv('st-def',des);sv('st-defm',ast);sv('st-crise',crise);sv('hdr-pv',pv);sv('pi-max',pi);sv('pi-calc-display',pi);sv('pi-bonus-display','+'+piB);
+  const piFill=document.getElementById('pi-fill');if(piFill){const used=parseInt(document.getElementById('pi-used')?.textContent||0);piFill.style.width=Math.min(100,Math.round(used/pi*100))+'%';}
+  return{pv,pm,pi,def:des,defm:ast,crise,des,vig,ast,von};
 }
-function setProfile(p){document.querySelectorAll(’.profile-btn’).forEach(b=>b.classList.remove(‘on’));document.getElementById(‘prf-’+p).classList.add(‘on’);const m={spec:{des:10,vig:6,ast:10,von:6},mid:{des:10,vig:6,ast:8,von:8},all:{des:8,vig:8,ast:8,von:8}}[p];[‘des’,‘vig’,‘ast’,‘von’].forEach(k=>{document.getElementById(‘a-’+k).value=m[k];});calcStats();}
+function setProfile(p){document.querySelectorAll('.profile-btn').forEach(b=>b.classList.remove('on'));document.getElementById('prf-'+p).classList.add('on');const m={spec:{des:10,vig:6,ast:10,von:6},mid:{des:10,vig:6,ast:8,von:8},all:{des:8,vig:8,ast:8,von:8}}[p];['des','vig','ast','von'].forEach(k=>{document.getElementById('a-'+k).value=m[k];});calcStats();}
 function sync(){calcStats();}
 
 // CLASS INFO MODAL
-function showClassInfo(cid){const c=CLASSES.find(x=>x.id===cid);if(!c)return;document.getElementById(‘modalTitle’).textContent=c.name.toUpperCase()+’ — ’+c.src;document.getElementById(‘modalBody’).innerHTML=`<div class="modal-src">[${c.src}] ${c.ben}</div><div class="modal-desc">${c.info||c.desc}</div><div class="modal-pows-title">PODERES</div>${c.powers.map(pw=>`<div class="modal-pow-item"><div class="modal-pow-name">${pw.n}</div><div class="modal-pow-desc">${pw.d}</div></div>`).join('')}`;document.getElementById(‘classModal’).classList.add(‘open’);}
-function closeModal(){document.getElementById(‘classModal’).classList.remove(‘open’);}
+function showClassInfo(cid){const c=CLASSES.find(x=>x.id===cid);if(!c)return;document.getElementById('modalTitle').textContent=c.name.toUpperCase()+' — '+c.src;document.getElementById('modalBody').innerHTML=`<div class="modal-src">[${c.src}] ${c.ben}</div><div class="modal-desc">${c.info||c.desc}</div><div class="modal-pows-title">PODERES</div>${c.powers.map(pw=>`<div class="modal-pow-item"><div class="modal-pow-name">${pw.n}</div><div class="modal-pow-desc">${pw.d}</div></div>`).join('')}`;document.getElementById('classModal').classList.add('open');}
+function closeModal(){document.getElementById('classModal').classList.remove('open');}
 
 // CLASSES
-function renderSrcChips(){const srcs=[‘Todos’,‘Básico’,‘High Fantasy’,‘Natural Fantasy’,‘Techno Fantasy’,‘Codex Extra’];document.getElementById(‘srcChips’).innerHTML=srcs.map(s=>`<button class="chip ${clsSrc===s?'on':''}" onclick="clsSrc='${s}';renderClasses();">${s}</button>`).join(’’);}
+function renderSrcChips(){const srcs=['Todos','Básico','High Fantasy','Natural Fantasy','Techno Fantasy','Codex Extra'];document.getElementById('srcChips').innerHTML=srcs.map(s=>`<button class="chip ${clsSrc===s?'on':''}" onclick="clsSrc='${s}';renderClasses();">${s}</button>`).join('');}
 function renderClasses(){
-renderSrcChips();
-const filt=clsSrc===‘Todos’?CLASSES:CLASSES.filter(c=>c.src===clsSrc);
-document.getElementById(‘classGrid’).innerHTML=filt.map(cls=>{
-const lvl=S.cls[cls.id]||0,isOn=lvl>0;
-const maxShow=Math.min(10,Math.max(5,lvl+2));
-const pips=Array.from({length:maxShow},(*,i)=>`<div class="pip ${i<lvl?'on':''}" onclick="event.stopPropagation();setPip('${cls.id}',${i+1})" title="Nível ${i+1}"></div>`).join(’’);
-return`<div class="cls-card ${isOn?'on':''}" onclick="toggleCls('${cls.id}')"> <button class="cls-info-btn" onclick="event.stopPropagation();showClassInfo('${cls.id}')" title="Ver detalhes da classe">?</button> <div class="cls-head"><span class="cls-name">${cls.name}</span><span class="cls-src-tag ${cls.srcTag}">${cls.src.replace('Natural Fantasy','Natural').replace('Techno Fantasy','Techno').replace('High Fantasy','High').replace('Codex Extra','Codex')}</span></div> <div class="cls-desc">${cls.desc}</div> <div class="cls-ben">${cls.ben}</div> <div class="cls-pips">${pips}<span class="pip-label">Nv.${lvl}${lvl>=10?' ★':''}</span></div> </div>`;
-}).join(’’);
-const act=Object.entries(S.cls).filter(([,v])=>v>0);
-const tot=act.reduce((a,[,v])=>a+v,0);
-const sw=document.getElementById(‘classSummaryWrap’);
-if(act.length){sw.style.display=‘block’;document.getElementById(‘classSummary’).innerHTML=act.map(([cid,l])=>{const c=CLASSES.find(x=>x.id===cid);return`<div class="summary-row"><span>${c?c.name:cid}</span><span class="summary-lvl">Nível ${l}${l>=10?' ★':''}</span></div>`;}).join(’’)+`<div class="summary-row"><span style="color:var(--text3)">Total</span><span class="summary-lvl" style="color:${tot>S.level?'var(--red)':tot===S.level?'var(--green2)':'var(--text3)'};">${tot}/${S.level}</span></div>`;}else{sw.style.display=‘none’;}
-calcStats();
+  renderSrcChips();
+  const filt=clsSrc==='Todos'?CLASSES:CLASSES.filter(c=>c.src===clsSrc);
+  document.getElementById('classGrid').innerHTML=filt.map(cls=>{
+    const lvl=S.cls[cls.id]||0,isOn=lvl>0;
+    const maxShow=Math.min(10,Math.max(5,lvl+2));
+    const pips=Array.from({length:maxShow},(_,i)=>`<div class="pip ${i<lvl?'on':''}" onclick="event.stopPropagation();setPip('${cls.id}',${i+1})" title="Nível ${i+1}"></div>`).join('');
+    return`<div class="cls-card ${isOn?'on':''}" onclick="toggleCls('${cls.id}')">
+      <button class="cls-info-btn" onclick="event.stopPropagation();showClassInfo('${cls.id}')" title="Ver detalhes da classe">?</button>
+      <div class="cls-head"><span class="cls-name">${cls.name}</span><span class="cls-src-tag ${cls.srcTag}">${cls.src.replace('Natural Fantasy','Natural').replace('Techno Fantasy','Techno').replace('High Fantasy','High').replace('Codex Extra','Codex')}</span></div>
+      <div class="cls-desc">${cls.desc}</div>
+      <div class="cls-ben">${cls.ben}</div>
+      <div class="cls-pips">${pips}<span class="pip-label">Nv.${lvl}${lvl>=10?' ★':''}</span></div>
+    </div>`;
+  }).join('');
+  const act=Object.entries(S.cls).filter(([,v])=>v>0);
+  const tot=act.reduce((a,[,v])=>a+v,0);
+  const sw=document.getElementById('classSummaryWrap');
+  if(act.length){sw.style.display='block';document.getElementById('classSummary').innerHTML=act.map(([cid,l])=>{const c=CLASSES.find(x=>x.id===cid);return`<div class="summary-row"><span>${c?c.name:cid}</span><span class="summary-lvl">Nível ${l}${l>=10?' ★':''}</span></div>`;}).join('')+`<div class="summary-row"><span style="color:var(--text3)">Total</span><span class="summary-lvl" style="color:${tot>S.level?'var(--red)':tot===S.level?'var(--green2)':'var(--text3)'};">${tot}/${S.level}</span></div>`;}else{sw.style.display='none';}
+  calcStats();
 }
 function toggleCls(cid){if(S.cls[cid]>0){openCls=cid;renderPowers();}else{S.cls[cid]=1;trimCls();openCls=cid;renderClasses();renderPowers();}}
 function setPip(cid,l){const cur=S.cls[cid]||0;S.cls[cid]=(cur===l)?Math.max(0,l-1):l;trimCls();openCls=cid;renderClasses();renderPowers();calcStats();}
 function renderPowers(){
-if(!openCls){document.getElementById(‘powersPanel’).style.display=‘none’;return;}
-const cls=CLASSES.find(c=>c.id===openCls);if(!cls){document.getElementById(‘powersPanel’).style.display=‘none’;return;}
-const clsLvl=S.cls[openCls]||0;
-const selCount=cls.powers.filter((*,i)=>S.pows[`${openCls}_${i}`]).length;
-document.getElementById(‘powersPanel’).style.display=‘block’;
-document.getElementById(‘powersTitle’).textContent=‘PODERES DE ‘+cls.name.toUpperCase();
-document.getElementById(‘powerCount’).textContent=selCount+’/’+clsLvl+’ selecionados’;
-document.getElementById(‘powersList’).innerHTML=cls.powers.map((pw,i)=>{
-const key=`${openCls}_${i}`,sel=S.pows[key]||false;
-const locked=!sel&&selCount>=clsLvl;
-return`<div class="power-item ${sel?'on':''} ${locked?'locked':''}" onclick="${locked?'':'togglePow(\''+openCls+'\','+i+')'}"> <div class="power-check ${sel?'on':''}">${sel?'✓':''}</div> <div><div class="power-name">${pw.n}</div><div class="power-desc">${pw.d}${locked?'<div class="power-locked-note">⚠ Sem nível disponível</div>':''}</div></div> </div>`;
-}).join(’’);
+  if(!openCls){document.getElementById('powersPanel').style.display='none';return;}
+  const cls=CLASSES.find(c=>c.id===openCls);if(!cls){document.getElementById('powersPanel').style.display='none';return;}
+  const clsLvl=S.cls[openCls]||0;
+  const selCount=cls.powers.filter((_,i)=>S.pows[`${openCls}_${i}`]).length;
+  document.getElementById('powersPanel').style.display='block';
+  document.getElementById('powersTitle').textContent='PODERES DE '+cls.name.toUpperCase();
+  document.getElementById('powerCount').textContent=selCount+'/'+clsLvl+' selecionados';
+  document.getElementById('powersList').innerHTML=cls.powers.map((pw,i)=>{
+    const key=`${openCls}_${i}`,sel=S.pows[key]||false;
+    const locked=!sel&&selCount>=clsLvl;
+    return`<div class="power-item ${sel?'on':''} ${locked?'locked':''}" onclick="${locked?'':'togglePow(\''+openCls+'\','+i+')'}">
+      <div class="power-check ${sel?'on':''}">${sel?'✓':''}</div>
+      <div><div class="power-name">${pw.n}</div><div class="power-desc">${pw.d}${locked?'<div class="power-locked-note">⚠ Sem nível disponível</div>':''}</div></div>
+    </div>`;
+  }).join('');
 }
 function togglePow(cid,idx){const key=`${cid}_${idx}`;const cls=CLASSES.find(c=>c.id===cid);const clsLvl=S.cls[cid]||0;const cur=cls.powers.filter((_,i)=>S.pows[`${cid}_${i}`]).length;if(!S.pows[key]&&cur>=clsLvl)return;S.pows[key]=!S.pows[key];renderPowers();}
 
 // SHOP
 function renderShop(){
-const cats=[‘Todos’,‘Armas’,‘Armaduras’,‘Escudos’,‘Acessórios’,‘Consumíveis’];
-document.getElementById(‘shopFilters’).innerHTML=cats.map(c=>`<button class="chip ${shopCat===c?'on':''}" onclick="shopCat='${c}';renderShop();">${c}</button>`).join(’’);
-const items=shopCat===‘Todos’?ITEMS:ITEMS.filter(i=>i.cat===shopCat);
-document.getElementById(‘shopList’).innerHTML=items.map(it=>`<div class="shop-item">
-<div class="item-info">
-<div class="item-name">${it.n}${it.m?’<span class="martial-badge">MARCIAL</span>’:’’}</div>
-<div class="item-detail">${it.d}</div>
-</div>
-<div class="item-right">
-<button class="info-btn">🔍<div class="item-tooltip">${it.desc}</div></button>
-<div class="item-price">${it.p}z</div>
-<button class=“btn-buy” onclick=“buyItem(’${it.id}’)” ${S.gold<it.p?‘disabled’:’’}>Comprar</button>
-</div>
-
+  const cats=['Todos','Armas','Armaduras','Escudos','Acessórios','Consumíveis'];
+  document.getElementById('shopFilters').innerHTML=cats.map(c=>`<button class="chip ${shopCat===c?'on':''}" onclick="shopCat='${c}';renderShop();">${c}</button>`).join('');
+  const items=shopCat==='Todos'?ITEMS:ITEMS.filter(i=>i.cat===shopCat);
+  document.getElementById('shopList').innerHTML=items.map(it=>`<div class="shop-item">
+    <div class="item-info">
+      <div class="item-name">${it.n}${it.m?'<span class="martial-badge">MARCIAL</span>':''}</div>
+      <div class="item-detail">${it.d}</div>
+    </div>
+    <div class="item-right">
+      <button class="info-btn">🔍<div class="item-tooltip">${it.desc}</div></button>
+      <div class="item-price">${it.p}z</div>
+      <button class="btn-buy" onclick="buyItem('${it.id}')" ${S.gold<it.p?'disabled':''}>Comprar</button>
+    </div>
   </div>`).join('');
   document.getElementById('gold-disp').textContent=S.gold;
 }
@@ -1566,56 +1569,70 @@ function renderInv(){
 }
 
 // SPELLS
-const spellHdrClass={‘Elementalista’:‘hdr-elem’,‘Entropista’:‘hdr-entro’,‘Espiritualista’:‘hdr-espiri’,‘Invocador (Mananciais)’:‘hdr-invoc’,‘Virtuoso (Versos)’:‘hdr-virtuoso’,‘Astrólogo (Constelações)’:‘hdr-astro’,‘Necromante (Poderes)’:‘hdr-necro’};
+const spellHdrClass={'Elementalista':'hdr-elem','Entropista':'hdr-entro','Espiritualista':'hdr-espiri','Invocador (Mananciais)':'hdr-invoc','Virtuoso (Versos)':'hdr-virtuoso','Astrólogo (Constelações)':'hdr-astro','Necromante (Poderes)':'hdr-necro'};
 function renderSpells(){
-const clsNames=Object.keys(SPELLS);
-document.getElementById(‘spellFilters’).innerHTML=[‘Todos’,…clsNames].map(c=>`<button class="chip ${spellCls===c?'on':''}" onclick="spellCls='${c}';renderSpells();">${c.replace(' (Mananciais)','').replace(' (Versos)','').replace(' (Constelações)','').replace(' (Poderes)','')}</button>`).join(’’);
-const show=spellCls===‘Todos’?clsNames:[spellCls].filter(c=>SPELLS[c]);
-document.getElementById(‘spellGrid’).innerHTML=show.map(cls=>{
-const hdr=spellHdrClass[cls]||‘hdr-elem’;
-return`<div class="spell-cls-block"> <div class="spell-cls-hdr ${hdr}">✨ ${cls}</div> ${SPELLS[cls].map((sp,i)=>{const key=`${cls}_${i}`,sel=S.spells[key]||false;return`<div class="spell-item ${sel?'on':''}" onclick="toggleSpell('${cls}',${i})">
-<div class="spell-chk ${sel?'on':''}">${sel?‘✓’:’’}</div>
-<div><div class="spell-name">${sp.n}${sp.off?’<span class="spell-off">⚔</span>’:’’}</div>
-<div class="spell-meta">${sp.pm} PM · ${sp.al} · ${sp.dur}</div>
-<div class="spell-desc">${sp.d}</div></div>
-</div>`;}).join('')} </div>`;
-}).join(’’);
+  const clsNames=Object.keys(SPELLS);
+  document.getElementById('spellFilters').innerHTML=['Todos',...clsNames].map(c=>`<button class="chip ${spellCls===c?'on':''}" onclick="spellCls='${c}';renderSpells();">${c.replace(' (Mananciais)','').replace(' (Versos)','').replace(' (Constelações)','').replace(' (Poderes)','')}</button>`).join('');
+  const show=spellCls==='Todos'?clsNames:[spellCls].filter(c=>SPELLS[c]);
+  document.getElementById('spellGrid').innerHTML=show.map(cls=>{
+    const hdr=spellHdrClass[cls]||'hdr-elem';
+    return`<div class="spell-cls-block">
+      <div class="spell-cls-hdr ${hdr}">✨ ${cls}</div>
+      ${SPELLS[cls].map((sp,i)=>{const key=`${cls}_${i}`,sel=S.spells[key]||false;return`<div class="spell-item ${sel?'on':''}" onclick="toggleSpell('${cls}',${i})">
+        <div class="spell-chk ${sel?'on':''}">${sel?'✓':''}</div>
+        <div><div class="spell-name">${sp.n}${sp.off?'<span class="spell-off">⚔</span>':''}</div>
+        <div class="spell-meta">${sp.pm} PM · ${sp.al} · ${sp.dur}</div>
+        <div class="spell-desc">${sp.d}</div></div>
+      </div>`;}).join('')}
+    </div>`;
+  }).join('');
 }
 function toggleSpell(cls,idx){const key=`${cls}_${idx}`;S.spells[key]=!S.spells[key];renderSpells();}
 
 // BONDS
 function renderBonds(){
-const pairs=[[‘adm’,‘Admiração’,‘inf’,‘Inferioridade’],[‘lea’,‘Lealdade’,‘des’,‘Desconfiança’],[‘afe’,‘Afeto’,‘odi’,‘Ódio’]];
-document.getElementById(‘bondsContainer’).innerHTML=S.bonds.map((b,i)=>{
-const str=Object.values(b.f).reduce((a,v)=>a+v,0);
-return`<div class="bond-card"> <div> <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem;"> <span style="font-family:var(--font);font-size:.9rem;color:var(--teal3);letter-spacing:.04em;">LAÇO ${i+1}</span> <span class="bond-strength">FORÇA ${str}/3</span> </div> <input class="form-input" type="text" placeholder="Nome do personagem…" value="${b.name}" oninput="S.bonds[${i}].name=this.value"> </div> <div class="feelings-col">${pairs.map(([a,la,bk,lb])=>`<div class="f-pair">
-<span class="f-lbl">${la}</span>
-<div class="f-chk ${b.f[a]?'on':''}" onclick="toggleF(${i},'${a}','${bk}')">${b.f[a]?‘✓’:’’}</div>
-<div class="f-sep"></div>
-<div class="f-chk ${b.f[bk]?'on':''}" onclick="toggleF(${i},'${bk}','${a}')">${b.f[bk]?‘✓’:’’}</div>
-<span style="font-family:var(--font);font-size:.8rem;color:var(--text3);margin-left:.3rem;letter-spacing:.04em;">${lb}</span>
-</div>`).join('')}</div> </div>`;
-}).join(’’);
+  const pairs=[['adm','Admiração','inf','Inferioridade'],['lea','Lealdade','des','Desconfiança'],['afe','Afeto','odi','Ódio']];
+  document.getElementById('bondsContainer').innerHTML=S.bonds.map((b,i)=>{
+    const str=Object.values(b.f).reduce((a,v)=>a+v,0);
+    return`<div class="bond-card">
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem;">
+          <span style="font-family:var(--font);font-size:.9rem;color:var(--teal3);letter-spacing:.04em;">LAÇO ${i+1}</span>
+          <span class="bond-strength">FORÇA ${str}/3</span>
+        </div>
+        <input class="form-input" type="text" placeholder="Nome do personagem…" value="${b.name}" oninput="S.bonds[${i}].name=this.value">
+      </div>
+      <div class="feelings-col">${pairs.map(([a,la,bk,lb])=>`<div class="f-pair">
+        <span class="f-lbl">${la}</span>
+        <div class="f-chk ${b.f[a]?'on':''}" onclick="toggleF(${i},'${a}','${bk}')">${b.f[a]?'✓':''}</div>
+        <div class="f-sep"></div>
+        <div class="f-chk ${b.f[bk]?'on':''}" onclick="toggleF(${i},'${bk}','${a}')">${b.f[bk]?'✓':''}</div>
+        <span style="font-family:var(--font);font-size:.8rem;color:var(--text3);margin-left:.3rem;letter-spacing:.04em;">${lb}</span>
+      </div>`).join('')}</div>
+    </div>`;
+  }).join('');
 }
 function toggleF(bi,f,opp){const b=S.bonds[bi].f;if(b[f]){b[f]=0;}else{b[opp]=0;b[f]=1;}renderBonds();}
 
 // LORE IMG
-function loadImg(input){const file=input.files[0];if(!file)return;const reader=new FileReader();reader.onload=e=>{document.getElementById(‘imgPH’).style.display=‘none’;document.getElementById(‘imgPreviewWrap’).style.display=‘block’;document.getElementById(‘imgPreview’).src=e.target.result;document.getElementById(‘imgZone’).style.padding=‘0’;};reader.readAsDataURL(file);}
-function clearImg(){document.getElementById(‘imgPH’).style.display=‘flex’;document.getElementById(‘imgPreviewWrap’).style.display=‘none’;document.getElementById(‘imgZone’).style.padding=‘2rem’;document.getElementById(‘imgInput’).value=’’;}
+function loadImg(input){const file=input.files[0];if(!file)return;const reader=new FileReader();reader.onload=e=>{document.getElementById('imgPH').style.display='none';document.getElementById('imgPreviewWrap').style.display='block';document.getElementById('imgPreview').src=e.target.result;document.getElementById('imgZone').style.padding='0';};reader.readAsDataURL(file);}
+function clearImg(){document.getElementById('imgPH').style.display='flex';document.getElementById('imgPreviewWrap').style.display='none';document.getElementById('imgZone').style.padding='2rem';document.getElementById('imgInput').value='';}
 
 // SHEET
 function renderSheet(){
-const st=calcStats();
-sv(‘s-name’,gv(‘c-name’));sv(‘s-gender’,gv(‘c-gender’));sv(‘s-race’,gv(‘c-race’));
-sv(‘s-ident’,gv(‘c-ident’));sv(‘s-theme’,gv(‘c-theme’));sv(‘s-origin’,gv(‘c-origin’));
-document.getElementById(‘s-lvl’).textContent=S.level;sv(‘s-lvl2’,S.level);
-[‘des’,‘vig’,‘ast’,‘von’].forEach(a=>sv(‘s-’+a,‘d’+dv(a)));
-sv(‘s-pv’,st.pv);sv(‘s-pv2’,st.pv);sv(‘s-pm’,st.pm);sv(‘s-pm2’,st.pm);sv(‘s-pi’,st.pi);sv(‘s-pi2’,st.pi);
-sv(‘s-def’,st.def);sv(‘s-defm’,st.defm);sv(‘s-crise’,st.crise);sv(‘s-ini’,‘0’);sv(‘s-gold’,S.gold+‘z’);
-// Laços
-const pairs=[[‘adm’,‘Adm.’,‘inf’,‘Inf.’],[‘lea’,‘Lea.’,‘des’,‘Des.’],[‘afe’,‘Afe.’,‘odi’,‘Ódio’]];
-document.getElementById(‘s-lacos’).innerHTML=S.bonds.map((b,i)=>`<div class="laco-row"> <span class="laco-num">${i+1}</span> <span class="laco-name-val">${b.name||''}</span> <div class="laco-dots">${pairs.map(([a,la,bk,lb])=>`<div title="${la}" class="laco-dot ${b.f[a]?'filled':''}"></div><div class="laco-vsep"></div><div title="${lb}" class="laco-dot ${b.f[bk]?'filled':''}"></div>`).join(’<div style="width:4px;"></div>’)}</div>
-
+  const st=calcStats();
+  sv('s-name',gv('c-name'));sv('s-gender',gv('c-gender'));sv('s-race',gv('c-race'));
+  sv('s-ident',gv('c-ident'));sv('s-theme',gv('c-theme'));sv('s-origin',gv('c-origin'));
+  document.getElementById('s-lvl').textContent=S.level;sv('s-lvl2',S.level);
+  ['des','vig','ast','von'].forEach(a=>sv('s-'+a,'d'+dv(a)));
+  sv('s-pv',st.pv);sv('s-pv2',st.pv);sv('s-pm',st.pm);sv('s-pm2',st.pm);sv('s-pi',st.pi);sv('s-pi2',st.pi);
+  sv('s-def',st.def);sv('s-defm',st.defm);sv('s-crise',st.crise);sv('s-ini','0');sv('s-gold',S.gold+'z');
+  // Laços
+  const pairs=[['adm','Adm.','inf','Inf.'],['lea','Lea.','des','Des.'],['afe','Afe.','odi','Ódio']];
+  document.getElementById('s-lacos').innerHTML=S.bonds.map((b,i)=>`<div class="laco-row">
+    <span class="laco-num">${i+1}</span>
+    <span class="laco-name-val">${b.name||''}</span>
+    <div class="laco-dots">${pairs.map(([a,la,bk,lb])=>`<div title="${la}" class="laco-dot ${b.f[a]?'filled':''}"></div><div class="laco-vsep"></div><div title="${lb}" class="laco-dot ${b.f[bk]?'filled':''}"></div>`).join('<div style="width:4px;"></div>')}</div>
   </div>`).join('');
   // Equipável
   const hasMartial=t=>{for(const[cid,l] of Object.entries(S.cls)){if(l<1)continue;const c=CLASSES.find(x=>x.id===cid);if(c&&c.ben&&c.ben.toLowerCase().includes(t))return true;}return false;};
@@ -1641,11 +1658,10 @@ document.getElementById(‘s-lacos’).innerHTML=S.bonds.map((b,i)=>`<div class=
 
 // EXPORT
 function exportPDF(){
-const st=calcStats();const name=gv(‘c-name’)||‘personagem’;
-const act=Object.entries(S.cls).filter(([,v])=>v>0);
-const w=window.open(’’,’_blank’);
-w.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Ficha — ${name}</title>
-
+  const st=calcStats();const name=gv('c-name')||'personagem';
+  const act=Object.entries(S.cls).filter(([,v])=>v>0);
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Ficha — ${name}</title>
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:'VT323',monospace;background:#fff;color:#1A1A1A;padding:1.3cm;font-size:13px;max-width:22cm;margin:0 auto;line-height:1.5;}
   h1{font-size:18px;font-weight:700;color:#1B6B75;letter-spacing:.1em;margin-bottom:8px;border-bottom:3px solid #1B6B75;padding-bottom:4px;}
@@ -1676,10 +1692,10 @@ w.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
   <script>window.onload=()=>{window.print();}<\/script></body></html>`);w.document.close();
 }
 
-document.addEventListener(‘DOMContentLoaded’,()=>{
-calcStats();renderClasses();renderShop();renderInv();renderBonds();renderSpells();
-document.getElementById(‘c-ident’)?.addEventListener(‘input’,e=>{const t=document.getElementById(‘tr-ident’);if(t&&!t.value)t.value=e.target.value;});
-document.getElementById(‘c-theme’)?.addEventListener(‘input’,e=>{const t=document.getElementById(‘tr-theme’);if(t&&!t.value)t.value=e.target.value;});
-document.getElementById(‘c-origin’)?.addEventListener(‘input’,e=>{const t=document.getElementById(‘tr-origin’);if(t&&!t.value)t.value=e.target.value;});
+document.addEventListener('DOMContentLoaded',()=>{
+  calcStats();renderClasses();renderShop();renderInv();renderBonds();renderSpells();
+  document.getElementById('c-ident')?.addEventListener('input',e=>{const t=document.getElementById('tr-ident');if(t&&!t.value)t.value=e.target.value;});
+  document.getElementById('c-theme')?.addEventListener('input',e=>{const t=document.getElementById('tr-theme');if(t&&!t.value)t.value=e.target.value;});
+  document.getElementById('c-origin')?.addEventListener('input',e=>{const t=document.getElementById('tr-origin');if(t&&!t.value)t.value=e.target.value;});
 });
 </script></body></html>
